@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: Dirooz;
+  src: url('./assets/fonts/Dirooz-FD.ttf');
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('./assets/fonts/Vazir-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('./assets/fonts/Vazir-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('./assets/fonts/Vazir-Thin.ttf');
+  font-weight: 200;
+}
+
+@theme {
+  --color-primary: #DAA327;
+
+  --color-secondary-1: #E6D5A8;
+  --color-secondary-2: #B3964C;
+  --color-secondary-3: #552C13;
+
+  --font-Vazir: 'Vazir';
+  --font-Dirooz: 'Dirooz';
+
+}
+
+* {
+  font-family: var(--font-Vazir);
+}

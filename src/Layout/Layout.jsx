@@ -7,7 +7,7 @@ function Layout({ children }) {
     <>
       <Header />
 
-      <main>
+      <main className=''>
         {children}
       </main>
 
