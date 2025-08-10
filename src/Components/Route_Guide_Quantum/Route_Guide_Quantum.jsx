@@ -5,7 +5,7 @@ import Route_Guide_Quantum_Img_sm from '../../assets/images/Quantum/quantumLandi
 function Route_Guide_Quantum() {
   return (
     <>
-      <div className='Route_Guide_Quantum container mx-auto h-auto  mt-8'>
+      <div className='Route_Guide_Quantum container mx-auto h-auto  mt-16'>
 
         <div className='Route_Guide_Quantum_Head flex lg:flex-row flex-col justify-between lg:items-center items-start gap-6'>
 

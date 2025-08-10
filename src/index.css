@@ -36,7 +36,8 @@
 }
 
 * {
-  font-family: var(--font-Vazir);
+  font-family: var(--font-Dirooz);
+  font-weight: bold;
 }
 
 .Quantum_Card {
