@@ -1,7 +1,15 @@
 .Landing_title {
-  background-image: url('./assets/images/bannerBack-DvIZIPNM.png');
+  background-image: url('./assets/images/bg-img/bannerBack-DvIZIPNM.png');
   background-position: 50% 40%;
   background-size: center;
+  background-repeat: no-repeat;
+  background-attachment: local;
+}
+
+.Quantum_Card_Box {
+  background-image: url('./assets/images/bg-img/Maskgroup1-dwHcnO8c.png');
+  background-position: center;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: local;
 }
