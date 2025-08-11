@@ -62,17 +62,17 @@ function Quantum_Levels() {
               {Planet_Card_Value.map(item => (
                 <SwiperSlide key={item.id}>
                   <>
-                    <div className={`Planet_Card w-[250px] h-[290px] bg-[${item.color}] p-6 rounded-xl m-auto`}>
+                    <div className={`Planet_Card w-[250px] h-[290px] p-6 rounded-xl m-auto`} style={{ backgroundColor: item.color }}>
                       <div className=' w-full h-full flex flex-col justify-start bg-white rounded-2xl p-4'>
-                        <div className={`Quantum_Levels_Card_img bg-[${item.color}] flex justify-center items-center h-8/12 rounded-xl`}>
+                        <div className={`Quantum_Levels_Card_img flex justify-center items-center h-8/12 rounded-xl`} style={{ backgroundColor: item.color }}>
                           <img className='w-2/3' src={item.src} alt={''} />
                         </div>
-                        <div className='Quantum_Levels_Card_Content w-full h-4/12 flex flex-col justify-center items-end px-4 mt-2 gap-y-4'>
+                        <div className='Quantum_Levels_Card_Content w-full h-4/12 flex flex-col justify-center items-end mt-2 gap-y-4'>
                           <div className='w-full flex flex-row justify-between items-center text-lg'>
-                            <span>{item.level}</span>
-                            <span>{item.title}</span>
+                            <span className='text-md'>{item.level}</span>
+                            <span className='text-md'>{item.title}</span>
                           </div>
-                          <span className='text-neutral-400'>
+                          <span className='text-neutral-400 text-sm'>
                             {item.firstNum} تا {item.lastNum}
                           </span>
                         </div>
