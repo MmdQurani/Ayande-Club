@@ -33,8 +33,8 @@ function Quantum_Card_Box() {
 
           <div className='Quantum_Cards 2xl:w-6/11 lg:w-2/3 w-auto mt-10 h-auto grid grid-cols-12 gap-8 '>
             {Data_Quantum_Card.map(item =>
-              <div className='md:col-span-4 sm:col-span-6 col-span-12 lg:flex hidden'>
-                <Quantum_Card key={item.id} {...item} />
+              <div key={item.id} className='md:col-span-4 sm:col-span-6 col-span-12 lg:flex hidden'>
+                <Quantum_Card {...item} />
               </div>
             )}
 

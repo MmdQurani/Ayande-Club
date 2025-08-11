@@ -29,7 +29,7 @@ function Quantum_Levels() {
 
   return (
     <>
-      <div className='Quantum_Levels mt-26 container 2xl:w-4/7 w-full mx-auto'>
+      <div className='Quantum_Levels mt-26 2xl:w-5/7 mx-auto'>
 
         <div className='Quantum_Levels_Title flex flex-col gap-y-6 text-center w-full mx-auto'>
           <span className='md:text-4xl text-xl text-secondary-3'>سطــوح کــوآنتــوم</span>
@@ -41,8 +41,8 @@ function Quantum_Levels() {
           <div className='w-full h-auto hidden md:grid grid-cols-12 gap-6'>
 
             {Planet_Card_Value.map(item =>
-              <div className='lg:col-span-4 md:col-span-6 col-span-8'>
-                <Planet_Card key={item.id} {...item} style='min-h-[350px] max-h-[350px]' />
+              <div key={item.id} className='lg:col-span-4 md:col-span-6 col-span-8'>
+                <Planet_Card  {...item} style='min-h-[350px] max-h-[350px]' />
               </div>
             )}
 

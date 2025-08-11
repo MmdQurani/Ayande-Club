@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Landing_title from '../../Components/Landing_title/Landing_title'
 import Customer_Club_Introduction from '../../Components/Customer_Club_Introduction/Customer_Club_Introduction'
 
 import Quantum_Card_Box from '../../Components/Quantum_Card_Box/Quantum_Card_Box'
 import Route_Guide_Quantum from '../../Components/Route_Guide_Quantum/Route_Guide_Quantum'
 import Quantum_Levels from '../../Components/Quantum_Levels/Quantum_Levels'
+import FAQ_Quantum_Landing from '../../Components/FAQ_Quantum_Landing/FAQ_Quantum_Landing';
 
 
 function LandingPage() {
@@ -24,9 +25,12 @@ function LandingPage() {
 
         <Quantum_Levels />
 
+        <FAQ_Quantum_Landing />
+
       </div>
     </div>
   )
 }
+
 
 export default LandingPage
