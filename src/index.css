@@ -42,6 +42,13 @@
 
 .Quantum_Card {
   background-color: var(--color-white);
-  box-shadow: 0 0 10px var(--color-gray-200) , 0 0 15px var(--color-gray-100);
+  box-shadow: 0 0 10px var(--color-gray-200), 0 0 15px var(--color-gray-100);
   border-radius: 0.75rem;
+}
+
+footer {
+  background-image: url('./assets/images/bg-img/footerBack1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
