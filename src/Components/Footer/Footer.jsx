@@ -21,7 +21,7 @@ function Footer() {
         <span className='md:text-4xl text-lg text-secondary-3 md:leading-14 leading-8' dir='rtl'>به دنیای کوآنتوم قدم بگذارید و آغازگر سفر پاداش‌های منحصر به فرد خود باشید !</span>
         <button className='bg-white px-8 py-3 cursor-pointer md:text-xl text-sm rounded-lg shadow-lg mb-6'>ورود به دنیای کوانتوم</button>
 
-        <div className='footer_content bg-neutral-900/15 hidden md:flex flex-row justify-between gap-x-6 w-full min-h-[230px] text-white px-12 py-6 rounded-xl'>
+        <div className='footer_content backdrop-blur-md bg-neutral-900/15 hidden md:flex flex-row justify-between gap-x-6 w-full min-h-[230px] text-white px-12 py-6 rounded-xl'>
           <div className='left_box_footer lg:w-[20%] md:w-[35%] flex flex-col items-start'>
             <Link to={'/'} className='bg-neutral-900/35 w-full flex flex-row-reverse justify-between px-4 py-2 rounded-full'>
               <div className='flex flex-row-reverse gap-x-1'>
@@ -78,7 +78,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className='footer_content bg-neutral-900/15 md:hidden flex flex-col px-4 py-6 rounded-xl text-white'>
+        <div className='footer_content backdrop-blur-md bg-neutral-900/15 md:hidden flex flex-col px-4 py-6 rounded-xl text-white'>
           <div className='left_box_footer lg:w-[20%] md:w-[35%] flex flex-row justify-between items-start'>
             <Link to={'/'} className='bg-neutral-900/35 min-w-[130px] text-white flex flex-row-reverse justify-between px-4 py-2 rounded-full'>
               <div className='flex flex-row-reverse gap-x-1'>
