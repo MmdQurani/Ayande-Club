@@ -1,8 +1,10 @@
-// routes.jsx
-import LandingPage from "../Pages/LandingPage/LandingPage"
+import LandingPage from "../Pages/LandingPage/LandingPage";
 
 const Routes = [
-  { path: '/', element: <LandingPage /> }
-]
+  { path: "/", element: <LandingPage /> },
+  { path: "/login", element: <LandingPage /> },
+  { path: "/signup", element: <LandingPage /> },
+  { path: "/signup/verify", element: <LandingPage /> },
+];
 
-export default Routes
+export default Routes;
