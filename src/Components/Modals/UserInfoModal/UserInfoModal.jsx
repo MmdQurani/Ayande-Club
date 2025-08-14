@@ -23,7 +23,7 @@ export default function UserInfoModal() {
   return (
     <div className="fixed inset-0 z-150 flex items-center justify-center" dir="rtl">
       <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/15 backdrop-blur-sm"
       />
 
       <div className="relative bg-white rounded-lg p-6 w-[498px] max-w-[90%] min-h-[480px] max-h-[90%] h-max pt-6 pb-12 shadow-lg flex flex-col justify-center items-center">

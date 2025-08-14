@@ -7,6 +7,7 @@ const Routes = [
   { path: "/signup/verify", element: <LandingPage /> },
   { path: "/signup/confirm", element: <LandingPage /> },
   { path: "/signup/agreements", element: <LandingPage /> },
+  { path: "/signup/quiz", element: <LandingPage /> },
 ];
 
 export default Routes;

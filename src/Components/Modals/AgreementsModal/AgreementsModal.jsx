@@ -33,14 +33,14 @@ export default function AgreementsModal() {
     // fetch("/api/accept-contracts", { method: "POST", body: JSON.stringify(contracts) });
 
     // هدایت به صفحه بعد یا داشبورد
-    navigate("/", { replace: true });
+    navigate("/signup/quiz", { replace: true });
   };
 
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center" dir="rtl">
       {/* بک‌دراپ تار و نیمه‌شفاف */}
       <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/15 backdrop-blur-sm"
       />
 
       {/* پنجره مودال */}
