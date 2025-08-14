@@ -6,6 +6,7 @@ import LoginModal from "../Components/Modals/LoginModal/LoginModal";
 import SignupModal from "../Components/Modals/SignupModal/SignupModal";
 import VerifyModal from "../Components/Modals/VerifyModal/VerifyModal";
 import UserInfoModal from "../Components/Modals/UserInfoModal/UserInfoModal";
+import AgreementsModal from "../Components/Modals/AgreementsModal/AgreementsModal";
 
 function Layout({ children }) {
   const location = useLocation();
@@ -15,6 +16,7 @@ function Layout({ children }) {
   const showSignupModal = location.pathname === "/signup";
   const showVerifyModal = location.pathname === "/signup/verify";
   const showUserInfoModal = location.pathname === "/signup/confirm";
+  const showAgreementsModal = location.pathname === "/signup/agreements";
 
   return (
     <>
@@ -30,6 +32,7 @@ function Layout({ children }) {
       {showSignupModal && <SignupModal />}
       {showVerifyModal && <VerifyModal />}
       {showUserInfoModal && <UserInfoModal />}
+      {showAgreementsModal && <AgreementsModal />}
     </>
   );
 }
