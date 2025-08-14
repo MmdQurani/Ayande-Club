@@ -2,9 +2,10 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import LoginModal from "../Components/LoginModal/LoginModal";
-import SignupModal from "../Components/SignupModal/SignupModal";
-import VerifyModal from "../Components/VerifyModal/VerifyModal";
+import LoginModal from "../Components/Modals/LoginModal/LoginModal";
+import SignupModal from "../Components/Modals/SignupModal/SignupModal";
+import VerifyModal from "../Components/Modals/VerifyModal/VerifyModal";
+import UserInfoModal from "../Components/Modals/UserInfoModal/UserInfoModal";
 
 function Layout({ children }) {
   const location = useLocation();
@@ -13,6 +14,7 @@ function Layout({ children }) {
   const showLoginModal = location.pathname === "/login";
   const showSignupModal = location.pathname === "/signup";
   const showVerifyModal = location.pathname === "/signup/verify";
+  const showUserInfoModal = location.pathname === "/signup/confirm";
 
   return (
     <>
@@ -27,6 +29,7 @@ function Layout({ children }) {
       {showLoginModal && <LoginModal />}
       {showSignupModal && <SignupModal />}
       {showVerifyModal && <VerifyModal />}
+      {showUserInfoModal && <UserInfoModal />}
     </>
   );
 }

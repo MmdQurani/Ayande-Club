@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import logo from '../../assets/images/logo/logo.png'
+import logo from '../../../assets/images/logo/logo.png'
 
 export default function VerifyModal() {
-  const navigate = useNavigate();
   const [code, setCode] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    // TODO: فراخوانی API برای تأیید کد
-    // پس از موفقیت:
-    navigate("/");  // یا مسیر دلخواه پس از تأیید
+
+    // const response = await fetch("/api/verify", {
+    //   method: "POST",
+    //   body: JSON.stringify({ code }),
+    //   headers: { "Content-Type": "application/json" },
+    // });
+
+    // const data = await response.json();
+
+    // عبور اطلاعات به مودال بعدی از طریق state
+    // navigate("/signup/confirm", { state: { userData: data } });
+    navigate("/signup/confirm");
   };
 
   return (
@@ -30,6 +39,8 @@ export default function VerifyModal() {
             <span className="text-xs">کد تایید سجام ارسال شده را وارد کنید :</span>
             <input
               type="text"
+              value={code}
+              onChange={e => setCode(e.target.value)}
               placeholder="کد تایید باید 6 رقمی باشد"
               className="w-full border-1 border-neutral-300 placeholder:text-neutral-300 placeholder:text-xs focus:outline-none focus:border-secondary-3 rounded mt-1 px-3 py-2" />
 

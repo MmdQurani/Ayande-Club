@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import logo from '../../assets/images/logo/logo.png'
+import logo from '../../../assets/images/logo/logo.png'
 
 export default function LoginModal() {
 

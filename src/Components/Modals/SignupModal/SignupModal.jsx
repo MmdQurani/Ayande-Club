@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../assets/images/logo/logo.png'
+import logo from '../../../assets/images/logo/logo.png'
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -13,7 +13,6 @@ export default function SignupModal() {
     // پس از موفقیت مستقیم navigate("/")
     // پس از موفقیت به مرحلهٔ تأیید کد برو
     navigate("/signup/verify");
-    console.log('hello world')
   };
 
   return (
