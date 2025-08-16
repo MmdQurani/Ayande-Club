@@ -95,7 +95,7 @@ export default function QuizModal() {
     console.log("پاسخ‌ها:", answers);
     // اینجا می‌توانید اعتبارسنجی کنید یا به سرور بفرستید
     // بعد از ارسال، برای مثال:
-    navigate("/signup");
+    navigate("/signup/security");
   };
 
   const goTo = page => { // تغییر صفحه
@@ -108,7 +108,7 @@ export default function QuizModal() {
       <div className="absolute inset-0 bg-black/15 backdrop-blur-sm" />
 
       <div
-        className="relative bg-white rounded-lg p-6 w-[600px] max-w-[95%] max-h-[90vh] overflow-y-auto shadow-lg flex flex-col"
+        className="relative bg-white rounded-lg p-6 w-[498px] max-w-[95%] h-[610px] max-h-[90%] overflow-y-auto shadow-lg flex flex-col"
         dir="rtl"
       >
         <img
@@ -117,12 +117,12 @@ export default function QuizModal() {
           className="w-[90px] h-[36px] object-contain self-center mt-4"
         />
 
-        <span className="text-[16px] mt-6 text-center text-secondary-3">ثبت نام باشگاه مشتریان کارگزاری آینده</span>
+        <span className="text-[16px] mt-4 text-center text-secondary-3">ثبت نام باشگاه مشتریان کارگزاری آینده</span>
         <span className="text-xs mt-3 mb-4 text-center text-secondary-3">طبق قوانین سازمان باید در آزمون شرکت کرده و به سوالات پاسخ بدهید</span>
 
-        <form onSubmit={handleSubmit} className="space-y-2 mt-2">
+        <form onSubmit={handleSubmit} className="space-y-2 h-full mt-2">
           {currentQuestions.map(q => (
-            <div key={q.id} className="space-y-2 bg-neutral-100 p-4 rounded-lg">
+            <div key={q.id} className="space-y-2 bg-neutral-100 p-2.5 px-4 rounded-lg">
               <p className="text-xs 2xl:text-sm font-semibold">{q.text}</p>
               <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
                 {q.options.map(opt => (
@@ -144,7 +144,7 @@ export default function QuizModal() {
           ))}
 
           {/* ناوبری صفحات */}
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex justify-between items-center">
 
             <button
               type="button"

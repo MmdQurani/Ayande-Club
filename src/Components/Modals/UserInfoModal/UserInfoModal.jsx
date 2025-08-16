@@ -26,7 +26,7 @@ export default function UserInfoModal() {
         className="absolute inset-0 bg-black/15 backdrop-blur-sm"
       />
 
-      <div className="relative bg-white rounded-lg p-6 w-[498px] max-w-[90%] min-h-[480px] max-h-[90%] h-max pt-6 pb-12 shadow-lg flex flex-col justify-center items-center">
+      <div className="relative bg-white rounded-lg p-6 w-[498px] max-w-[90%] h-[610px] max-h-[90%] pt-6 pb-12 shadow-lg flex flex-col justify-center items-center">
 
         <img src={logo} alt="logo" className="w-[90px] h-[36px] object-contain mt-6" />
 
