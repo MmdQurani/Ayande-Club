@@ -16,7 +16,7 @@ export default function CodeVerificationModal() {
 
     // TODO: ارسال smsCode و captchaInput به سرور برای اعتبارسنجی
     // در صورت موفقیت:
-    navigate("/signup");  // یا هر مسیر بعدی که لازم دارید
+    navigate("/signup/contract");  // یا هر مسیر بعدی که لازم دارید
   };
 
   return (

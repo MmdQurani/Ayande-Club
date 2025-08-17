@@ -9,6 +9,7 @@ import UserInfoModal from "../Components/Modals/UserInfoModal/UserInfoModal";
 import AgreementsModal from "../Components/Modals/AgreementsModal/AgreementsModal";
 import QuizModal from "../Components/Modals/QuizModal/QuizModal";
 import CodeVerificationModal from "../Components/Modals/CodeVerificationModal/CodeVerificationModal";
+import ContractModal from "../Components/Modals/ContractModal/ContractModal";
 
 function Layout({ children }) {
   const location = useLocation();
@@ -21,9 +22,11 @@ function Layout({ children }) {
   const showAgreementsModal = location.pathname === "/signup/agreements";
   const showQuizModal = location.pathname === "/signup/quiz";
   const showCodeVerificationModal = location.pathname === "/signup/security";
+  const showContractModal = location.pathname === "/signup/contract";
 
   return (
     <>
+      {console.log("ContractModal:", ContractModal, typeof ContractModal)}
       <Header />
 
       <main className="relative">  {/* relative برای تراز مودال */}
@@ -39,6 +42,8 @@ function Layout({ children }) {
       {showAgreementsModal && <AgreementsModal />}
       {showQuizModal && <QuizModal />}
       {showCodeVerificationModal && <CodeVerificationModal />}
+      {showContractModal && <ContractModal />}
+
     </>
   );
 }
