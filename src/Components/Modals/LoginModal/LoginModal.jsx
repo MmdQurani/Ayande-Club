@@ -13,7 +13,7 @@ export default function LoginModal() {
     // TODO: ارسال اطلاعات فرم به API
     // پس از موفقیت مستقیم navigate("/")
     // پس از موفقیت به مرحلهٔ تأیید کد برو
-    navigate("/signup/verify");
+    navigate("/dashboard");
   };
 
   return (

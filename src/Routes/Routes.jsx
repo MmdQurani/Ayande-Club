@@ -1,6 +1,7 @@
+import Dashboard from "../Pages/Dashboard/Dashboard";
 import LandingPage from "../Pages/LandingPage/LandingPage";
 
-const Routes = [
+export const LoginRoutes = [
   { path: "/", element: <LandingPage /> },
   { path: "/login", element: <LandingPage /> },
   { path: "/signup", element: <LandingPage /> },
@@ -11,6 +12,10 @@ const Routes = [
   { path: "/signup/security", element: <LandingPage /> },
   { path: "/signup/contract", element: <LandingPage /> },
   { path: "/signup/success", element: <LandingPage /> },
+];
+
+const Routes = [
+  { path: "/dashboard", element: <Dashboard /> },
 ];
 
 export default Routes;

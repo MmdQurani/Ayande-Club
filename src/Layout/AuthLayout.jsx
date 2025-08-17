@@ -12,7 +12,7 @@ import CodeVerificationModal from "../Components/Modals/CodeVerificationModal/Co
 import ContractModal from "../Components/Modals/ContractModal/ContractModal";
 import SuccessModal from "../Components/Modals/SuccessModal/SuccessModal";
 
-function Layout({ children }) {
+function AuthLayout({ children }) {
   const location = useLocation();
 
   // وقتی مسیر دقیق برابر "/login" باشد مودال را نمایش بده
@@ -51,4 +51,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default AuthLayout;

@@ -6,29 +6,32 @@ import Quantum_Card_Box from '../../Components/Quantum_Card_Box/Quantum_Card_Box
 import Route_Guide_Quantum from '../../Components/Route_Guide_Quantum/Route_Guide_Quantum'
 import Quantum_Levels from '../../Components/Quantum_Levels/Quantum_Levels'
 import FAQ_Quantum_Landing from '../../Components/FAQ_Quantum_Landing/FAQ_Quantum_Landing';
+import AuthLayout from '../../Layout/AuthLayout';
 
 
 function LandingPage() {
 
 
   return (
-    <div className='LandingPage px-4 flex flex-col justify-start items-center' dir='rtl'>
-      <div className='w-full h-auto'>
+    <AuthLayout>
+      <div className='LandingPage px-4 flex flex-col justify-start items-center' dir='rtl'>
+        <div className='w-full h-auto'>
 
-        <Landing_title />
+          <Landing_title />
 
-        <Customer_Club_Introduction />
+          <Customer_Club_Introduction />
 
-        <Quantum_Card_Box />
+          <Quantum_Card_Box />
 
-        <Route_Guide_Quantum />
+          <Route_Guide_Quantum />
 
-        <Quantum_Levels />
+          <Quantum_Levels />
 
-        <FAQ_Quantum_Landing />
+          <FAQ_Quantum_Landing />
 
+        </div>
       </div>
-    </div>
+    </AuthLayout>
   )
 }
 
