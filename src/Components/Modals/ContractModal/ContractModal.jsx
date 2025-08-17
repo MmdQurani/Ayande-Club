@@ -33,7 +33,7 @@ export default function ContractModal() {
         <div className="absolute inset-0 bg-black/15 backdrop-blur-sm" />
 
         <div
-          className="relative bg-white rounded-lg w-[500px] max-w-[95%] max-h-[90%] overflow-y-auto shadow-lg p-6 flex flex-col"
+          className="relative bg-white rounded-lg w-[500px] max-w-[95%] h-[610px] max-h-[90%] overflow-y-auto shadow-lg p-6 flex flex-col"
           dir="rtl"
         >
           {/* لوگو و متن‌ها */}

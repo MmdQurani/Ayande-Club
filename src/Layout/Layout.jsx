@@ -10,6 +10,7 @@ import AgreementsModal from "../Components/Modals/AgreementsModal/AgreementsModa
 import QuizModal from "../Components/Modals/QuizModal/QuizModal";
 import CodeVerificationModal from "../Components/Modals/CodeVerificationModal/CodeVerificationModal";
 import ContractModal from "../Components/Modals/ContractModal/ContractModal";
+import SuccessModal from "../Components/Modals/SuccessModal/SuccessModal";
 
 function Layout({ children }) {
   const location = useLocation();
@@ -23,6 +24,7 @@ function Layout({ children }) {
   const showQuizModal = location.pathname === "/signup/quiz";
   const showCodeVerificationModal = location.pathname === "/signup/security";
   const showContractModal = location.pathname === "/signup/contract";
+  const showSuccessModal = location.pathname === "/signup/success";
 
   return (
     <>
@@ -43,6 +45,7 @@ function Layout({ children }) {
       {showQuizModal && <QuizModal />}
       {showCodeVerificationModal && <CodeVerificationModal />}
       {showContractModal && <ContractModal />}
+      {showSuccessModal && <SuccessModal />}
 
     </>
   );
