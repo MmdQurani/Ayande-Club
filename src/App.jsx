@@ -7,16 +7,14 @@ import MainLayout from './Layout/MainLayout'
 
 function App() {
 
-  const getRoutes = useRoutes(Routes)
   const getLoginRoutes = useRoutes(LoginRoutes)
+  const getRoutes = useRoutes(Routes)
 
   return (
     <>
       {getLoginRoutes}
-      <MainLayout>
-        {getRoutes}
-      </MainLayout>
 
+      {getRoutes}
     </>
   )
 }
