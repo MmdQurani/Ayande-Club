@@ -11,7 +11,7 @@ function MainLayout({ children }) {
     <>
       <div className='MainLayout w-full min-h-screen bg-gray-100/60 flex justify-center' dir='rtl'>
 
-        <div className=' container w-[95%] flex flex-row justify-center my-10 space-x-2'>
+        <div className='lg:container w-[95%] flex flex-row justify-center my-10 space-x-2'>
           <Sidebar />
 
           <main className='main flex-1'>
