@@ -1,13 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-function SidebarMenuItem({ href, title }) {
+function SidebarMenuItem({ href, title, children }) {
   return (
-    <>
-      <Link to={href} className=' block px-2 py-4 my-1 text-sm text-neutral-500 border-t-1 border-neutral-200'>
-        <span>{title}</span>
-      </Link>
-    </>
+    <NavLink to={href} end className={({ isActive }) =>
+      [
+        'flex items-center space-x-1 px-2 py-4 my-1 text-sm border-t border-neutral-200',
+        'outline-0',
+        isActive
+          ? 'text-secondary-2 stroke-secondary-2'   // active styles
+          : 'text-neutral-600 stroke-neutral-600'         // default styles
+      ].join(' ')
+    }
+    >
+      {children}
+      <span>{title}</span>
+    </NavLink>
   )
 }
 

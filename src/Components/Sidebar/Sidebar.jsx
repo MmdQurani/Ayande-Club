@@ -6,72 +6,114 @@ import SidebarMenuItem from '../SidebarMenuItem/SidebarMenuItem'
 import instagram from '../../assets/icons/media_sidebar/brand-instagram.png'
 import telegram from '../../assets/icons/media_sidebar/brand-telegram.png'
 import site from '../../assets/icons/media_sidebar/site.png'
-import call_calling from '../../assets/icons/call_calling_sidebar.png'
+import callCalling from '../../assets/icons/call_calling_sidebar.png'
+
+const main_menu = [
+  {
+    href: '/dashboard', title: 'داشبورد کوانتومی', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M12 15L12 18" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M21.6359 12.9579L21.3572 14.8952C20.8697 18.2827 20.626 19.9764 19.451 20.9882C18.2759 22 16.5526 22 13.1061 22H10.8939C7.44737 22 5.72409 22 4.54903 20.9882C3.37396 19.9764 3.13025 18.2827 2.64284 14.8952L2.36407 12.9579C1.98463 10.3208 1.79491 9.00229 2.33537 7.87495C2.87583 6.7476 4.02619 6.06234 6.32691 4.69181L7.71175 3.86687C9.80104 2.62229 10.8457 2 12 2C13.1543 2 14.199 2.62229 16.2882 3.86687L17.6731 4.69181C19.9738 6.06234 21.1242 6.7476 21.6646 7.87495" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  },
+  {
+    href: '/', title: 'گنجینه جوایز', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M12 8V21M12 8H7.5C6.83696 8 6.20107 7.73661 5.73223 7.26777C5.26339 6.79893 5 6.16304 5 5.5C5 4.83696 5.26339 4.20107 5.73223 3.73223C6.20107 3.26339 6.83696 3 7.5 3C11 3 12 8 12 8ZM12 8H16.5C17.163 8 17.7989 7.73661 18.2678 7.26777C18.7366 6.79893 19 6.16304 19 5.5C19 4.83696 18.7366 4.20107 18.2678 3.73223C17.7989 3.26339 17.163 3 16.5 3C13 3 12 8 12 8ZM3 14H21M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V11.2C21 10.0799 21 9.51984 20.782 9.09202C20.5903 8.71569 20.2843 8.40973 19.908 8.21799C19.4802 8 18.9201 8 17.8 8H6.2C5.0799 8 4.51984 8 4.09202 8.21799C3.71569 8.40973 3.40973 8.71569 3.21799 9.09202C3 9.51984 3 10.0799 3 11.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  },
+  {
+    href: '/', title: 'خزانه امتیاز', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M7.52879 16.4712C2.59014 11.5325 0.588351 5.52715 3.05768 3.05782C5.04852 1.06697 9.33779 1.98237 13.5134 5M16.471 7.52894C21.4097 12.4676 23.4115 18.473 20.9421 20.9423C18.9535 22.931 14.6713 22.0198 10.5 19.01M20.9423 3.05768C23.4117 5.52701 21.4099 11.5324 16.4712 16.4711C11.5326 21.4097 5.5272 23.4115 3.05787 20.9422C1.06704 18.9513 1.98242 14.6621 5 10.4865C5.72528 9.48285 6.57199 8.4858 7.52899 7.5288C12.4676 2.59014 18.473 0.588345 20.9423 3.05768Z" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5C13.3807 9.5 14.5 10.6193 14.5 12Z" stroke-width="1.5" />
+    </svg>
+  },
+  {
+    href: '/', title: 'نردبان رشد', svg: <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24px" width="24px" version="1.1" id="Layer_1" viewBox="0 0 501.389 501.389" xml:space="preserve">
+      <g>
+        <g>
+          <g>
+            <path d="M501.12,420.818c-3.093-33.28-30.933-58.24-63.787-58.24c-31.253,0-57.813,22.613-63.04,53.333H131.52     c-43.093,0-78.187-33.493-78.187-74.667s35.093-74.667,78.187-74.667h248.853c54.933,0,99.52-43.093,99.52-96     s-44.693-96-99.52-96H207.04l45.76-45.76c4.053-4.267,3.947-10.987-0.213-15.04c-4.16-3.947-10.667-3.947-14.827,0l-64,64     c-4.16,4.16-4.16,10.88,0,15.04l64,64c4.267,4.053,10.987,3.947,15.04-0.213c3.947-4.16,3.947-10.667,0-14.827l-45.76-45.867     h173.333c43.093,0,78.187,33.493,78.187,74.667s-35.093,74.667-78.187,74.667H131.52c-54.933,0-99.52,43.093-99.52,96     s44.693,96,99.52,96h242.773c5.973,35.52,40.213,59.2,75.84,52.053C481.92,482.898,504.107,453.138,501.12,420.818z      M437.333,469.138c-23.573,0-42.667-19.093-42.667-42.667c0-23.573,19.093-42.667,42.667-42.667S480,402.898,480,426.471     C480,450.044,460.907,469.138,437.333,469.138z" />
+            <path d="M128,85.138c0-35.307-28.693-64-64-64c-35.307,0-64,28.693-64,64c0,35.307,28.693,64,64,64     C99.307,149.138,127.893,120.551,128,85.138z M21.333,85.138c0-23.573,19.093-42.667,42.667-42.667     c23.573,0,42.667,19.093,42.667,42.667c0,23.573-19.093,42.667-42.667,42.667C40.427,127.804,21.333,108.711,21.333,85.138z" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  },
+  {
+    href: '/', title: 'دعوت و درآمد', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M6 20.087H8.61029C8.95063 20.087 9.28888 20.1275 9.61881 20.2085L12.3769 20.8788C12.9753 21.0246 13.5988 21.0387 14.2035 20.9213L17.253 20.328C18.0585 20.1711 18.7996 19.7853 19.3803 19.2204L21.5379 17.1216C22.154 16.5233 22.154 15.5523 21.5379 14.953C20.9832 14.4133 20.1047 14.3526 19.4771 14.8102L16.9626 16.6447C16.6025 16.908 16.1643 17.0497 15.7137 17.0497H13.2855L14.8311 17.0497C15.7022 17.0497 16.4079 16.3632 16.4079 15.5158V15.209C16.4079 14.5054 15.9156 13.8919 15.2141 13.7218L12.8286 13.1416C12.4404 13.0475 12.0428 12.9999 11.6431 12.9999C10.6783 12.9999 8.93189 13.7987 8.93189 13.7987L6 15.0248M2 14.5999L2 20.3999C2 20.9599 2 21.24 2.10899 21.4539C2.20487 21.642 2.35785 21.795 2.54601 21.8909C2.75992 21.9999 3.03995 21.9999 3.6 21.9999H4.4C4.96005 21.9999 5.24008 21.9999 5.45399 21.8909C5.64215 21.795 5.79513 21.642 5.89101 21.4539C6 21.24 6 20.9599 6 20.3999V14.5999C6 14.0398 6 13.7598 5.89101 13.5459C5.79513 13.3577 5.64215 13.2048 5.45399 13.1089C5.24008 12.9999 4.96005 12.9999 4.4 12.9999H3.6C3.03995 12.9999 2.75992 12.9999 2.54601 13.1089C2.35785 13.2048 2.20487 13.3577 2.10899 13.5459C2 13.7598 2 14.0398 2 14.5999ZM17.1914 3.59215C16.5946 2.34329 15.2186 1.68168 13.8804 2.32027C12.5423 2.95886 11.9722 4.47328 12.5325 5.80272C12.8787 6.62435 13.8707 8.2199 14.5781 9.31893C14.8394 9.725 14.9701 9.92804 15.161 10.0468C15.3247 10.1487 15.5297 10.2036 15.7224 10.1972C15.9471 10.1898 16.1618 10.0793 16.5911 9.85832C17.7532 9.26021 19.4101 8.37445 20.1208 7.83602C21.2707 6.96481 21.5556 5.36347 20.6947 4.14614C19.8337 2.9288 18.3327 2.80902 17.1914 3.59215Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  },
+  {
+    href: '/', title: 'مرکز راهنما', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M14 11H8M10 15H8M16 7H8M20 10V6.8C20 5.11984 20 4.27976 19.673 3.63803C19.3854 3.07354 18.9265 2.6146 18.362 2.32698C17.7202 2 16.8802 2 15.2 2H8.8C7.11984 2 6.27976 2 5.63803 2.32698C5.07354 2.6146 4.6146 3.07354 4.32698 3.63803C4 4.27976 4 5.11984 4 6.8V17.2C4 18.8802 4 19.7202 4.32698 20.362C4.6146 20.9265 5.07354 21.3854 5.63803 21.673C6.27976 22 7.11984 22 8.8 22H12.5M18 21C18 21 21 19.5701 21 17.4252V14.9229L18.8124 14.1412C18.2868 13.9529 17.712 13.9529 17.1864 14.1412L15 14.9229V17.4252C15 19.5701 18 21 18 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  },
+  {
+    href: '/', title: 'ارتباط با ما', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M4.85864 6C6.67357 4.14864 9.20268 3 12.0001 3C14.7975 3 17.3266 4.14864 19.1415 6M16.4723 9C15.3736 7.7725 13.777 7 12 7C10.223 7 8.62647 7.7725 7.52783 9M12 17C13.5105 17 14.9608 17.2576 16.3094 17.7313C16.3542 17.747 16.3767 17.7549 16.412 17.7705C16.7326 17.9118 16.9788 18.2591 17.0058 18.6084C17.0088 18.647 17.0088 18.6811 17.0088 18.7494C17.0088 18.9821 17.0088 19.0985 17.0185 19.1965C17.1122 20.1457 17.8631 20.8966 18.8123 20.9903C18.9103 21 19.0267 21 19.2594 21H19.5044C19.965 21 20.1952 21 20.3868 20.9622C21.1829 20.8053 21.8053 20.1829 21.9622 19.3868C22 19.1952 22 18.965 22 18.5044V18.3062C22 17.831 22 17.5933 21.9493 17.3209C21.8358 16.7119 21.3933 15.9583 20.9166 15.5624C20.7035 15.3854 20.5589 15.3048 20.2698 15.1435C17.822 13.7781 15.0019 13 12 13C8.99812 13 6.17797 13.7781 3.73021 15.1435C3.4411 15.3048 3.29654 15.3854 3.0834 15.5624C2.60675 15.9583 2.16421 16.7119 2.05074 17.3209C2 17.5933 2 17.831 2 18.3062V18.5044C2 18.965 2 19.1952 2.03776 19.3868C2.19469 20.1829 2.81709 20.8053 3.61321 20.9622C3.80476 21 4.03504 21 4.4956 21H4.74057C4.97332 21 5.0897 21 5.18773 20.9903C6.13689 20.8966 6.8878 20.1457 6.98152 19.1965C6.9912 19.0985 6.9912 18.9821 6.9912 18.7494C6.9912 18.6811 6.9912 18.647 6.99418 18.6084C7.02122 18.2591 7.2674 17.9118 7.58798 17.7705C7.62335 17.7549 7.64577 17.747 7.69061 17.7313C9.03921 17.2576 10.4895 17 12 17Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  },
+  {
+    href: '/', title: 'اطلاعات کاربری', svg: <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+      <path d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  },
+]
+
+const media = [
+  { to: '/', icon: site, label: 'سایت' },
+  { to: '/', icon: instagram, label: 'اینستاگرام' },
+  { to: '/', icon: telegram, label: 'تلگرام' },
+]
 
 function Sidebar() {
   const navigate = useNavigate()
 
   return (
-    <div className="sidebar sticky top-10  h-[90vh] min-h-0 w-[267px] flex flex-col  bg-white rounded-lg  border border-neutral-200 p-4">
+    <div className="sidebar sticky top-10 h-[90vh] min-h-0 w-[267px] flex flex-col bg-white rounded-lg border border-neutral-200 p-4">
 
       <div className="sidebar_logo mb-6">
-        <img onClick={() => navigate('/dashboard')} className="h-8 w-auto object-contain cursor-pointer" src={logo} alt="Logo" />
+        <img
+          onClick={() => navigate('/dashboard')}
+          className="h-8 w-auto object-contain cursor-pointer"
+          src={logo}
+          alt="Logo"
+        />
       </div>
 
-      <div className="sidebar_menu w-full flex flex-col justify-between flex-1 min-h-0 space-y-24">
+      <div className="sidebar_menu flex flex-col justify-between flex-1 min-h-0">
 
-        <ul className="overflow-y-auto flex-1 min-h-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]space-y-2">
-          <li>
-            <SidebarMenuItem href="/" title="داشبورد کوانتومی" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="گنجینه جوایز" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="خزانه امتیاز" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="نردبان رشد" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="دعوت و درآمد" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="مرکز راهنما" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="ارتباط با ما" />
-          </li>
-          <li>
-            <SidebarMenuItem href="/" title="اطلاعات کاربری" />
-          </li>
+        <ul className="overflow-y-auto flex-1 min-h-0 mb-24 [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none] space-y-2">
+          {main_menu.map(item => (
+            <li key={item.title}>
+              <SidebarMenuItem href={item.href} title={item.title}>
+                {item.svg}
+              </SidebarMenuItem>
+            </li>
+          ))}
         </ul>
 
         <div className="sidebar_footer">
+
           <div className="mobile_contact0 py-6 border-t border-neutral-200 flex justify-between text-xs">
-            <div className='flex flex-row items-center space-x-1'>
-              <img className='size-6 object-contain' src={call_calling} alt="" />
+            <div className="flex items-center space-x-1.5">
+              <img className="size-5 object-contain" src={callCalling} alt="تماس" />
               <span>تماس با ما</span>
             </div>
             <span>۰۲۱-۳۶۲۱۲۵۵۴۳</span>
           </div>
 
           <div className="media_contact py-6 border-t border-neutral-200 flex justify-between text-xs">
-            <Link to="/" className="flex flex-col items-center space-y-2">
-              <img className='size-6 object-contain' src={site} alt="" />
-              <span>سایت</span>
-            </Link>
-            <Link to="/" className="flex flex-col items-center space-y-2">
-              <img className='size-6 object-contain' src={instagram} alt="" />
-              <span>اینستاگرام</span>
-            </Link>
-            <Link to="/" className="flex flex-col items-center space-y-2">
-              <img className='size-6 object-contain' src={telegram} alt="" />
-              <span>تلگرام</span>
-            </Link>
+            {media.map(link => (
+              <Link key={link.label} to={link.to} className="flex flex-col items-center space-y-2">
+                <img className="size-6 object-contain" src={link.icon} alt={link.label} />
+                <span>{link.label}</span>
+              </Link>
+            ))}
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   )
