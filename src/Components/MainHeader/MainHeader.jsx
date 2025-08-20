@@ -13,7 +13,7 @@ function MainHeader() {
   const Icon = current?.svg || (<span>آیکون</span>)
 
   return (
-    <header className="w-full h-[44px] hidden lg:flex">
+    <header className="w-full h-[44px] hidden lg:flex mb-4">
       <div className="content_header w-full h-full grid grid-cols-12 space-x-4">
 
         <div className="col-span-3">
@@ -23,7 +23,7 @@ function MainHeader() {
           </div>
         </div>
 
-        <div className="col-span-5">
+        <div className="col-span-4">
           <div className="w-full h-full flex items-center bg-white border border-neutral-200 rounded-md space-x-2 px-2 text-sm text-neutral-600 stroke-neutral-600">
 
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
@@ -35,7 +35,7 @@ function MainHeader() {
           </div>
         </div>
 
-        <div className="col-span-4 flex flex-row space-x-2">
+        <div className="col-span-5 flex flex-row space-x-2">
 
           <div className='date_day flex justify-between items-center bg-white border border-neutral-200 rounded-md space-x-2 px-2 text-sm text-neutral-600 stroke-neutral-600 flex-1'>
             <div className='flex flex-row space-x-2 text-neutral-600 stroke-neutral-600 fill-neutral-600'>
@@ -51,9 +51,9 @@ function MainHeader() {
                 <path d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z" />
                 <path d="M8 13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13C6 12.4477 6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z" />
               </svg>
-              <span>تاریخ روز :</span>
+              <span>تاریخ روز:</span>
             </div>
-            <span className='bg-secondary-1 py-1 px-4 text-neutral-800 rounded-sm'>1403/10/16</span>
+            <span className='bg-secondary-1 py-1 px-2 text-neutral-800 rounded-sm'>1403/10/16</span>
           </div>
 
           <div className='notification_btns flex flex-row'>
@@ -102,7 +102,7 @@ function MainHeader() {
           </div>
 
         </div>
-        
+
       </div>
     </header>
   )

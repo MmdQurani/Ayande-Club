@@ -13,3 +13,11 @@
   background-repeat: no-repeat;
   background-attachment: local;
 }
+
+.dashboard_header {
+  background-image: url('./assets/images/bg-img/bg-banner-dashboard.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: local;
+}

@@ -19,12 +19,12 @@ import Planet_Card from '../Planet_Card/Planet_Card';
 function Quantum_Levels() {
 
   const Planet_Card_Value = [
-    { id: 1, color: '#313131', src: Quantum_Level_1, title: 'اورانوس', level: 1, firstNum: 0, lastNum: 5000 },
+    { id: 1, color: '#313131', src: Quantum_Level_1, title: 'ماه', level: 1, firstNum: 0, lastNum: 5000 },
     { id: 2, color: '#95C5C5', src: Quantum_Level_2, title: 'اورانوس', level: 2, firstNum: 5000, lastNum: 15000 },
-    { id: 3, color: '#B7AA87', src: Quantum_Level_3, title: 'اورانوس', level: 3, firstNum: 15000, lastNum: 50000 },
-    { id: 4, color: '#9B4A1B', src: Quantum_Level_4, title: 'اورانوس', level: 4, firstNum: 50000, lastNum: 125000 },
-    { id: 5, color: '#B5843F', src: Quantum_Level_5, title: 'اورانوس', level: 5, firstNum: 125000, lastNum: 250000 },
-    { id: 6, color: '#F2BE4F', src: Quantum_Level_6, title: 'اورانوس', level: 6, firstNum: 250000, lastNum: 'بی نهایت' }
+    { id: 3, color: '#B7AA87', src: Quantum_Level_3, title: 'زحل', level: 3, firstNum: 15000, lastNum: 50000 },
+    { id: 4, color: '#9B4A1B', src: Quantum_Level_4, title: 'مریخ', level: 4, firstNum: 50000, lastNum: 125000 },
+    { id: 5, color: '#B5843F', src: Quantum_Level_5, title: 'عطارد', level: 5, firstNum: 125000, lastNum: 250000 },
+    { id: 6, color: '#F2BE4F', src: Quantum_Level_6, title: 'خورشید', level: 6, firstNum: 250000, lastNum: 'بی نهایت' }
   ]
 
   return (
