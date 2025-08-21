@@ -14,7 +14,9 @@ function App() {
     <>
       {getLoginRoutes}
 
-      {getRoutes}
+      <MainLayout>
+        {getRoutes}
+      </MainLayout>
     </>
   )
 }

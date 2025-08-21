@@ -1,5 +1,6 @@
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import LandingPage from "../Pages/LandingPage/LandingPage";
+import Rewards from "../Pages/Rewards/Rewards";
 
 export const LoginRoutes = [
   { path: "/", element: <LandingPage /> },
@@ -16,6 +17,7 @@ export const LoginRoutes = [
 
 const Routes = [
   { path: "/dashboard", element: <Dashboard /> },
+  { path: "/rewards", element: <Rewards /> },
 ];
 
 export default Routes;

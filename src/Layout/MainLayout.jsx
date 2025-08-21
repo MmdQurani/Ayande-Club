@@ -10,7 +10,7 @@ function MainLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className='MainLayout w-full min-h-0 bg-gray-100/60 flex lg:flex-row flex-col justify-center relative' dir='rtl'>
+    <div className='MainLayout w-full h-max min-h-screen bg-gray-100/60 flex lg:flex-row flex-col justify-center relative' dir='rtl'>
 
       <div className="lg:hidden w-full main_header_mobile bg-white rounded-b-xl shadow-md flex flex-row justify-between p-4">
         <button
@@ -33,7 +33,7 @@ function MainLayout({ children }) {
 
       </div>
 
-      <div className='lg:container w-full px-2 sm:px-12 flex flex-row justify-center my-0 lg:mt-10 space-x-4'>
+      <div className='lg:container w-full px-2 sm:px-12 lg:px-2 flex flex-row justify-center my-0 lg:mt-10 space-x-4'>
 
         {/* سایدبار */}
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
