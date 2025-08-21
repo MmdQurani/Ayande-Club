@@ -12,7 +12,7 @@ function Sidebar() {
   const navigate = useNavigate()
 
   return (
-    <div className="sidebar sticky top-10 h-[90vh] min-h-0 w-[267px] hidden lg:flex flex-col bg-white rounded-lg border border-neutral-200 p-4">
+    <div className="sidebar sticky top-10 h-[90vh] min-h-0 min-w-[267px] hidden lg:flex flex-col bg-white rounded-lg border border-neutral-200 p-4">
 
       <div className="sidebar_logo mb-6">
         <img
