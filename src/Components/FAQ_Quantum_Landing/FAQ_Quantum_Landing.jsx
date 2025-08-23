@@ -25,7 +25,7 @@ function FAQ_Quantum_Landing() {
 
   return (
     <>
-      <div className="FAQ_Quantum_Landing container flex flex-col items-center mx-auto mt-26">
+      <div className="FAQ_Quantum_Landing container max-w-[90%] flex flex-col items-center mx-auto mt-26">
 
         <div className="FAQ_Title text-center flex flex-col gap-5">
           <span className="text-3xl text-secondary-3">

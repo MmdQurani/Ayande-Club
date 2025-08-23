@@ -15,8 +15,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Planet_Card from '../Planet_Card/Planet_Card';
+import useIsMobile from '../../Hooks/useIsMobile';
 
 function Quantum_Levels() {
+
+  const isIPad = useIsMobile(825)
 
   const Planet_Card_Value = [
     { id: 1, color: '#313131', src: Quantum_Level_1, title: 'ماه', level: 1, firstNum: 0, lastNum: 5000 },
@@ -29,7 +32,7 @@ function Quantum_Levels() {
 
   return (
     <>
-      <div className='Quantum_Levels mt-26 2xl:w-5/7 mx-auto'>
+      <div className='Quantum_Levels max-w-[90%] mt-26 2xl:w-5/7 mx-auto'>
 
         <div className='Quantum_Levels_Title flex flex-col gap-y-6 text-center w-full mx-auto'>
           <span className='md:text-4xl text-xl text-secondary-3'>سطــوح کــوآنتــوم</span>
@@ -37,52 +40,39 @@ function Quantum_Levels() {
           <p className='text-neutral-400 md:text-[16px] text-sm leading-7'>از سطح ماه تا خورشید، هر خرید تو را به سیاره‌ای جدید نزدیک‌تر می‌کند و در هر مرحله، مزایا، تخفیف‌ها و پاداش‌هایی در انتظار توست. این سفر، برای قدرشناسی از همراهی تو طراحی شده؛ چون تو سزاوار تجربه‌ای متفاوتی.</p>
         </div>
 
-        <div className='Quantum_Levels_Card w-full h-auto mt-8'>
-          <div className='w-full h-auto hidden md:grid grid-cols-12 gap-6'>
+        <div className='xl:w-[1176px] Quantum_Levels_Card mx-auto h-auto mt-8'>
+          {!isIPad ?
+            <div className='flex flex-row justify-center items-center flex-wrap h-auto'>
 
-            {Planet_Card_Value.map(item =>
-              <div key={item.id} className='lg:col-span-4 md:col-span-6 col-span-8'>
-                <Planet_Card  {...item} style='min-h-[350px] max-h-[350px]' />
-              </div>
-            )}
+              {Planet_Card_Value.map(item =>
+                <div key={item.id} className='w-max h-max'>
+                  <Planet_Card  {...item} style='min-h-[350px] max-h-[350px]' />
+                </div>
+              )}
 
-          </div>
+            </div>
+            :
 
-          <div className="block md:hidden">
-            <Swiper
-              modules={[Navigation, Pagination, A11y]}
-              spaceBetween={16}
-              slidesPerView={1}
-              navigation
-              pagination={false}
-              a11y={{ enabled: true }}
-              loop={false}
+            <div className="block ">
+              <Swiper
+                modules={[Navigation, Pagination, A11y]}
+                spaceBetween={16}
+                slidesPerView={1}
+                navigation
+                pagination={false}
+                a11y={{ enabled: true }}
+                loop={false}
 
-            >
-              {Planet_Card_Value.map(item => (
-                <SwiperSlide key={item.id}>
-                  <>
-                    <div className={`Planet_Card w-[250px] h-[290px] p-6 rounded-xl m-auto`} style={{ backgroundColor: item.color }}>
-                      <div className=' w-full h-full flex flex-col justify-start bg-white rounded-2xl p-4'>
-                        <div className={`Quantum_Levels_Card_img flex justify-center items-center h-8/12 rounded-xl`} style={{ backgroundColor: item.color }}>
-                          <img className='w-2/3' src={item.src} alt={''} />
-                        </div>
-                        <div className='Quantum_Levels_Card_Content w-full h-4/12 flex flex-col justify-center items-end mt-2 gap-y-4'>
-                          <div className='w-full flex flex-row justify-between items-center text-lg'>
-                            <span className='text-md'>{item.level}</span>
-                            <span className='text-md'>{item.title}</span>
-                          </div>
-                          <span className='text-neutral-400 text-sm'>
-                            {item.firstNum} تا {item.lastNum}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+              >
+                {Planet_Card_Value.map(item => (
+                  <SwiperSlide key={item.id}>
+                    <Planet_Card  {...item} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          }
+
 
         </div>
 

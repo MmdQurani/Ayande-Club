@@ -28,10 +28,9 @@ function AuthLayout({ children }) {
 
   return (
     <>
-      {console.log("ContractModal:", ContractModal, typeof ContractModal)}
       <Header />
 
-      <main className="relative">  {/* relative برای تراز مودال */}
+      <main className="relative"> 
         {children}
       </main>
 

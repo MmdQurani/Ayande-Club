@@ -12,7 +12,7 @@ function Sidebar({ isOpen, onClose }) {
 
   return (
     <div
-      className={` sidebar z-50 h-full lg:h-[90vh] min-h-0 min-w-[267px] flex flex-col bg-white rounded-lg border border-neutral-200 p-4 transition-transform duration-300 fixed top-0 lg:sticky lg:top-10 right-0 ${isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"}`}>
+      className={` sidebar z-50 h-full lg:h-[90vh] max-h-[1000px] min-h-0 min-w-[267px] flex flex-col bg-white rounded-lg border border-neutral-200 p-4 transition-transform duration-300 fixed top-0 lg:sticky lg:top-10 right-0 ${isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"}`}>
       <div className="sidebar_logo mb-6 flex justify-between items-center">
         <img onClick={() => navigate('/dashboard')} className="h-8 w-auto object-contain cursor-pointer" src={logo} alt="Logo" />
         {/* دکمه بستن فقط برای موبایل */}

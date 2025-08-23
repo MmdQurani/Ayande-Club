@@ -13,25 +13,23 @@ function LandingPage() {
 
 
   return (
-    <AuthLayout>
-      <div className='LandingPage px-4 flex flex-col justify-start items-center' dir='rtl'>
-        <div className='w-full h-auto'>
+    <div className='LandingPage flex flex-col justify-start items-center' dir='rtl'>
+      <div className='w-full h-auto'>
 
-          <Landing_title />
+        <Landing_title />
 
-          <Customer_Club_Introduction />
+        <Customer_Club_Introduction />
 
-          <Quantum_Card_Box />
+        <Quantum_Card_Box />
 
-          <Route_Guide_Quantum />
+        <Route_Guide_Quantum />
 
-          <Quantum_Levels />
+        <Quantum_Levels />
 
-          <FAQ_Quantum_Landing />
+        <FAQ_Quantum_Landing />
 
-        </div>
       </div>
-    </AuthLayout>
+    </div>
   )
 }
 

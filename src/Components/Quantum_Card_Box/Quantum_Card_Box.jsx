@@ -25,7 +25,7 @@ function Quantum_Card_Box() {
       <div className='Quantum_Card_Box w-full max-h-[900px] h-auto py-12 mt-4 flex justify-center'>
         <div className='container flex flex-col justify-center items-center'>
 
-          <div className='Quantum_Card_Box_Title w-full flex flex-col justify-center items-center gap-y-8'>
+          <div className='Quantum_Card_Box_Title max-w-[90%] flex flex-col justify-center items-center gap-y-8'>
             <span className='bg-gradient-to-r from-secondary-1/20 to-secondary-1/40 text-secondary-2 text-4xl px-6 py-2.5  rounded-lg'>چـــرا کــوآنتوم...؟</span>
 
             <p className='m-0 p-0 xl:w-1/4 md:w-1/2 w-full text-gray-700 text-center'>کوانتوم فقط یک باشگاه مشتریان نیست، بلکه یک مسیر صعــودی است در منظـومه‌ای از فرصـت‌ها و امتیــازها.</p>

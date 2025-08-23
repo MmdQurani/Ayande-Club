@@ -1,13 +1,13 @@
 .Landing_title {
-  background-image: url('./assets/images/bg-img/bannerBack-DvIZIPNM.png');
-  background-position: 50% 40%;
-  background-size: center;
+  background-image: url('./assets/images/bg-img/bg-img-main.png');
+  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: local;
 }
 
 .Quantum_Card_Box {
-  background-image: url('./assets/images/bg-img/Maskgroup1-dwHcnO8c.png');
+  background-image: url('./assets/images/bg-img/bg-img-customer-clob.png');
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -20,4 +20,22 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: local;
+}
+
+@media only screen and (max-width: 767px) {
+  .Landing_title {
+    background-image: url('./assets/images/bg-img/bg-img-sm.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: local;
+  }
+
+  .Quantum_Card_Box {
+    background-image: url('./assets/images/bg-img/bg-img-customer-clob-sm.png');
+    background-position: center bottom;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: local;
+  }
 }

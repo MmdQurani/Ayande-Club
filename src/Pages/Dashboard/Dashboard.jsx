@@ -2,8 +2,12 @@ import React from 'react'
 import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 import Quantum_Level_1 from '../../assets/images/Quantum_Levels/Quantum_Level_1.png'
 import User_Account_Info_Card from '../../Components/User_Account_Info_Card/User_Account_Info_Card'
+import useIsMobile from '../../Hooks/useIsMobile'
 
 function Dashboard() {
+
+  const isIPad = useIsMobile(767)
+
   return (
     <div className='dashboard w-full h-full flex flex-col py-4 space-y-4' dir='rtl'>
 
@@ -25,49 +29,51 @@ function Dashboard() {
       {/* محتوای صفحه داشبورد */}
       <div className='dashboard_body w-full h-max space-y-4'>
 
-        {/* اطلاعات کاربر */}
-        <div className='user_account_info w-full max-h-max md:max-h-[229px] min-h-[229px] flex flex-col md:flex-row space-x-2'>
+        {!isIPad ?
+          <div className='user_account_info w-full max-h-max md:max-h-[229px] min-h-[229px] flex flex-col md:flex-row space-x-2'>
 
-          <div className='Quantum_Level_User_md hidden md:flex min-h-full w-[215px]'>
-            <div className={`Planet_Card min-h-full flex p-6 rounded-xl bg-neutral-700`}>
-              <div className=' w-full min-h-full bg-white rounded-2xl p-4'>
-                <div className={`Quantum_Levels_Card_img flex justify-center items-center h-8/12 rounded-xl bg-neutral-700`} >
-                  <img className='w-4/5 2xl:w-4/5' src={Quantum_Level_1} alt="Quantum_Level_1" />
-                </div>
-                <div className='Quantum_Levels_Card_Content w-full h-4/12 flex flex-col justify-center items-end px-4 mt-2 gap-y-4'>
-                  <div className='w-full flex flex-row justify-between items-center text-lg'>
-                    <span className='text-xs'>سیاره اول</span>
-                    <span className='text-xs'>ماه</span>
+            <div className='Quantum_Level_User_md hidden md:flex min-h-full w-[215px]'>
+              <div className={`Planet_Card min-h-full flex p-6 rounded-xl bg-neutral-700`}>
+                <div className=' w-full min-h-full bg-white rounded-2xl p-4'>
+                  <div className={`Quantum_Levels_Card_img flex justify-center items-center h-8/12 rounded-xl bg-neutral-700`} >
+                    <img className='w-4/5 2xl:w-4/5' src={Quantum_Level_1} alt="Quantum_Level_1" />
+                  </div>
+                  <div className='Quantum_Levels_Card_Content w-full h-4/12 flex flex-col justify-center items-end px-4 mt-2 gap-y-4'>
+                    <div className='w-full flex flex-row justify-between items-center text-lg'>
+                      <span className='text-xs'>سیاره اول</span>
+                      <span className='text-xs'>ماه</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className='Quantum_Level_User_sm flex flex-row justify-around md:hidden mt-4 bg-white w-full h-[120px] space-x-2 order-2 border-1 border-neutral-200 rounded-xl px-4'>
-            <div className='w-max h-full flex flex-col space-y-3 justify-center'>
-              <span className='text-sm'>بر روی <p className='text-3xl inline m-0 p-0' >ماه</p> به سر میبرید</span>
-              <span className='text-sm'>سطح کاربری شما در کوانتوم</span>
-            </div>
-            <div className='flex-1 h-full flex justify-end'>
-              <img src={Quantum_Level_1} className='h-full object-contain' alt="" />
-            </div>
-          </div>
-
-          <div className='user_account_info_content w-full md:flex-1 min-h-full border-1 border-neutral-200 bg-white rounded-xl py-4'>
-            <div className='w-full h-full grid grid-cols-12 md:space-y-0 space-y-12'>
-
-              <div className='col-span-12 md:col-span-6 border-0 md:border-l-1 border-neutral-200'>
-                <User_Account_Info_Card />
+            <div className='Quantum_Level_User_sm flex flex-row justify-around md:hidden mt-4 bg-white w-full h-[120px] space-x-2 order-2 border-1 border-neutral-200 rounded-xl px-4'>
+              <div className='w-max h-full flex flex-col space-y-3 justify-center'>
+                <span className='text-sm'>بر روی <p className='text-3xl inline m-0 p-0' >ماه</p> به سر میبرید</span>
+                <span className='text-sm'>سطح کاربری شما در کوانتوم</span>
               </div>
-
-              <div className='col-span-12 md:col-span-6 border-0 md:border-l-1 border-neutral-200'>
-                <User_Account_Info_Card />
+              <div className='flex-1 h-full flex justify-end'>
+                <img src={Quantum_Level_1} className='h-full object-contain' alt="" />
               </div>
+            </div>
 
+            <div className='user_account_info_content w-full md:flex-1 min-h-full border-1 border-neutral-200 bg-white rounded-xl py-4'>
+              <div className='w-full h-full grid grid-cols-12 md:space-y-0 space-y-12'>
+
+                <div className='col-span-12 md:col-span-6 border-0 md:border-l-1 border-neutral-200'>
+                  <User_Account_Info_Card />
+                </div>
+
+                <div className='col-span-12 md:col-span-6 border-0 md:border-l-1 border-neutral-200'>
+                  <User_Account_Info_Card />
+                </div>
+
+              </div>
             </div>
           </div>
-        </div>
+          : null}
+
 
         {/* دعوت دوستان */}
         <div className='inviteContainer w-full h-max min-h-[130px] flex flex-col md:flex-row justify-between items-start space-y-6 md:space-y-0 md:items-center p-4 bg-white rounded-xl border-1 border-primary space-x-2'>
@@ -98,7 +104,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>  
+        </div>
 
         {/* جوایز و هدایا */}
         <div className='rewardContainer w-full h-max min-h-[290px] flex flex-col bg-white border-1 border-gray-200 rounded-2xl p-4'>
