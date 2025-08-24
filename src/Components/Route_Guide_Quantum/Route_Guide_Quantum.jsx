@@ -5,11 +5,11 @@ import Route_Guide_Quantum_Img_sm from '../../assets/images/Quantum/quantumLandi
 function Route_Guide_Quantum() {
   return (
     <>
-      <div className='Route_Guide_Quantum container max-w-[90%] mx-auto h-auto  mt-16'>
+      <div className='Route_Guide_Quantum container 2xl:w-2/3 max-w-[90%] mx-auto h-auto  mt-16'>
 
         <div className='Route_Guide_Quantum_Head flex lg:flex-row flex-col justify-between lg:items-center items-start gap-6'>
 
-          <div className='Route_Guide_Quantum_Title'>
+          <div className='Route_Guide_Quantum_Title w-2/3'>
             <span className='md:text-4xl text-2xl'>سفر فضایی‌ شما با کوآنتوم از اینجا آغاز می‌شود...</span>
             <p className='m-0 p-0 mt-3 md:text-[16px] leading-7 text-sm text-gray-500'>در راهنمای دریافت امتیاز به طور کامل توضیح داده شده است که به ازای هر فعالیت شما چند امتیاز دریافت میکنید...</p>
           </div>

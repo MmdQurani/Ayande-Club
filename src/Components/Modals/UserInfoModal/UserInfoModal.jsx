@@ -21,64 +21,54 @@ export default function UserInfoModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-150 flex items-center justify-center" dir="rtl">
-      <div
-        className="absolute inset-0 bg-black/15 backdrop-blur-sm"
-      />
+    <>
 
-      <div className="relative bg-white rounded-lg p-6 w-[498px] max-w-[90%] h-[610px] max-h-[90%] pt-6 pb-12 shadow-lg flex flex-col justify-center items-center">
-
-        <img src={logo} alt="logo" className="w-[90px] h-[36px] object-contain mt-6" />
-
-        <span className="text-[16px] my-6 text-secondary-3">ثبت نام باشگاه مشتریان کارگزاری آینده</span>
-
-        <ul className="space-y-5 my-4 w-full flex flex-col items-start text-sm text-neutral-600">
-          <li className="w-full flex justify-between">
-            <span>نام:</span>
-            <span>محمد حسین</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>نام خانوادگی:</span>
-            <span>میرابوالقاسمی</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>کد ملی:</span>
-            <span>۰۰۶۴۳۲۴۲۸</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>نام پدر:</span>
-            <span>میلاد</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>شماره شناسنامه:</span>
-            <span>۰۰۲۵۶۷۲۸</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>تاریخ تولد:</span>
-            <span>1373/11/28</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>کد بورسی:</span>
-            <span>۲۵۴۱ م ج</span>
-          </li>
-          <li className="w-full flex justify-between">
-            <span>شماره تماس:</span>
-            <span>09368865114</span>
-          </li>
-          {/* <li>نام: {userData.firstName}</li>
+      <ul className="space-y-5 my-4 w-full flex flex-col items-start text-sm text-neutral-600">
+        <li className="w-full flex justify-between">
+          <span>نام:</span>
+          <span>محمد حسین</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>نام خانوادگی:</span>
+          <span>میرابوالقاسمی</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>کد ملی:</span>
+          <span>۰۰۶۴۳۲۴۲۸</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>نام پدر:</span>
+          <span>میلاد</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>شماره شناسنامه:</span>
+          <span>۰۰۲۵۶۷۲۸</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>تاریخ تولد:</span>
+          <span>1373/11/28</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>کد بورسی:</span>
+          <span>۲۵۴۱ م ج</span>
+        </li>
+        <li className="w-full flex justify-between">
+          <span>شماره تماس:</span>
+          <span>09368865114</span>
+        </li>
+        {/* <li>نام: {userData.firstName}</li>
           <li>نام خانوادگی: {userData.lastName}</li>
           <li>کد ملی: {userData.nationalId}</li>
           <li>نام پدر: {userData.fatherName}</li>
           <li>تاریخ تولد: {userData.birthDate}</li>
           <li>شماره تماس: {userData.phone}</li> */}
-        </ul>
+      </ul>
 
-        <button
-          onClick={handleSubmit}
-          className="w-full bg-gradient-to-t from-secondary-2 to-secondary-2/45 text-white py-2 rounded-lg cursor-pointer mt-6 transition">
-          تایید و ادامه
-        </button>
-      </div>
-    </div>
+      <button
+        onClick={handleSubmit}
+        className="w-full bg-gradient-to-t from-secondary-2 to-secondary-2/45 text-white py-2 rounded-lg cursor-pointer mt-6 transition">
+        تایید و ادامه
+      </button>
+    </>
   );
 }

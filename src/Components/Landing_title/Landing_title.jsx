@@ -4,7 +4,7 @@ import Planet from '../../assets/images/Planet/Landing_Planet.png'
 function Landing_title() {
   return (
     <div className='Landing_title flex justify-center'>
-      <div className='container flex flex-row mr-8'>
+      <div className='container flex flex-row mr-8 xl:px-40'>
         <div className='sm:w-1/2 sm:min-w-1/2 w-2/3 h-[389px] sm:h-[489px] md:h-[526px] lg:h-[626px] 2xl:h-[726px] title_box flex flex-col justify-center md:justify-start items-start gap-y-6 flex-nowrap m-0 xl:pr-16'>
 
           <div className='flex flex-col justify-center items-start w-full h-4/5 gap-y-6 flex-nowrap'>

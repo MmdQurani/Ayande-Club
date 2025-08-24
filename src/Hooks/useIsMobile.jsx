@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 const useIsMobile = (breakpoint = 768) => {
-  // بررسی وجود window برای جلوگیری از خطا در SSR
   const isClient = typeof window !== 'undefined';
 
   // مقدار اولیه از عرض کنونی یا false در سرور
