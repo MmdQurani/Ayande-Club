@@ -14,7 +14,7 @@ function MainLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isIPad = useIsMobile(1024)
+  const isIPad = useIsMobile(1023)
 
   return (
     <div className='MainLayout pb-28 lg:pb-0 w-full h-max min-h-screen bg-gray-100/60 flex lg:flex-row flex-col justify-start lg:justify-center relative' dir='rtl'>

@@ -7,7 +7,7 @@ function MobileModal({ isOpen, onClose, children }) {
   const [showModal, setShowModal] = useState(false);
   const [renderModal, setRenderModal] = useState(false);
 
-  const isIPad = useIsMobile(1024)
+  const isIPad = useIsMobile(1023)
 
   useEffect(() => {
     if (isOpen) {
