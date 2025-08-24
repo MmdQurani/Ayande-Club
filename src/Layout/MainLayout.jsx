@@ -5,10 +5,14 @@ import Sidebar from '../Components/Sidebar/Sidebar'
 
 import logo from '../assets/images/logo/logo.png'
 import useIsMobile from '../Hooks/useIsMobile'
+import MainModal from '../Components/Modals/MainModal'
+import MobileModal from '../Components/Modals/MobileModal'
+import Link_Menu_Item_Mobile from '../Components/link_menu_item_mobile/link_menu_item_mobile'
 
 function MainLayout({ children }) {
   const navigate = useNavigate()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isIPad = useIsMobile(1024)
 
@@ -51,6 +55,7 @@ function MainLayout({ children }) {
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"><path d="M12 8V21M12 8H7.5C6.83696 8 6.20107 7.73661 5.73223 7.26777C5.26339 6.79893 5 6.16304 5 5.5C5 4.83696 5.26339 4.20107 5.73223 3.73223C6.20107 3.26339 6.83696 3 7.5 3C11 3 12 8 12 8ZM12 8H16.5C17.163 8 17.7989 7.73661 18.2678 7.26777C18.7366 6.79893 19 6.16304 19 5.5C19 4.83696 18.7366 4.20107 18.2678 3.73223C17.7989 3.26339 17.163 3 16.5 3C13 3 12 8 12 8ZM3 14H21M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V11.2C21 10.0799 21 9.51984 20.782 9.09202C20.5903 8.71569 20.2843 8.40973 19.908 8.21799C19.4802 8 18.9201 8 17.8 8H6.2C5.0799 8 4.51984 8 4.09202 8.21799C3.71569 8.40973 3.40973 8.71569 3.21799 9.09202C3 9.51984 3 10.0799 3 11.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             <span>جوایـــز</span>
           </NavLink>
+
           <NavLink to={'/'} className={({ isActive }) => `flex flex-row space-x-2 items-center text-white ${isActive ? 'border-b-2 border-white stroke-white pb-2.5 fill-white' : 'border-b-2 border-transparent stroke-white'}`}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
               <path d="M2 16.9C2 15.5906 2 14.9359 2.29472 14.455C2.45963 14.1859 2.68589 13.9596 2.955 13.7947C3.43594 13.5 4.09063 13.5 5.4 13.5H6.5C8.38562 13.5 9.32843 13.5 9.91421 14.0858C10.5 14.6716 10.5 15.6144 10.5 17.5V18.6C10.5 19.9094 10.5 20.5641 10.2053 21.045C10.0404 21.3141 9.81411 21.5404 9.545 21.7053C9.06406 22 8.40937 22 7.1 22C5.13594 22 4.15391 22 3.4325 21.5579C3.02884 21.3106 2.68945 20.9712 2.44208 20.5675" stroke-width="1.5" stroke-linecap="round" />
@@ -76,12 +81,56 @@ function MainLayout({ children }) {
           : null
         }
 
-        {isSidebarOpen && (
+        {isIPad && (
+          <MobileModal isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}>
+            <div className='w-full h-full flex flex-col space-y-4'>
+              <Link to={'/'} className='w-full h-[92px] bg-white Quantum_Card flex justify-start items-center p-4'>
+
+                <Link_Menu_Item_Mobile title={'جوایز و هدایا'} svg={
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14.3909 18.015C14.8197 19.6154 13.8699 21.2604 12.2695 21.6893C10.6691 22.1181 9.02414 21.1683 8.59531 19.5679M10.8914 5.74109C11.1956 5.19379 11.2958 4.53229 11.121 3.8797C10.7636 2.54603 9.39275 1.75457 8.05909 2.11193C6.72542 2.46928 5.93397 3.84013 6.29132 5.17379C6.46619 5.82639 6.88372 6.34916 7.42082 6.67103M16.2358 9.44553C15.8788 8.1134 14.9259 6.99944 13.5866 6.3487C12.2474 5.69797 10.6314 5.56377 9.09437 5.97563C7.55729 6.38749 6.22496 7.31167 5.39048 8.54486C4.556 9.77805 4.28773 11.2192 4.64467 12.5514C5.23524 14.7554 5.12057 16.5138 4.74761 17.8499C4.32255 19.3728 4.11001 20.1342 4.16743 20.2871C4.23312 20.462 4.28064 20.5101 4.45488 20.5776C4.60717 20.6366 5.24694 20.4651 6.52648 20.1223L18.3915 16.9431C19.6711 16.6002 20.3109 16.4288 20.4132 16.3015C20.5304 16.1559 20.5475 16.0906 20.517 15.9063C20.4902 15.7451 19.9255 15.192 18.7959 14.0857C17.8049 13.115 16.8264 11.6496 16.2358 9.44553Z" stroke="#644839" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                } />
+
+              </Link>
+              <Link to={'/'} className='w-full h-[92px] bg-white Quantum_Card flex justify-start items-center p-4'>
+
+                <Link_Menu_Item_Mobile title={'مرکز راهنما'} svg={
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 11H8M10 15H8M16 7H8M20 10V6.8C20 5.11984 20 4.27976 19.673 3.63803C19.3854 3.07354 18.9265 2.6146 18.362 2.32698C17.7202 2 16.8802 2 15.2 2H8.8C7.11984 2 6.27976 2 5.63803 2.32698C5.07354 2.6146 4.6146 3.07354 4.32698 3.63803C4 4.27976 4 5.11984 4 6.8V17.2C4 18.8802 4 19.7202 4.32698 20.362C4.6146 20.9265 5.07354 21.3854 5.63803 21.673C6.27976 22 7.11984 22 8.8 22H12.5M18 21C18 21 21 19.5701 21 17.4252V14.9229L18.8124 14.1412C18.2868 13.9529 17.712 13.9529 17.1864 14.1412L15 14.9229V17.4252C15 19.5701 18 21 18 21Z" stroke="#644839" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                } />
+
+              </Link>
+              <Link to={'/'} className='w-full h-[92px] bg-white Quantum_Card flex justify-start items-center p-4'>
+
+                <Link_Menu_Item_Mobile title={'ارتباط با ما'} svg={
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M4.85864 6C6.67357 4.14864 9.20268 3 12.0001 3C14.7975 3 17.3266 4.14864 19.1415 6M16.4723 9C15.3736 7.7725 13.777 7 12 7C10.223 7 8.62647 7.7725 7.52783 9M12 17C13.5105 17 14.9608 17.2576 16.3094 17.7313C16.3542 17.747 16.3767 17.7549 16.412 17.7705C16.7326 17.9118 16.9788 18.2591 17.0058 18.6084C17.0088 18.647 17.0088 18.6811 17.0088 18.7494C17.0088 18.9821 17.0088 19.0985 17.0185 19.1965C17.1122 20.1457 17.8631 20.8966 18.8123 20.9903C18.9103 21 19.0267 21 19.2594 21H19.5044C19.965 21 20.1952 21 20.3868 20.9622C21.1829 20.8053 21.8053 20.1829 21.9622 19.3868C22 19.1952 22 18.965 22 18.5044V18.3062C22 17.831 22 17.5933 21.9493 17.3209C21.8358 16.7119 21.3933 15.9583 20.9166 15.5624C20.7035 15.3854 20.5589 15.3048 20.2698 15.1435C17.822 13.7781 15.0019 13 12 13C8.99812 13 6.17797 13.7781 3.73021 15.1435C3.4411 15.3048 3.29654 15.3854 3.0834 15.5624C2.60675 15.9583 2.16421 16.7119 2.05074 17.3209C2 17.5933 2 17.831 2 18.3062V18.5044C2 18.965 2 19.1952 2.03776 19.3868C2.19469 20.1829 2.81709 20.8053 3.61321 20.9622C3.80476 21 4.03504 21 4.4956 21H4.74057C4.97332 21 5.0897 21 5.18773 20.9903C6.13689 20.8966 6.8878 20.1457 6.98152 19.1965C6.9912 19.0985 6.9912 18.9821 6.9912 18.7494C6.9912 18.6811 6.9912 18.647 6.99418 18.6084C7.02122 18.2591 7.2674 17.9118 7.58798 17.7705C7.62335 17.7549 7.64577 17.747 7.69061 17.7313C9.03921 17.2576 10.4895 17 12 17Z" stroke="#644839" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                } />
+
+              </Link>
+              <Link to={'/'} className='w-full h-[92px] bg-white Quantum_Card flex justify-start items-center p-4'>
+
+                <Link_Menu_Item_Mobile title={'خروج از حساب'} svg={
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 17L3 12M3 12L8 7M3 12H15M12 17C12 17.93 12 18.395 12.1022 18.7765C12.3796 19.8117 13.1883 20.6204 14.2235 20.8978C14.605 21 15.07 21 16 21H16.5C17.8978 21 18.5967 21 19.1481 20.7716C19.8831 20.4672 20.4672 19.8831 20.7716 19.1481C21 18.5967 21 17.8978 21 16.5V7.5C21 6.10217 21 5.40326 20.7716 4.85195C20.4672 4.11687 19.8831 3.53284 19.148 3.22836C18.5967 3 17.8978 3 16.5 3H16C15.07 3 14.605 3 14.2235 3.10222C13.1883 3.37962 12.3796 4.18827 12.1022 5.22354C12 5.60504 12 6.07003 12 7" stroke="#644839" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                } closeBtn={true} />
+
+              </Link>
+            </div>
+          </MobileModal>
+        )}
+
+
+        {/* {isSidebarOpen && (
           <div
             onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 m-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 m-0 bg-black/40 backdrop-blur-sm z-[800] lg:hidden"
           />
-        )}
+        )} */}
 
         <main className='main flex-1 min-w-0 relative z-0 overflow-hidden'>
           {!isIPad ?
