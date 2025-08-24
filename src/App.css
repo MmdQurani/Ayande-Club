@@ -40,3 +40,12 @@
   }
 }
 
+.no-break-ellipsis {
+  display: inline-block;
+  /* یا block */
+  width: 100%;
+  /* یا عرض ثابت مثل 200px */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
