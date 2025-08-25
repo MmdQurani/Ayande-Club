@@ -7,7 +7,7 @@ function RewardContainer({ title = 'جوایز و هدایا', icon, search = fa
 
   return (
     <div className={`rewardContainer w-full h-max min-h-[290px] flex flex-col ${style ? style : 'bg-white'} rounded-2xl p-4`}>
-      <div className='header_reward w-full h-max flex justify-between items-center space-x-2.5 mb-4'>
+      <div className='header_reward w-full h-max flex md:flex-row flex-col justify-between items-start md:items-center space-y-4 md:space-y-0 md:space-x-2.5 mb-4'>
 
         <div className='title_reward flex flex-row items-center space-x-2'>
           <div className={`${styleIcon ? styleIcon : 'size-9 sm:size-12'} flex justify-center items-center bg-secondary-1 stroke-secondary-3 p-2 rounded-xl`}>

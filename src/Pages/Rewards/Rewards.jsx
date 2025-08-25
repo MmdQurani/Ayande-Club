@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import useIsMobile from '../../Hooks/useIsMobile';
 
-import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 import Manage_Points from '../../Components/Manage_Points/Manage_Points';
 import RewardContainer from '../../Components/RewardContainer/RewardContainer';
 
+import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 import gift_01 from '../../assets/icons/gift-01.png'
 import monitor_03 from '../../assets/icons/monitor-03.png'
 import Rectangle1 from '../../assets/icons/Rectangle1.png'
 import rocket_02 from '../../assets/icons/rocket-02.png'
+
 import PrimaryModal from '../../Components/Modals/PrimaryModal';
 import usePrimaryModal from '../../Hooks/usePrimaryModal';
+import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data';
 
 function Rewards() {
 
-  const { isModalOpen, selectedReward, openModal, closeModal } = usePrimaryModal();
+  const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePrimaryModal();
+
 
   const isIPad = useIsMobile(767)
 
@@ -29,7 +32,7 @@ function Rewards() {
 
       <RewardContainer title='جوایز و هدایا' search={true} filtering={true} styleIcon={'bg-transparent'} icon={gift_01}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-          <div key={index} onClick={() => openModal(item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
+          <div key={index} onClick={() => openModal('rewards', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
             <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
               <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
               <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
@@ -65,7 +68,7 @@ function Rewards() {
         <>
           <RewardContainer title='قرعه‌کشی‌ها' style={'bg-gradient-to-b from-white via-white/80 to-transparent'} styleIcon={'bg-transparent'} icon={Rectangle1}>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <div key={index} onClick={() => openModal(item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
+              <div key={index} onClick={() => openModal('lottery', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
                 <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
                   <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
                   <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
@@ -89,7 +92,7 @@ function Rewards() {
 
           <RewardContainer title='اعتبار' style={'bg-gradient-to-b from-white via-white/80 to-transparent'} styleIcon={'bg-transparent'} icon={rocket_02}>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <div key={index} onClick={() => openModal(item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
+              <div key={index} onClick={() => openModal('credit', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
                 <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
                   <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
                   <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
@@ -113,7 +116,7 @@ function Rewards() {
 
           <RewardContainer title='دوره‌های آموزشی' style={'bg-gradient-to-b from-white via-white/80 to-transparent'} styleIcon={'bg-transparent'} icon={monitor_03}>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <div key={index} onClick={() => openModal(item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
+              <div key={index} onClick={() => openModal('courses', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
                 <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
                   <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
                   <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
@@ -137,14 +140,27 @@ function Rewards() {
         </>
       }
 
-      {/* مودال */}
-      <PrimaryModal isOpen={isModalOpen} onClose={closeModal}>
-        {selectedReward && (
-          <div className="p-4">
-            <h2 className="text-lg font-bold mb-2">{selectedReward.title}</h2>
-            <p className="mb-4">{selectedReward.desc}</p>
-            <p>امتیاز مورد نیاز: {selectedReward.points}</p>
-          </div>
+      {/* مودال جوایز و هدایا */}
+      <PrimaryModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        style={'w-[755px] h-[745px] max-h-[90%]'}
+        mobileStyle={'h-[945px]'}
+      >
+        {selectedReward && modalType === 'rewards' && (
+          <Reward_Item_Data />
+        )}
+
+        {selectedReward && modalType === 'lottery' && (
+          <div>محتوای قرعه‌کشی</div>
+        )}
+
+        {selectedReward && modalType === 'credit' && (
+          <div>محتوای اعتبار</div>
+        )}
+
+        {selectedReward && modalType === 'courses' && (
+          <div>محتوای دوره‌های آموزشی</div>
         )}
       </PrimaryModal>
 

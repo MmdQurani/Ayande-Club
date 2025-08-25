@@ -49,3 +49,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.btn_gradient {
+  background-image: linear-gradient(to top , var(--color-secondary-2) , var(--color-secondary-10));
+}
