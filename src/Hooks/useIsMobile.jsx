@@ -14,7 +14,6 @@ const useIsMobile = (breakpoint = 768) => {
     const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
     const handleChange = ({ matches }) => setIsMobile(matches);
 
-    // ثبت listener با پشتیبانی از روش جدید و قدیمی
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', handleChange);
     } else {

@@ -13,6 +13,8 @@ import rocket_02 from '../../assets/icons/rocket-02.png'
 import PrimaryModal from '../../Components/Modals/PrimaryModal';
 import usePrimaryModal from '../../Hooks/usePrimaryModal';
 import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data';
+import Credit_Modal from '../../Components/Modals/Credit_Modal/Credit_Modal';
+import Success_Credit_Modal from '../../Components/Modals/Success_Credit_Modal/Success_Credit_Modal';
 
 function Rewards() {
 
@@ -142,27 +144,62 @@ function Rewards() {
 
       {/* مودال جوایز و هدایا */}
       <PrimaryModal
-        isOpen={isModalOpen}
+        isOpen={isModalOpen && modalType === 'rewards'}
         onClose={closeModal}
         style={'w-[755px] h-[745px] max-h-[90%]'}
         mobileStyle={'h-[945px]'}
       >
-        {selectedReward && modalType === 'rewards' && (
-          <Reward_Item_Data />
-        )}
-
-        {selectedReward && modalType === 'lottery' && (
-          <div>محتوای قرعه‌کشی</div>
-        )}
-
-        {selectedReward && modalType === 'credit' && (
-          <div>محتوای اعتبار</div>
-        )}
-
-        {selectedReward && modalType === 'courses' && (
-          <div>محتوای دوره‌های آموزشی</div>
-        )}
+        {selectedReward && <Reward_Item_Data />}
       </PrimaryModal>
+
+      {/* مودال قرعه‌کشی */}
+      <PrimaryModal
+        isOpen={isModalOpen && modalType === 'lottery'}
+        onClose={closeModal}
+        style={'w-[600px] h-[500px] max-h-[80%]'} // استایل مخصوص این مودال
+        mobileStyle={'h-[800px]'}
+      >
+        {selectedReward && <div>محتوای قرعه‌کشی</div>}
+      </PrimaryModal>
+
+      {/* مودال اعتبار */}
+      <PrimaryModal
+        isOpen={isModalOpen && modalType === 'credit'}
+        onClose={closeModal}
+        style={'w-[755px] h-[480px] max-h-[70%]'}
+        mobileStyle={'h-[538px]'}
+      >
+        {selectedReward &&
+          <Credit_Modal>
+            <div className='w-full h-[36px] flex flex-row justify-between items-center gap-x-8'>
+              <button className='w-1/2 sm:w-[125px] text-[16px] h-full border-1 border-secondary-2 text-secondary-2 rounded-md cursor-pointer'>انصراف</button>
+              <button onClick={() => openModal('success_credit', selectedReward)} className='w-1/2 sm:w-[250px] text-[16px] h-full btn_gradient rounded-md text-white cursor-pointer'>ثبت درخواست</button>
+            </div>
+          </Credit_Modal>
+        }
+      </PrimaryModal>
+
+      <PrimaryModal
+        isOpen={isModalOpen && modalType === 'success_credit'}
+        onClose={closeModal}
+        style={'w-[755px] h-[685px] max-h-[85%]'}
+        mobileStyle={'h-[635px]'}
+      >
+        {selectedReward &&
+          <Success_Credit_Modal />
+        }
+      </PrimaryModal>
+
+      {/* مودال دوره‌های آموزشی */}
+      <PrimaryModal
+        isOpen={isModalOpen && modalType === 'courses'}
+        onClose={closeModal}
+        style={'w-[900px] h-[600px] max-h-[85%]'} // استایل مخصوص این مودال
+        mobileStyle={'h-[900px]'}
+      >
+        {selectedReward && <div>محتوای دوره‌های آموزشی</div>}
+      </PrimaryModal>
+
 
     </div>
   );
