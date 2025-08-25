@@ -49,7 +49,7 @@ function MainModal() {
 
   const handleClose = () => navigate('/');
 
-  return (
+  const modalContent = (
     <>
       {!isMobile ? (
         // دسکتاپ
@@ -111,6 +111,8 @@ function MainModal() {
       )}
     </>
   );
+
+  return ReactDOM.createPortal(modalContent, document.body);
 }
 
 export default MainModal;

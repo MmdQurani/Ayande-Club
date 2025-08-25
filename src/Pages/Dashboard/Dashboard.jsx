@@ -5,10 +5,15 @@ import useIsMobile from '../../Hooks/useIsMobile'
 import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 import Quantum_Level_1 from '../../assets/images/Quantum_Levels/Quantum_Level_1.png'
 import Quantum_Level_mini from '../../assets/images/Quantum_Levels/Quantum_Level_mini.png'
+import RewardContainer from '../../Components/RewardContainer/RewardContainer'
+import usePrimaryModal from '../../Hooks/usePrimaryModal'
+import PrimaryModal from '../../Components/Modals/PrimaryModal'
 
 function Dashboard() {
 
   const isIPad = useIsMobile(767)
+
+  const { isModalOpen, selectedReward, openModal, closeModal } = usePrimaryModal();
 
   return (
     <div className='dashboard w-full h-full flex flex-col py-4 space-y-4' dir='rtl'>
@@ -130,7 +135,7 @@ function Dashboard() {
         </div>
 
         {/* جوایز و هدایا */}
-        <div className='rewardContainer w-full h-max min-h-[290px] flex flex-col bg-white border-1 border-gray-200 rounded-2xl p-4'>
+        {/* <div className='rewardContainer w-full h-max min-h-[290px] flex flex-col bg-white border-1 border-gray-200 rounded-2xl p-4'>
           <div className='header_reward w-full h-max flex justify-between items-center space-x-2.5 mb-4'>
 
             <div className='title_reward flex flex-row items-center space-x-2'>
@@ -142,7 +147,7 @@ function Dashboard() {
               <span className='text-[16px] sm:text-2xl text-secondary-3'>جوایز و هدایا</span>
             </div>
 
-            {/* مشاهده همه */}
+
             <button className='btn_reward flex flex-row items-center bg-secondary-6 px-2 py-1 sm:px-4 sm:py-2.5 cursor-pointer rounded-md sm:rounded-lg space-x-2 text-secondary-3 stroke-secondary-3'>
               <span className='text-[16px]'>مشاهده همه</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
@@ -151,7 +156,7 @@ function Dashboard() {
             </button>
           </div>
 
-          {/* کارت‌ها */}
+
           <div className='content_reward max-w-full flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-4 md:overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-custom py-8 px-4'>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
               <div key={index} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
@@ -175,10 +180,45 @@ function Dashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
+
+        <RewardContainer>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+            <div key={index} onClick={() => openModal(item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
+              <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
+                <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
+                <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
+                  <span className='text-[16px] md:text-lg text-neutral-800'>هندزفری بیسیم تورو</span>
+                  <span className='text-sm md:text-[16px] text-neutral-500'>مدل T20 App Edition</span>
+                </div>
+              </div>
+              <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-between w-full'>
+                <span>مدت اعتبار :</span>
+                <button className='stroke-neutral-800 text-neutral-800 cursor-pointer flex flex-row items-center space-x-2'>
+                  <span><p className='inline p-0 m-0 text-secondary-2'>7000</p> امتیاز</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+              </div>
+
+            </div>
+          ))}
+        </RewardContainer>
 
 
       </div>
+
+      {/* مودال */}
+      <PrimaryModal isOpen={isModalOpen} onClose={closeModal}>
+        {selectedReward && (
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-2">{selectedReward.title}</h2>
+            <p className="mb-4">{selectedReward.desc}</p>
+            <p>امتیاز مورد نیاز: {selectedReward.points}</p>
+          </div>
+        )}
+      </PrimaryModal>
 
     </div>
   )

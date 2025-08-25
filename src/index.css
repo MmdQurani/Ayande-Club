@@ -54,6 +54,7 @@
   --color-secondary-8: #C1A765;
   --color-secondary-9: #D2AB67;
   --color-secondary-10: #EFE1C2;
+  --color-secondary-11: #F4EFE4;
 
   --font-Vazir: 'Vazir';
   --font-Dirooz: 'Dirooz';
@@ -69,7 +70,7 @@
 
 .Quantum_Card {
   background-color: var(--color-white);
-  box-shadow: 0 0 6px var(--color-gray-300), 0 0 15px var(--color-gray-100);
+  box-shadow: 0 0 6px var(--color-gray-200), 0 0 10px var(--color-gray-100);
   border-radius: 0.75rem;
 }
 

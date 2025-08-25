@@ -124,14 +124,6 @@ function MainLayout({ children }) {
           </MobileModal>
         )}
 
-
-        {/* {isSidebarOpen && (
-          <div
-            onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 m-0 bg-black/40 backdrop-blur-sm z-[800] lg:hidden"
-          />
-        )} */}
-
         <main className='main flex-1 min-w-0 relative z-0 overflow-hidden'>
           {!isIPad ?
             <MainHeader />
