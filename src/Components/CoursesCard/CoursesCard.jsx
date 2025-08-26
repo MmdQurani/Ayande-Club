@@ -1,0 +1,41 @@
+import React from 'react'
+import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
+
+function CoursesCard({ item, onClick }) {
+  return (
+    <div className='w-full h-full cursor-default'>
+      <div
+        onClick={onClick}
+        className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'
+      >
+        <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
+          <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
+          <div className='flex-1 min-w-0 flex flex-col items-start space-y-2'>
+            <span className='text-sm text-secondary-2'>دوره آنلاین تخصصی</span>
+            <span className='text-sm text-neutral-800'>تکنیک‌های معاملاتی با اندیکاتور ایچیموکو</span>
+            <span className='text-sm text-neutral-400'>مدرس : حسین طباطبایی</span>
+          </div>
+        </div>
+        <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-end w-full'>
+          <button className='stroke-neutral-800 text-neutral-800 cursor-pointer flex flex-row items-center space-x-2'>
+            <span className='text-secondary-2'>جزئیات بیشتر دوره</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+              <path d="M15 6L9 12L15 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div className='w-full h-[45px] bg-white rounded-lg border-t-1 border-dashed border-neutral-300 flex flex-row justify-between items-center px-4'>
+        <span className='text-xs text-neutral-400'>زمان شروع دوره</span>
+        <div className='w-max px-4 py-2 text-xs text-secondary-3 bg-neutral-100/80 rounded-lg'>
+          <span>23</span>
+          <span>بهمن</span>
+          <span>1403</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default CoursesCard
