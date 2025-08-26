@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo/logo.png';
 

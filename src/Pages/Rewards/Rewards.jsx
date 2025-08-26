@@ -9,6 +9,7 @@ import gift_01 from '../../assets/icons/gift-01.png'
 import monitor_03 from '../../assets/icons/monitor-03.png'
 import Rectangle1 from '../../assets/icons/Rectangle1.png'
 import rocket_02 from '../../assets/icons/rocket-02.png'
+import notFound_credit from '../../assets/icons/notFound_credit.png'
 
 import PrimaryModal from '../../Components/Modals/PrimaryModal';
 import usePrimaryModal from '../../Hooks/usePrimaryModal';
@@ -173,7 +174,7 @@ function Rewards() {
           <Credit_Modal>
             <div className='w-full h-[36px] flex flex-row justify-between items-center gap-x-8'>
               <button className='w-1/2 sm:w-[125px] text-[16px] h-full border-1 border-secondary-2 text-secondary-2 rounded-md cursor-pointer'>انصراف</button>
-              <button onClick={() => openModal('success_credit', selectedReward)} className='w-1/2 sm:w-[250px] text-[16px] h-full btn_gradient rounded-md text-white cursor-pointer'>ثبت درخواست</button>
+              <button onClick={() => openModal('notFound_credit', selectedReward)} className='w-1/2 sm:w-[250px] text-[16px] h-full btn_gradient rounded-md text-white cursor-pointer'>ثبت درخواست</button>
             </div>
           </Credit_Modal>
         }
@@ -187,6 +188,21 @@ function Rewards() {
       >
         {selectedReward &&
           <Success_Credit_Modal />
+        }
+      </PrimaryModal>
+
+      <PrimaryModal
+        isOpen={isModalOpen && modalType === 'notFound_credit'}
+        onClose={closeModal}
+        style={'w-[500px] h-[325px] max-h-[85%]'}
+        mobileStyle={'h-[405px]'}
+      >
+        {selectedReward &&
+          <div className='notFound_credit w-full h-full flex flex-col justify-around items-center'>
+            <img className='w-[130px] object-contain' src={notFound_credit} alt="" />
+            <span>این مورد در سیستم ثبت نشده است.</span>
+            <button onClick={() => openModal('notFound_credit', selectedReward)} className='w-[250px] text-[16px] h-[42px] btn_gradient rounded-md text-white cursor-pointer'>نحوه کسب سیاره</button>
+          </div>
         }
       </PrimaryModal>
 
