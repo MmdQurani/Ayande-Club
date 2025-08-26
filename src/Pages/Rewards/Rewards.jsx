@@ -31,11 +31,8 @@ function Rewards() {
 
   return (
     <div className="rewards w-full h-full flex flex-col py-4 space-y-4 px-2" dir='rtl'>
-      {/* 1: مدیریت امتیاز */}
       {!isIPad ?
-
         <Manage_Points />
-
         : null}
 
       <RewardContainer title='جوایز و هدایا' search={true} filtering={true} styleIcon={'bg-transparent'} icon={gift_01}>
