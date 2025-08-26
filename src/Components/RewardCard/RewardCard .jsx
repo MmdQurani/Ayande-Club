@@ -10,8 +10,8 @@ const RewardCard = ({ item, onClick }) => {
       <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
         <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
         <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
-          <span className='text-[16px] md:text-lg text-neutral-800'>{item.title}</span>
-          <span className='text-sm md:text-[16px] text-neutral-500'>{item.subtitle}</span>
+          <span className='text-[16px] text-neutral-800'>{item.title}</span>
+          <span className='text-sm text-neutral-500'>{item.subtitle}</span>
         </div>
       </div>
       <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-between w-full'>

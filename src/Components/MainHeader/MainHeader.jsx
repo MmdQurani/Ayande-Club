@@ -53,7 +53,7 @@ function MainHeader() {
               </svg>
               <span>تاریخ روز:</span>
             </div>
-            <span className='bg-secondary-1 py-1 px-2 text-neutral-800 rounded-sm'>1403/10/16</span>
+            <span className='bg-secondary-10 py-1 px-2 text-neutral-800 rounded-sm'>1403/10/16</span>
           </div>
 
           <div className='notification_btns flex flex-row'>
