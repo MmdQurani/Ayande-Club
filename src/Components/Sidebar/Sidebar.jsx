@@ -25,7 +25,7 @@ function Sidebar({ isOpen, onClose }) {
         <ul className="overflow-y-auto flex-1 min-h-0 mb-24 [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none] space-y-2">
           {main_menu.map(item => (
             <li key={item.title}>
-              <SidebarMenuItem href={item.href} title={item.title}>
+              <SidebarMenuItem href={item.href} title={item.title} subItems={item.children}>
                 {item.svg}
               </SidebarMenuItem>
             </li>
