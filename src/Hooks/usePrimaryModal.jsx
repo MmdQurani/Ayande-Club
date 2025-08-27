@@ -21,7 +21,7 @@ export default function usePrimaryModal() {
   return {
     isModalOpen,
     selectedReward,
-    modalType, // اینجا حتماً باشه
+    modalType,
     openModal,
     closeModal
   };

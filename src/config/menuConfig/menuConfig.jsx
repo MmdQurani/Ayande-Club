@@ -115,6 +115,11 @@ export const main_menu = [
   {
     href: "/help-center",
     title: "مرکز راهنما",
+    children: [
+      { href: "/help-center/contact-us", title: "ارتباط با ما" },
+      { href: "/help-center/faq", title: "سوالات متداول" },
+      { href: "/help-center/videos", title: "ویدئو های آموزشی" },
+    ],
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -2,6 +2,9 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import ClubRules from "../Pages/Growth/ClubRules";
 import EarnPoints from "../Pages/Growth/EarnPoints";
 import PointsGuide from "../Pages/Growth/PointsGuide";
+import ContactUs from "../Pages/Help_Center/ContactUs";
+import Faq from "../Pages/Help_Center/Faq";
+import Videos from "../Pages/Help_Center/Videos";
 import LandingPage from "../Pages/LandingPage/LandingPage";
 import Points from "../Pages/Points/Points";
 import Rewards from "../Pages/Rewards/Rewards";
@@ -27,6 +30,10 @@ const Routes = [
   { path: "/growth/points-guide", element: <PointsGuide /> },
   { path: "/growth/earn-points", element: <EarnPoints /> },
   { path: "/growth/club-rules", element: <ClubRules /> },
+
+  { path: "/help-center/contact-us", element: <ContactUs /> },
+  { path: "/help-center/faq", element: <Faq /> },
+  { path: "/help-center/videos", element: <Videos /> },
 ];
 
 export default Routes;
