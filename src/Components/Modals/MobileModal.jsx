@@ -20,7 +20,7 @@ function MobileModal({ isOpen, onClose, children }) {
 
   if (!renderModal || !isIPad) return null;
 
-  // محتوای مودال
+
   const modalContent = (
     <>
       <div
