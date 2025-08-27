@@ -7,6 +7,7 @@ import Faq from "../Pages/Help_Center/Faq";
 import Videos from "../Pages/Help_Center/Videos";
 import LandingPage from "../Pages/LandingPage/LandingPage";
 import Points from "../Pages/Points/Points";
+import Referrals from "../Pages/Referrals/Referrals";
 import Rewards from "../Pages/Rewards/Rewards";
 
 export const LoginRoutes = [
@@ -30,6 +31,8 @@ const Routes = [
   { path: "/growth/points-guide", element: <PointsGuide /> },
   { path: "/growth/earn-points", element: <EarnPoints /> },
   { path: "/growth/club-rules", element: <ClubRules /> },
+  
+  { path: "/referrals", element: <Referrals /> },
 
   { path: "/help-center/contact-us", element: <ContactUs /> },
   { path: "/help-center/faq", element: <Faq /> },
