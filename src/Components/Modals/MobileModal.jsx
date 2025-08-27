@@ -29,7 +29,7 @@ function MobileModal({ isOpen, onClose, children }) {
           }`}
       />
       <div
-        className={`fixed bottom-0 left-0 right-0 z-[250] h-[524px] max-h-max bg-gray-50 rounded-t-2xl shadow-lg p-6 transform transition-transform duration-300 flex flex-col justify-center items-center m-0 ${showModal ? 'translate-y-0' : 'translate-y-full'
+        className={`fixed bottom-0 left-0 right-0 z-[250] h-[524px] max-h-max bg-white rounded-t-2xl shadow-lg p-6 transform transition-transform duration-300 flex flex-col justify-center items-center m-0 ${showModal ? 'translate-y-0' : 'translate-y-full'
           }`}
         dir="rtl"
       >

@@ -12,7 +12,7 @@ function GrowthTabs({children}) {
   const location = useLocation();
 
   return (
-    <div className="PointsGuide w-full h-max p-4 pb-12 mb-12 md:mt-0 bg-white border-1 border-neutral-200 rounded-lg">
+    <div className="PointsGuide w-full h-max p-4 mb-12 md:mt-0 bg-white border-1 border-neutral-200 rounded-lg">
       <div className="w-full flex flex-col justify-start items-center space-y-4 mb-6">
         <div className="PointsGuide_header w-full flex border-b-2 border-gray-200">
           {tabs.map(tab => {

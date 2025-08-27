@@ -6,7 +6,7 @@ function MainHeader() {
   const { pathname } = useLocation()
 
   // پیدا کردن عنوان و آیکون مربوط به صفحه فعلی
-  const current = main_menu.find(item => item.href === pathname)
+  const current = main_menu.find(item => item.href === pathname || item.children?.some(child => child.href === pathname))
 
 
   const title = current?.title || 'عنوان نامشخص'

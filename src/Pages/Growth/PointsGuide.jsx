@@ -30,7 +30,7 @@ function PointsGuide() {
             <div className='grid grid-cols-2 md:grid-cols-3 gap-8 h-auto'>
 
               {Planet_Card_Value.map(item =>
-                <div key={item.id} className='w-max h-max flex flex-col justify-start items-center space-y-4'>
+                <div key={item.id} className='w-full h-max flex flex-col justify-start items-center space-y-4'>
                   <div className={`relative Planet_Card flex justify-center items-center w-[164px] h-[176px] p-6 rounded-xl`} style={{ backgroundColor: item.color }}>
                     <img className='Planet_Card_img absolute h-auto w-[124px] object-contain right-auto top-1.5' src={item.src} />
                     <div className=' w-[120px] h-[142px] flex flex-col justify-start items-center bg-white rounded-2xl p-1.5'>
