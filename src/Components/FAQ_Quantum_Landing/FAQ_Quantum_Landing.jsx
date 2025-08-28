@@ -51,7 +51,7 @@ function FAQ_Quantum_Landing() {
   )
 }
 
-function AccordionItem({ title, description }) {
+export function AccordionItem({ title, description }) {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
   const [maxHeight, setMaxHeight] = useState('0px');
