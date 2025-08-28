@@ -6,6 +6,7 @@ import ContactUs from "../Pages/Help_Center/ContactUs";
 import Faq from "../Pages/Help_Center/Faq";
 import Videos from "../Pages/Help_Center/Videos";
 import LandingPage from "../Pages/LandingPage/LandingPage";
+import NewTicket from "../Pages/NewTicket/NewTicket";
 import Points from "../Pages/Points/Points";
 import Referrals from "../Pages/Referrals/Referrals";
 import Rewards from "../Pages/Rewards/Rewards";
@@ -31,10 +32,11 @@ const Routes = [
   { path: "/growth/points-guide", element: <PointsGuide /> },
   { path: "/growth/earn-points", element: <EarnPoints /> },
   { path: "/growth/club-rules", element: <ClubRules /> },
-  
+
   { path: "/referrals", element: <Referrals /> },
 
   { path: "/help-center/contact-us", element: <ContactUs /> },
+  { path: "/help-center/new-ticket", element: <NewTicket /> },
   { path: "/help-center/faq", element: <Faq /> },
   { path: "/help-center/videos", element: <Videos /> },
 ];

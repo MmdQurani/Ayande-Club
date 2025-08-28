@@ -117,6 +117,7 @@ export const main_menu = [
     title: "مرکز راهنما",
     children: [
       { href: "/help-center/contact-us", title: "ارتباط با ما" },
+      { href: "/help-center/new-ticket", title: "تیکت جدید" , isActive: false},
       { href: "/help-center/faq", title: "سوالات متداول" },
       { href: "/help-center/videos", title: "ویدئو های آموزشی" },
     ],

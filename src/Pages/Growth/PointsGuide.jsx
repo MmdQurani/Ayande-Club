@@ -50,8 +50,6 @@ function PointsGuide() {
               )}
 
             </div>
-
-
           </div>
 
         </div>

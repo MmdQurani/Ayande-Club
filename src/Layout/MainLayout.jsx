@@ -17,7 +17,7 @@ function MainLayout({ children }) {
   const isIPad = useIsMobile(1023)
 
   return (
-    <div className='MainLayout pb-28 lg:pb-0 w-full h-max min-h-screen bg-main-1 flex lg:flex-row flex-col justify-start lg:justify-center relative' dir='rtl'>
+    <div className='MainLayout pb-15 lg:pb-0 w-full h-max min-h-screen bg-main-1 flex lg:flex-row flex-col justify-start lg:justify-center relative' dir='rtl'>
 
       {isIPad ?
         <div className="lg:hidden w-full main_header_mobile bg-white rounded-b-xl shadow-md flex flex-row justify-between p-4">

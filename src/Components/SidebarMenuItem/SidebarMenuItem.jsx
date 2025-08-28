@@ -8,7 +8,7 @@ function SidebarMenuItem({ href, title, children, subItems }) {
   useEffect(() => {
     if (subItems && location.pathname.startsWith(href)) {
       setOpen(true)
-    }else {
+    } else {
       setOpen(false)
     }
   }, [location.pathname, href, subItems])
@@ -39,19 +39,23 @@ function SidebarMenuItem({ href, title, children, subItems }) {
               ${open ? 'max-h-40 opacity-100 ' : 'max-h-0 opacity-0'}`}
           >
             {subItems.map((item) => (
-              <li key={item.href}>
-                <NavLink
-                  to={item.href}
-                  className={({ isActive }) =>
-                    [
-                      'block px-2 py-2 text-sm rounded transition',
-                      isActive ? 'text-secondary-2 font-bold bg-secondary-12' : 'text-neutral-600 hover:bg-gray-100'
-                    ].join(' ')
-                  }
-                >
-                  {item.title}
-                </NavLink>
-              </li>
+              <>
+                {item.isActive !== false ?
+                  <li key={item.href}>
+                    <NavLink
+                      to={item.href}
+                      className={({ isActive }) =>
+                        [
+                          'block px-2 py-2 text-sm rounded transition',
+                          isActive ? 'text-secondary-2 font-bold bg-secondary-12' : 'text-neutral-600 hover:bg-gray-100'
+                        ].join(' ')
+                      }
+                    >
+                      {item.title}
+                    </NavLink>
+                  </li>
+                  : null}
+              </>
             ))}
           </ul>
         </>

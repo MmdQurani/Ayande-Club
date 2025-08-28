@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import letter from '../../assets/icons/letter.png';
+import letter from '../../assets/images/letter.png';
 import not_record from '../../assets/images/not_record.png';
 
 import useIsMobile from '../../Hooks/useIsMobile';
