@@ -14,6 +14,8 @@ import Logs from "../Pages/Profile/Logs";
 import Referrals from "../Pages/Referrals/Referrals";
 import Rewards from "../Pages/Rewards/Rewards";
 
+import Services from "../Pages/Services/Services";
+
 export const LoginRoutes = [
   { path: "/", element: <LandingPage /> },
   { path: "/login", element: <LandingPage /> },
@@ -48,7 +50,7 @@ const Routes = [
   { path: "/profile/logs", element: <Logs /> },
   { path: "/profile/change-password", element: <Change_Password /> },
 
-
+  { path: "/services" , element: <Services /> },
 ];
 
 export default Routes;

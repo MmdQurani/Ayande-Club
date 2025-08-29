@@ -22,17 +22,20 @@ function SidebarMenuItem({ href, title, children, subItems }) {
         <>
           <button
             onClick={toggleDropdown}
-            className={`flex items-center justify-between w-full cursor-pointer px-2 py-4 text-sm border-t border-neutral-200 transition-colors
-              ${isParentActive ? 'text-secondary-2 stroke-secondary-2 fill-secondary-2 font-bold' : 'text-neutral-600 hover:fill-secondary-2 hover:text-secondary-2'}`}
+            className={`flex items-center justify-between w-full cursor-pointer px-2 py-4 text-sm border-t border-neutral-200 transition-colors ${isParentActive ? 'text-secondary-2 font-bold' : 'text-neutral-600 hover:text-secondary-2'}`}
           >
-            <div className="flex items-center space-x-1">
-              {children}
+            <div className="flex items-center space-x-2">
+              <span
+                className={`icon flex items-center justify-center ${isParentActive ? 'stroke-secondary-2 fill-secondary-2' : 'stroke-neutral-600 fill-neutral-600 group-hover:stroke-secondary-2 group-hover:fill-secondary-2'}`}
+              >
+                {children}
+              </span>
               <span>{title}</span>
             </div>
-            <span className="text-lg font-bold">
-              {open ? '-' : '+'}
-            </span>
+
+            <span className="text-lg font-bold">{open ? '-' : '+'}</span>
           </button>
+
 
           <ul
             className={`mr-4 ml-6 space-y-1.5 overflow-hidden transition-all duration-300 ease-in-out
