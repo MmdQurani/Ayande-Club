@@ -8,6 +8,9 @@ import Videos from "../Pages/Help_Center/Videos";
 import LandingPage from "../Pages/LandingPage/LandingPage";
 import NewTicket from "../Pages/NewTicket/NewTicket";
 import Points from "../Pages/Points/Points";
+import Change_Password from "../Pages/Profile/Change_Password";
+import Info from "../Pages/Profile/Info";
+import Logs from "../Pages/Profile/Logs";
 import Referrals from "../Pages/Referrals/Referrals";
 import Rewards from "../Pages/Rewards/Rewards";
 
@@ -39,6 +42,13 @@ const Routes = [
   { path: "/help-center/new-ticket", element: <NewTicket /> },
   { path: "/help-center/faq", element: <Faq /> },
   { path: "/help-center/videos", element: <Videos /> },
+
+
+  { path: "/profile/info", element: <Info /> },
+  { path: "/profile/logs", element: <Logs /> },
+  { path: "/profile/change-password", element: <Change_Password /> },
+
+
 ];
 
 export default Routes;

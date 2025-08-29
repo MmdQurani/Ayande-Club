@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GrowthTabs from '../../Components/GrowthTabs/GrowthTabs'
 import useIsMobile from '../../Hooks/useIsMobile';
 import not_record from "../../assets/images/not_record.png";
@@ -27,7 +27,16 @@ function EarnPoints() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [filterType, setFilterType] = useState("همه");
-  const rowsPerPage = 10;
+  // const rowsPerPage = 10;
+  const [rowsPerPage, setRowsPerPage] = useState(0);
+
+  useEffect(() => {
+    if (isMobile) {
+      setRowsPerPage(5);
+    } else {
+      setRowsPerPage(8);
+    }
+  }, [isMobile])
 
   const filteredData = filterType === "همه" ? data : data.filter(item => item.type === filterType);
 
@@ -80,8 +89,8 @@ function EarnPoints() {
                       setIsOpen(false);
                     }}
                     className={`px-4 py-2 w-full cursor-pointer rounded-lg ${option === filterType
-                        ? "bg-secondary-12 text-secondary-2 font-bold"
-                        : "text-neutral-600 hover:bg-gray-100"
+                      ? "bg-secondary-12 text-secondary-2 font-bold"
+                      : "text-neutral-600 hover:bg-gray-100"
                       }`}
                   >
                     {option}
@@ -97,7 +106,7 @@ function EarnPoints() {
         {/* جدول */}
         <div className="p-4">
           {!isMobile ? (
-            <div className={`overflow-x-auto w-full ${filteredData.length > 0 ? "" : "h-[500px]"}`}>
+            <div className={`overflow-x-auto w-full ${filteredData.length > 0 ? "max-h-[500px]" : ""}`}>
               <table className="w-full h-full min-w-[900px] border-collapse bg-white rounded-xl overflow-hidden">
                 <thead>
                   <tr className="bg-gray-100 text-gray-600 text-sm">
@@ -116,11 +125,11 @@ function EarnPoints() {
                         className={`text-center text-gray-700 text-sm ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
                           } hover:bg-gray-100 transition`}
                       >
-                        <td className="h-[60px] py-3 px-4">{row.id}</td>
-                        <td className="h-[60px] py-3 px-4">{row.per}</td>
-                        <td className="h-[60px] py-3 px-4">{row.activity}</td>
-                        <td className="h-[60px] py-3 px-4 font-semibold">{row.points}</td>
-                        <td className="h-[60px] py-3 px-4">{row.type}</td>
+                        <td className="h-[85px] py-3 px-4">{row.id}</td>
+                        <td className="h-[85px] py-3 px-4">{row.per}</td>
+                        <td className="h-[85px] py-3 px-4">{row.activity}</td>
+                        <td className="h-[85px] py-3 px-4 font-semibold">{row.points}</td>
+                        <td className="h-[85px] py-3 px-4">{row.type}</td>
                       </tr>
                     ))
                   ) : (
