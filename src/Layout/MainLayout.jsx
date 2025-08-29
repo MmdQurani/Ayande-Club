@@ -74,7 +74,7 @@ function MainLayout({ children }) {
         </div>
         : null}
 
-      <div className='lg:container h-full w-full px-2 sm:px-12 lg:px-2 flex flex-row justify-center my-0 mt-12 lg:mt-10 mb-8 space-x-4'>
+      <div className='lg:container h-full w-full px-2 sm:px-12 lg:px-2 flex flex-row justify-center my-0 mt-12 lg:mt-10 mb-12 space-x-4'>
 
         {!isIPad ?
           < Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
