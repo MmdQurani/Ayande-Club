@@ -124,7 +124,7 @@ function ContactUs() {
       );
     } else if (activeTab === 2) {
       return (
-        <div className="p-4 md:p-8 text-sm text-gray-700 bg-white border border-neutral-200 rounded-lg">
+        <div className="p-4 md:p-8 text-gray-700 bg-white border border-neutral-200 rounded-lg">
           <p className="text-sm md:text-[16px] leading-9">
             ممکن است پاسخگویی به برخی تیکت‌ها تا 24 ساعت طول بکشد.البته در صورت نیاز به بررسی‌های بیشتر، ممکن است این زمان کمی بیشتر شود. اطمینان می‌دهیم که کارشناسان ما در سریع‌ترین زمان ممکن به تیکت شما رسیدگی خواهند کرد و هرگونه سوال یا مشکلی که دارید با حداکثر دقت بررسی خواهد شد.
           </p>
