@@ -2,21 +2,19 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { main_menu } from '../../config/menuConfig/menuConfig'
 import { useUser } from '../../Contexts/UserContext'
+import Today from '../Today/Today'
 
 function MainHeader() {
   const { user, loading } = useUser()
   const { pathname } = useLocation()
 
-  // پیدا کردن عنوان و آیکون مربوط به صفحه فعلی
   const current = main_menu.find(item => item.href === pathname || item.children?.some(child => child.href === pathname))
-
 
   const title = current?.title || 'عنوان نامشخص'
   const Icon = current?.svg || (<span>آیکون</span>)
 
   return (
     <header className="w-full h-[44px] hidden lg:flex mb-4">
-      {console.log(user)}
       <div className="content_header w-full h-full grid grid-cols-12 space-x-4">
 
         <div className="col-span-3">
@@ -56,7 +54,9 @@ function MainHeader() {
               </svg>
               <span>تاریخ روز:</span>
             </div>
-            <span className='bg-secondary-10 py-1 px-2 text-neutral-800 rounded-sm'>1403/10/16</span>
+            <span className='bg-secondary-10 py-1 px-2 text-neutral-800 rounded-sm'>
+              <Today />
+            </span>
           </div>
 
           <div className='notification_btns flex flex-row'>
