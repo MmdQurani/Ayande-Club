@@ -13,9 +13,9 @@ export default function LoginModal() {
   const [activeTab, setActiveTab] = useState("national");
   const [showPassword, setShowPassword] = useState(false);
 
-  const [captchaSrc, setCaptchaSrc] = useState("");
   const [nationalId, setNationalId] = useState('')
   const [password, setPassword] = useState('')
+  const [captchaSrc, setCaptchaSrc] = useState('');
   const [captchaValue, setCaptchaValue] = useState('')
   const [captchaId, setCaptchaId] = useState('')
   const [isSuccess, setIsSuccess] = useState(null);
@@ -39,9 +39,8 @@ export default function LoginModal() {
     setError(res.message);
 
 
-    if (res.isSuccess && res.data.token) {
-      localStorage.removeItem("token");
-      localStorage.setItem("token", res.data.token);
+    if (res.isSuccess && res.data.accessToken) {
+      localStorage.setItem("token", res.data.accessToken);
     }
 
     return res;
@@ -187,12 +186,12 @@ export default function LoginModal() {
         </form>
       )}
 
-      <div className="text-sm flex flex-row gap-x-2 justify-center mt-12">
+      {/* <div className="text-sm flex flex-row gap-x-2 justify-center mt-12">
         <span className="text-neutral-400">حساب کارگزاری ندارید؟</span>
         <Link className="text-neutral-800" to={'/signup'}>
           ثبت نام در کوانتوم
         </Link>
-      </div>
+      </div> */}
     </>
   );
 }
