@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { GetCurrentUserInfo } from "../APIs/userInfo";
+import { GetCurrentUserInfo, CheckUserInBrokerage } from "../APIs/user";
 
 const UserContext = createContext();
 
@@ -7,23 +7,29 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isInBrokerage, setIsInBrokerage] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchUser = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       setUser(null);
+      setIsInBrokerage(false);
       setLoading(false);
       return;
     }
 
     try {
       setLoading(true);
-      const res = await GetCurrentUserInfo(token);
-      setUser(res);
+      const userInfo = await GetCurrentUserInfo(token);
+      setUser(userInfo);
+
+      const brokerageStatus = await CheckUserInBrokerage(token);
+      setIsInBrokerage(brokerageStatus.data.brokerage);
     } catch (error) {
       console.error("Error fetching user info:", error);
       setUser(null);
+      setIsInBrokerage(false);
     } finally {
       setLoading(false);
     }
@@ -34,7 +40,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, fetchUser, loading }}>
+    <UserContext.Provider value={{ user, isInBrokerage, fetchUser, loading }}>
       {children}
     </UserContext.Provider>
   );

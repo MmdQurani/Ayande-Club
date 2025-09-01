@@ -5,7 +5,7 @@ import { useUser } from '../../Contexts/UserContext'
 import Today from '../Today/Today'
 
 function MainHeader() {
-  const { user, loading } = useUser()
+  const { user, isInBrokerage, loading } = useUser();
   const { pathname } = useLocation()
 
   const current = main_menu.find(item => item.href === pathname || item.children?.some(child => child.href === pathname))

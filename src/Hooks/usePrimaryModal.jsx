@@ -6,9 +6,9 @@ export default function usePrimaryModal() {
   const [selectedReward, setSelectedReward] = useState(null);
   const [modalType, setModalType] = useState(null);
 
-  const openModal = (type, reward) => {
+  const openModal = (type , item) => {
     setModalType(type);
-    setSelectedReward(reward);
+    setSelectedReward(item);
     setIsModalOpen(true);
   };
 

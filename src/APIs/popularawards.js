@@ -1,9 +1,8 @@
-import axios from "axios";
 import apiClient from "./api";
 
-export const GetCurrentUserInfo = async (token) => {
+export const GetAllPopularAwards = async (token) => {
   try {
-    const res = await apiClient.get(`/api/User/GetCurrentUserInfo`, {
+    const res = await apiClient.get(`/api/Product/GetAllPopularAwards`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -14,3 +13,6 @@ export const GetCurrentUserInfo = async (token) => {
     throw err;
   }
 };
+
+
+// res.data.data.items

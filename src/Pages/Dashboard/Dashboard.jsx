@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import User_Account_Info_Card from '../../Components/User_Account_Info_Card/User_Account_Info_Card'
 import useIsMobile from '../../Hooks/useIsMobile'
 
@@ -8,16 +8,24 @@ import Quantum_Level_mini from '../../assets/images/Quantum_Levels/Quantum_Level
 import RewardContainer from '../../Components/RewardContainer/RewardContainer'
 import usePrimaryModal from '../../Hooks/usePrimaryModal'
 import PrimaryModal from '../../Components/Modals/PrimaryModal'
+import { usePopularAwards } from '../../Contexts/AwardsContext'
+import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data'
 
 function Dashboard() {
 
   const isIPad = useIsMobile(767)
+const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePrimaryModal();
 
-  const { isModalOpen, selectedReward, openModal, closeModal } = usePrimaryModal();
+  const { awards, loading } = usePopularAwards();
+  const [awardsList, setAwardsList] = useState([]);
+
+  useEffect(() => {
+    { loading ? setAwardsList([]) : setAwardsList(awards.data.items); }
+  }, [awards])
 
   return (
     <div className='dashboard w-full h-full flex flex-col py-4 space-y-4' dir='rtl'>
-
+      {console.log(awardsList)}
       {/*  هدر صفحه داشبورد */}
       <div className='dashboard_header w-full min-h-[180px] rounded-lg flex flex-row justify-around items-center'>
 
@@ -183,19 +191,18 @@ function Dashboard() {
         </div> */}
 
         <RewardContainer>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-            <div key={index} onClick={() => openModal(item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
+          {awardsList.map((item) => (
+            <div key={item.id} onClick={() => openModal('rewards', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
               <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
-                <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
-                <div className='flex-1 min-w-0 flex flex-col items-start space-y-4'>
-                  <span className='text-[16px] md:text-lg text-neutral-800'>هندزفری بیسیم تورو</span>
-                  <span className='text-sm md:text-[16px] text-neutral-500'>مدل T20 App Edition</span>
+                <img src={item.imageUrl} alt="product" className='w-24 h-24 object-contain mb-4' />
+                <div className='flex-1 min-w-0 max-w-4/7 flex flex-col items-start space-y-4'>
+                  <span className='text-[16px] md:text-lg text-neutral-800'>{item.title}</span>
                 </div>
               </div>
               <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-between w-full'>
                 <span>مدت اعتبار :</span>
                 <button className='stroke-neutral-800 text-neutral-800 cursor-pointer flex flex-row items-center space-x-2'>
-                  <span><p className='inline p-0 m-0 text-secondary-2'>7000</p> امتیاز</span>
+                  <span><p className='inline p-0 m-0 text-secondary-2'>{item.pointCost}</p> امتیاز</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                     <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
@@ -209,15 +216,14 @@ function Dashboard() {
 
       </div>
 
-      {/* مودال */}
-      <PrimaryModal isOpen={isModalOpen} onClose={closeModal}>
-        {selectedReward && (
-          <div className="p-4">
-            <h2 className="text-lg font-bold mb-2">{selectedReward.title}</h2>
-            <p className="mb-4">{selectedReward.desc}</p>
-            <p>امتیاز مورد نیاز: {selectedReward.points}</p>
-          </div>
-        )}
+      {/* مودال جوایز و هدایا */}
+      <PrimaryModal
+        isOpen={isModalOpen && modalType === 'rewards'}
+        onClose={closeModal}
+        style={'w-[755px] h-[745px] max-h-[90%]'}
+        mobileStyle={'h-[945px]'}
+      >
+        {selectedReward && <Reward_Item_Data closeModal={closeModal} selectedReward={selectedReward} />}
       </PrimaryModal>
 
     </div>

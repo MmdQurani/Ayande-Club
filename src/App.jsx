@@ -6,6 +6,7 @@ import MainLayout from "./Layout/MainLayout";
 import PrivateRoute from "./Routes/PrivateRoute";
 import "./App.css";
 import { UserProvider } from "./Contexts/UserContext";
+import { PopularAwardsProvider } from "./Contexts/AwardsContext";
 
 function App() {
   const getLoginRoutes = useRoutes(LoginRoutes);
@@ -27,7 +28,9 @@ function App() {
         <AuthLayout>{getLoginRoutes}</AuthLayout>
       ) : (
         <UserProvider>
-          <MainLayout>{getRoutes}</MainLayout>
+          <PopularAwardsProvider>
+            <MainLayout>{getRoutes}</MainLayout>
+          </PopularAwardsProvider>
         </UserProvider>
       )}
     </>
