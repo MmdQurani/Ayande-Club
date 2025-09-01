@@ -1,0 +1,17 @@
+export const loginUser = async (username, password, captchaId, captchaValue) => {
+  try {
+    const response = await apiClient.post('/api/User/Login',
+      {
+        username,
+        password,
+        captchaId,
+        captchaValue
+      },
+      { headers: { "Content-Type": "application/json" } }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Login error:", error.response?.data || error.message);
+    throw error;
+  }
+};
