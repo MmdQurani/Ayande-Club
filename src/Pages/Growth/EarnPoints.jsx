@@ -9,20 +9,17 @@ function EarnPoints() {
   const isMobile = useIsMobile(767);
 
   const data = [
-    { id: 1, per: "هر خرید بالای 500 هزار تومان", activity: "خرید محصول", points: 50, type: "نقدی" },
-    { id: 2, per: "هر معرفی موفق", activity: "دعوت از دوستان", points: 100, type: "سطح" },
-    { id: 3, per: "هر تکمیل پروفایل", activity: "تکمیل اطلاعات کاربری", points: 20, type: "نقدی" },
-    { id: 4, per: "هر خرید اشتراک", activity: "اشتراک ویژه", points: 200, type: "سطح" },
-    { id: 5, per: "هر فعالیت روزانه", activity: "ورود روزانه", points: 10, type: "نقدی" },
-    { id: 6, per: "هر نظر ثبت شده", activity: "ثبت نظر", points: 15, type: "سطح" },
-    { id: 7, per: "هر تکمیل فرم نظرسنجی", activity: "نظرسنجی", points: 30, type: "نقدی" },
-    { id: 8, per: "هر خرید بالای 500 هزار تومان", activity: "خرید محصول", points: 50, type: "متغیر" },
-    { id: 9, per: "هر معرفی موفق", activity: "دعوت از دوستان", points: 100, type: "سطح" },
-    { id: 10, per: "هر تکمیل پروفایل", activity: "تکمیل اطلاعات کاربری", points: 20, type: "نقدی" },
-    { id: 11, per: "هر خرید اشتراک", activity: "اشتراک ویژه", points: 200, type: "متغیر" },
-    { id: 12, per: "هر فعالیت روزانه", activity: "ورود روزانه", points: 10, type: "نقدی" },
-    { id: 13, per: "هر نظر ثبت شده", activity: "ثبت نظر", points: 15, type: "سطح" },
-    { id: 14, per: "هر تکمیل فرم نظرسنجی", activity: "نظرسنجی", points: 30, type: "متغیر" },
+    { id: 1, per: " 6،500،000 ریال ", activity: "معاملات سهام در کارگزاری آینده", points:  1, type: "نقدی" },
+    { id: 2, per: "ساخت کارمزد  20،000 ریال  ", activity: "معاملات اوراق و صندوق ها", points:  1, type: "نقدی" },
+    { id: 3, per: "1500 میلیون ریال", activity: "سرمایه‌گذاری روزانه در صندوق‌های صدور و ابطالی", points:  1, type: "نقدی" },
+    { id: 4, per: "1 بار", activity: "فعالسازی باشگاه مشتریان کوانتوم", points: 100, type: "نقدی" },
+    { id: 5, per: "هر بار", activity: "دعوت از دوستان (منوط به اولین معامله فرد دعوت شده)", points: 300, type: "نقدی" },
+    { id: 6, per: "1 بار", activity: "تکمیل اطلاعات پروفایل", points: 100, type: "نقدی" },
+    { id: 7, per: "هر بار", activity: "لاگین روزانه ( تا سقف 10 لاگین در ماه )", points: 10 , type: "نقدی" },
+    { id: 8, per: "هر بار", activity: "شرکت در نظرسنجی ها ( امتیازات هر نظرسنجی متفاوت است)", points: 'متغیر', type: "نقدی" },
+    { id: 9, per: "هربار", activity: "برنده شدن در مسابقات  ( امتیاز هر مسابقه متفاوت است)", points: 'متغیر', type: "نقدی" },
+    { id: 10, per: "هر سال", activity: "امتیاز وفاداری (سالگرد عضویت در کارگزاری)", points: 'متغیر', type: "سطح" },
+    { id: 11, per: "هر سال", activity: "زادروز تولد شما", points: 'متغیر', type: "سطح" },
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -110,11 +107,11 @@ function EarnPoints() {
               <table className="w-full h-full min-w-[900px] border-collapse bg-white rounded-xl overflow-hidden">
                 <thead>
                   <tr className="bg-gray-100 text-gray-600 text-sm">
-                    <th className="h-[60px] py-3 px-4 text-center">ردیف</th>
-                    <th className="h-[60px] py-3 px-4 text-center">در ازای هر</th>
-                    <th className="h-[60px] py-3 px-4 text-center">نوع فعالیت</th>
-                    <th className="h-[60px] py-3 px-4 text-center">کسب امتیاز</th>
-                    <th className="h-[60px] py-3 px-4 text-center">نوع امتیاز</th>
+                    <th className="h-[60px] py-3 px-4 text-start">ردیف</th>
+                    <th className="h-[60px] py-3 px-4 text-start">در ازای هر</th>
+                    <th className="h-[60px] py-3 px-4 text-start">نوع فعالیت</th>
+                    <th className="h-[60px] py-3 px-4 text-start">کسب امتیاز</th>
+                    <th className="h-[60px] py-3 px-4 text-start">نوع امتیاز</th>
                   </tr>
                 </thead>
                 <tbody className="relative">
@@ -122,7 +119,7 @@ function EarnPoints() {
                     currentRows.map((row, index) => (
                       <tr
                         key={row.id}
-                        className={`text-center text-gray-700 text-sm ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                        className={`text-start text-gray-700 text-sm ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
                           } hover:bg-gray-100 transition`}
                       >
                         <td className="h-[85px] py-3 px-4">{row.id}</td>
@@ -151,13 +148,13 @@ function EarnPoints() {
                       <span className="font-semibold text-gray-600">ردیف:</span>
                       <span>{row.id}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between gap-x-8">
                       <span className="font-semibold text-gray-600">در ازای هر:</span>
-                      <span>{row.per}</span>
+                      <span className='text-end'>{row.per}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between gap-x-8">
                       <span className="font-semibold text-gray-600">نوع فعالیت:</span>
-                      <span>{row.activity}</span>
+                      <span className='text-end'>{row.activity}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-semibold text-gray-600">کسب امتیاز:</span>

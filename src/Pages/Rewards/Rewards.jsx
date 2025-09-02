@@ -48,7 +48,6 @@ function Rewards() {
       if (res && res.data && res.data.items) {
         setCategoriesWithProducts(res.data.items);
       }
-      console.log(res)
     });
   }, []);
 
@@ -95,8 +94,6 @@ function Rewards() {
       : sortedCategories.filter(
         (catObj) => catObj.category.title === activeFilter
       );
-
-
 
   return (
     <div className="rewards w-full h-full flex flex-col py-4 space-y-4 px-2" dir='rtl'>

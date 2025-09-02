@@ -4,7 +4,6 @@ import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 function CardLottery({ item, onClick }) {
   return (
     <div className='w-full h-full cursor-default shadow_custom rounded-xl'>
-      {console.log(item)}
       <div
         onClick={onClick}
         className=' min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 p-4 flex flex-col items-center justify-center space-y-2'
