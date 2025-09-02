@@ -6,26 +6,26 @@ export const usePopularAwards = () => useContext(PopularAwardsContext);
 
 export const PopularAwardsProvider = ({ children }) => {
   const [awards, setAwards] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [awardsLoading , setAwardsLoading] = useState(true);
 
   const fetchAwards = async () => {
 
     const token = localStorage.getItem("token");
     if (!token) {
       setAwards([]);
-      setLoading(false);
+      setAwardsLoading(false);
       return;
     }
 
     try {
-      setLoading(true);
+      setAwardsLoading(true);
       const res = await GetAllPopularAwards(token);
       setAwards(res);
     } catch (error) {
       console.error("Error fetching popular awards:", error);
       setAwards([]);
     } finally {
-      setLoading(false);
+      setAwardsLoading(false);
     }
   };
 
@@ -34,7 +34,7 @@ export const PopularAwardsProvider = ({ children }) => {
   }, []);
 
   return (
-    <PopularAwardsContext.Provider value={{ awards, loading, fetchAwards }}>
+    <PopularAwardsContext.Provider value={{ awards, awardsLoading, fetchAwards }}>
       {children}
     </PopularAwardsContext.Provider>
   );

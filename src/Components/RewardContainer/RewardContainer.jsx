@@ -15,8 +15,11 @@ import gift_card_white from '../../assets/icons/RewardFilterIcon/gift_card_white
 import git_card_dark from '../../assets/icons/RewardFilterIcon/git_card_dark.png'
 import Lottery_dark from '../../assets/icons/RewardFilterIcon/Lottery_dark.png'
 import Lottery_white from '../../assets/icons/RewardFilterIcon/Lottery_white.png'
+import { useNavigate } from 'react-router-dom'
 
-function RewardContainer({ title = 'جوایز و هدایا', icon, search = false, filtering = false, style, styleIcon, children }) {
+function RewardContainer({href , title = 'جوایز و هدایا', icon, search = false, filtering = false, style, styleIcon, children }) {
+
+  const navigate = useNavigate();
 
   const [activeFilter, setActiveFilter] = useState('همه');
 
@@ -49,7 +52,7 @@ function RewardContainer({ title = 'جوایز و هدایا', icon, search = fa
 
         {/* مشاهده همه */}
         {!search ?
-          <button className='btn_reward flex flex-row items-center bg-secondary-6 px-2 py-1 sm:px-4 sm:py-2.5 cursor-pointer rounded-md sm:rounded-lg space-x-2 text-secondary-3 stroke-secondary-3'>
+          <button onClick={() => navigate(href)} className='btn_reward flex flex-row items-center bg-secondary-6 px-2 py-1 sm:px-4 sm:py-2.5 cursor-pointer rounded-md sm:rounded-lg space-x-2 text-secondary-3 stroke-secondary-3'>
             <span className='text-[16px]'>مشاهده همه</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
               <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>

@@ -10,22 +10,32 @@ import usePrimaryModal from '../../Hooks/usePrimaryModal'
 import PrimaryModal from '../../Components/Modals/PrimaryModal'
 import { usePopularAwards } from '../../Contexts/AwardsContext'
 import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data'
+import { useUser } from '../../Contexts/UserContext'
 
 function Dashboard() {
 
   const isIPad = useIsMobile(767)
-const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePrimaryModal();
+  const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePrimaryModal();
+  const { user, isInBrokerage, lodading } = useUser();
 
-  const { awards, loading } = usePopularAwards();
+  const { awards, awardsLoading } = usePopularAwards();
+
   const [awardsList, setAwardsList] = useState([]);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    { loading ? setAwardsList([]) : setAwardsList(awards.data.items); }
+    { awardsLoading ? setAwardsList([]) : setAwardsList(awards.data.items); }
   }, [awards])
+
+  useEffect(() => {
+    if (user) {
+      setUserInfo(user.data);
+    }
+  }, [user]);
 
   return (
     <div className='dashboard w-full h-full flex flex-col py-4 space-y-4' dir='rtl'>
-      {console.log(awardsList)}
+    {console.log(userInfo)}
       {/*  هدر صفحه داشبورد */}
       <div className='dashboard_header w-full min-h-[180px] rounded-lg flex flex-row justify-around items-center'>
 
@@ -63,7 +73,7 @@ const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePri
               </div>
             </div>
 
-            <div className='Quantum_Level_User_sm flex flex-row justify-around md:hidden mt-4 bg-white w-full h-[120px] space-x-2 order-2 border-1 border-neutral-200 rounded-xl px-4'>
+            {/* <div className='Quantum_Level_User_sm flex flex-row justify-around md:hidden mt-4 bg-white w-full h-[120px] space-x-2 order-2 border-1 border-neutral-200 rounded-xl px-4'>
               <div className='w-max h-full flex flex-col space-y-3 justify-center'>
                 <span className='text-sm'>بر روی <p className='text-3xl inline m-0 p-0' >ماه</p> به سر میبرید</span>
                 <span className='text-sm'>سطح کاربری شما در کوانتوم</span>
@@ -71,17 +81,47 @@ const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePri
               <div className='flex-1 h-full flex justify-end'>
                 <img src={Quantum_Level_1} className='h-full object-contain' alt="" />
               </div>
-            </div>
+            </div> */}
 
             <div className='user_account_info_content w-full md:flex-1 min-h-full border-1 border-neutral-200 bg-white rounded-xl py-4'>
               <div className='w-full h-full grid grid-cols-12 md:space-y-0 space-y-12'>
 
                 <div className='col-span-12 md:col-span-6 border-0 md:border-l-1 border-neutral-200'>
-                  <User_Account_Info_Card />
+                  <div className='User_Account_Info_Card w-full h-full flex flex-col xl:px-18 px-4 md:space-y-0 space-y-12 justify-around items-center'>
+                    <div className='w-full flex flex-row justify-between items-center'>
+                      <span className='text-[16px] text-neutral-500'>امتیازات من</span>
+                      <span className='text-2xl text-neutral-900'>{userInfo?.score}</span>
+                    </div>
+                    <div className='w-full flex flex-row justify-between items-center'>
+                      <span className='text-[16px] text-neutral-500'>سطح کاربری من</span>
+                      <span className='text-2xl text-neutral-900'>{userInfo?.userLevel} <p className='text-[16px] inline'>از 6</p></span>
+                    </div>
+                    <button className='bg-secondary-6 w-full py-2.5 rounded-lg text-secondary-3 stroke-secondary-3 cursor-pointer flex flex-row justify-between px-2.5'>
+                      <span>نحوه‌ی کسب سیاره</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
 
                 <div className='col-span-12 md:col-span-6 border-0 md:border-l-1 border-neutral-200'>
-                  <User_Account_Info_Card />
+                  <div className='User_Account_Info_Card w-full h-full flex flex-col xl:px-18 px-4 md:space-y-0 space-y-12 justify-around items-center'>
+                    <div className='w-full flex flex-row justify-between items-center'>
+                      <span className='text-[16px] text-neutral-500'>امتیازات کسب شده</span>
+                      <span className='text-2xl text-neutral-900'>{userInfo?.score}</span>
+                    </div>
+                    <div className='w-full flex flex-row justify-between items-center'>
+                      <span className='text-[16px] text-neutral-500'>امتیازات خرج شده</span>
+                      <span className='text-2xl text-neutral-900'>0</span>
+                    </div>
+                    <button className='bg-secondary-6 w-full py-2.5 rounded-lg text-secondary-3 stroke-secondary-3 cursor-pointer flex flex-row justify-between px-2.5'>
+                      <span>نحوه‌ی کسب سیاره</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
 
               </div>
@@ -91,11 +131,11 @@ const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePri
           <div className='user_account_info w-full h-max px-2 space-y-4'>
             <div className='w-full h-[120px] flex flex-row items-center space-x-2 p-6 bg-white Quantum_Card rounded-xl'>
               <div className='flex flex-col min-w-0 flex-1 space-y-4'>
-                <span className='text-[16px] no-break-ellipsis text-neutral-800'>مهدی صالح زاده ابرقویی</span>
+                <span className='text-[16px] no-break-ellipsis text-neutral-800'>{userInfo?.firstName} {userInfo?.lastName}</span>
                 <span className='text-sm text-neutral-500'>مجموع سیارات شما</span>
               </div>
               <div className='w-[140px] h-[56px] px-4 flex flex-row justify-around items-center bg-gray-100 rounded-xl'>
-                <span className='text-3xl'>100</span>
+                <span className='text-3xl'>{userInfo?.score}</span>
                 <img className='w-[70px]' src={Quantum_Level_mini} alt="" />
               </div>
             </div>
@@ -103,7 +143,7 @@ const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePri
             <div className='w-full h-[120px] flex flex-row items-center pr-4 space-x-2 bg-white Quantum_Card rounded-xl'>
               <div className='flex flex-col min-w-0 flex-1 space-y-4'>
                 <span className='text-sm no-break-ellipsis text-neutral-800'>بر روی <p className='m-0 p-0 text-neutral-900 inline text-3xl'>ماه</p> به سر میبرید ...</span>
-                <span className='text-sm text-neutral-500'>مجموع سیارات شما</span>
+                <span className='text-sm text-neutral-500'>سطح کاربری شما در کوانتوم</span>
               </div>
               <img className='w-[136px] object-contain' src={Quantum_Level_1} alt="" />
             </div>
@@ -190,7 +230,7 @@ const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePri
           </div>
         </div> */}
 
-        <RewardContainer>
+        <RewardContainer href={'/rewards'} title={'جوایز و هدایا'}>
           {awardsList.map((item) => (
             <div key={item.id} onClick={() => openModal('rewards', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
               <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
