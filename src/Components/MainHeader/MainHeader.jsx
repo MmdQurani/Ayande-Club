@@ -5,6 +5,7 @@ import { useUser } from '../../Contexts/UserContext'
 import Today from '../Today/Today'
 
 function MainHeader() {
+
   const { user, isInBrokerage, loading } = useUser();
   const { pathname } = useLocation()
 
@@ -12,6 +13,11 @@ function MainHeader() {
 
   const title = current?.title || 'عنوان نامشخص'
   const Icon = current?.svg || (<span>آیکون</span>)
+
+  const handleLogOutAccount = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
 
   return (
     <header className="w-full h-[44px] hidden lg:flex mb-4">
@@ -85,7 +91,7 @@ function MainHeader() {
               </svg>
 
             </button>
-            <button className='h-full w-9 flex justify-center items-center bg-white border border-neutral-200 rounded-md space-x-2 px-2 text-sm text-neutral-600 stroke-neutral-600 cursor-pointer'>
+            <button onClick={handleLogOutAccount} className='h-full w-9 flex justify-center items-center bg-white border border-neutral-200 rounded-md space-x-2 px-2 text-sm text-neutral-600 stroke-neutral-600 cursor-pointer'>
 
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 32 32" id="Outlined">
 

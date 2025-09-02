@@ -1,41 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useIsMobile from '../../Hooks/useIsMobile';
 
 import not_record from '../../assets/images/not_record.png';
+import { getOrderTransactions } from '../../APIs/orderApi';
+import useFormatDate from '../../Hooks/useFormatDate';
 
 function Points() {
   const isMobile = useIsMobile(767);
 
-  const data = [
-    { id: 1, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: 150, reason: "خرید کد تخفیف 20% اسنپ ", type: "استفاده از امتیاز" },
-    { id: 2, status: "منقضی شده", code: "FED64SFC", date: "10:223 1402/08/10", points: -50, reason: "خرید صندوق", type: "دریافت امتیاز" },
-    { id: 3, status: "مشخص نشده", code: "FED64SFC", date: "10:223 1402/08/10", points: 200, reason: "دعوت از دوست", type: "استفاده از امتیاز" },
-    { id: 4, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: 100, reason: "خرید صندوق", type: "استفاده از امتیاز" },
-    { id: 5, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: -20, reason: "خرید کد تخفیف 20% اسنپ ", type: "دریافت امتیاز" },
-    { id: 6, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: 150, reason: "خرید کد تخفیف 20% اسنپ ", type: "استفاده از امتیاز" },
-    { id: 7, status: "منقضی شده", code: "FED64SFC", date: "10:223 1402/08/10", points: -50, reason: "خرید صندوق", type: "دریافت امتیاز" },
-    { id: 8, status: "مشخص نشده", code: "FED64SFC", date: "10:223 1402/08/10", points: 200, reason: "خرید کد تخفیف 20% اسنپ ", type: "استفاده از امتیاز" },
-    { id: 9, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: 100, reason: "خرید صندوق", type: "استفاده از امتیاز" },
-    { id: 10, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: -20, reason: "خرید کد تخفیف 20% اسنپ ", type: "دریافت امتیاز" },
-    { id: 11, status: "منقضی شده", code: "FED64SFC", date: "10:223 1402/08/10", points: -50, reason: "خرید صندوق", type: "دریافت امتیاز" },
-    { id: 12, status: "مشخص نشده", code: "FED64SFC", date: "10:223 1402/08/10", points: 200, reason: "دعوت از دوست", type: "استفاده از امتیاز" },
-    { id: 13, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: 100, reason: "خرید صندوق", type: "استفاده از امتیاز" },
-    { id: 14, status: "در دسترس", code: "FED64SFC", date: "10:223 1402/08/10", points: -20, reason: "خرید کد تخفیف 20% اسنپ ", type: "دریافت امتیاز" },
-  ];
-
+  const [orderTransactions, setOrderTransactions] = useState([]);
+  // const [totalCount, setTotalCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState("همه");
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
   const tabs = ["همه", "امتیازات دریافتی", "امتیازات خرج شده"];
 
   const filteredData =
     activeTab === "همه"
-      ? data
-      : data.filter(item =>
+      ? orderTransactions
+      : orderTransactions.filter(item =>
         activeTab === "امتیازات دریافتی"
-          ? item.type === "دریافت امتیاز"
-          : item.type === "استفاده از امتیاز"
+          ? item.type === 1
+          : item.type === 2
       );
 
-  const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 7;
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -56,6 +48,63 @@ function Points() {
         return "bg-gray-100 text-gray-600";
     }
   };
+
+  const getTransactionType = (type) => {
+    switch (type) {
+      case 1:
+        return "واریز";
+      case 2:
+        return "خرج شده";
+      default:
+        return "-";
+    }
+  };
+
+  const getTransactionReason = (reason) => {
+    switch (reason) {
+      case 8:
+        return "ورود";
+      case 9:
+        return "دعوت";
+      default:
+        return "-";
+    }
+  };
+
+
+
+  const orderTransactionsList = async () => {
+    const data = await getOrderTransactions();
+    // setTotalCount(data.data.totalCount);
+    setOrderTransactions(data.data.items);
+    return data
+  }
+  // const getAllOrderTransactionsList = async () => {
+  //   const data = await getOrderTransactions({ pageSize: totalCount, pageIndex: 1 });
+  //   setTotalCount(data.data.totalCount);
+  //   setOrderTransactions(data.data.items);
+  //   console.log("Transactions:", data);
+  //   return data
+  // }
+
+  useEffect(() => {
+    const callOrderMethod = async () => {
+      try {
+        setLoading(true);
+        await orderTransactionsList();
+        // await getAllOrderTransactionsList();
+      } catch (err) {
+        setError("خطا در دریافت اطلاعات");
+      } finally {
+        setLoading(false);
+      }
+    };
+    callOrderMethod();
+  }, []);
+
+  if (loading) return <div className="text-center py-10">در حال بارگذاری...</div>;
+  if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
+
 
   return (
     <div className="p-4 ">
@@ -118,7 +167,7 @@ function Points() {
 
       {!isMobile ? (
 
-        <div className={`overflow-x-auto w-full ${data.length > 0 ? '' : 'h-[650px]'}`}>
+        <div className={`overflow-x-auto w-full ${orderTransactions.length > 0 ? '' : 'h-[650px]'}`}>
           <table className="w-full min-w-[1000px] border-collapse bg-white h-full rounded-xl overflow-hidden">
 
             <thead>
@@ -133,18 +182,18 @@ function Points() {
               </tr>
             </thead>
             <tbody className='relative'>
-              {data.length > 0 ? currentRows.map((row, index) => (
+              {orderTransactions.length > 0 ? currentRows.map((row, index) => (
                 <tr
-                  key={row.id}
+                  key={(currentPage - 1) * rowsPerPage + (index + 1)}
                   className={`text-center text-gray-700 text-sm ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
                     } hover:bg-gray-100 transition`}
                 >
-                  <td className="h-[80px] py-3 px-4">{row.id}</td>
-                  <td className="h-[80px] py-3 px-4">{row.type}</td>
-                  <td className="h-[80px] py-3 px-4">{row.reason}</td>
-                  <td className="h-[80px] py-3 px-4 font-semibold">{row.points} نقد</td>
-                  <td className="h-[80px] py-3 px-4"> ساعت {row.date}</td>
-                  <td className="h-[80px] py-3 px-4">{row.code}</td>
+                  <td className="h-[80px] py-3 px-4">{(currentPage - 1) * rowsPerPage + (index + 1)}</td>
+                  <td className="h-[80px] py-3 px-4">{row.type ? getTransactionType(row.type) : '-'}</td>
+                  <td className="h-[80px] py-3 px-4">{row.reason ? getTransactionReason(row.reason) : '-'}</td>
+                  <td className="h-[80px] py-3 px-4 font-semibold">{row.score ? row.score : '-'}</td>
+                  <td className="h-[80px] py-3 px-4" > {row.createDate ? useFormatDate(row.createDate) : '-'} ساعت</td>
+                  <td className="h-[80px] py-3 px-4">{row.code ? row.code : '-'}</td>
                   <td className="h-[80px] py-3 px-4">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusClasses(
@@ -166,32 +215,32 @@ function Points() {
 
       ) : (
 
-        <div className={`grid grid-cols-1 gap-2.5 ${data.length > 0 ? '' : 'h-[450px] bg-white'}`}>
-          {data.length > 0 ? currentRows.map((row) => (
-            <div key={row.id} className="bg-white text-sm rounded-xl shadow-md p-4 space-y-4">
+        <div className={`grid grid-cols-1 gap-2.5 ${orderTransactions.length > 0 ? '' : 'h-[450px] bg-white'}`}>
+          {orderTransactions.length > 0 ? currentRows.map((row, index) => (
+            <div key={(currentPage - 1) * rowsPerPage + (index + 1)} className="bg-white text-sm rounded-xl shadow-md p-4 space-y-4">
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-600">ردیف:</span>
-                <span>{row.id}</span>
+                <span>{(currentPage - 1) * rowsPerPage + (index + 1)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-600">نوع تراکنش:</span>
-                <span>{row.type}</span>
+                <span>{row.type ? getTransactionType(row.type) : "-"}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-600">علت:</span>
-                <span>{row.reason}</span>
+                <span>{row.reason ? getTransactionReason(row.reason) : "-"}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-600">امتیاز:</span>
-                <span className="font-semibold">{row.points}</span>
+                <span className="font-semibold">{row.score ? row.score : "-"}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-600">تاریخ:</span>
-                <span>{row.date}</span>
+                <span>{row.createDate ? useFormatDate(row.createDate) : "-"}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-600">کد:</span>
-                <span>{row.code}</span>
+                <span>{row.code ? row.code : "-"}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="font-semibold text-gray-600">وضعیت:</span>
