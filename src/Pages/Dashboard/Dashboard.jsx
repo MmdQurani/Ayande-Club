@@ -35,7 +35,6 @@ function Dashboard() {
 
   return (
     <div className='dashboard w-full h-full flex flex-col py-4 space-y-4' dir='rtl'>
-    {console.log(userInfo)}
       {/*  هدر صفحه داشبورد */}
       <div className='dashboard_header w-full min-h-[180px] rounded-lg flex flex-row justify-around items-center'>
 

@@ -84,6 +84,10 @@
   border-radius: 0.75rem;
 }
 
+.shadow_custom {
+  box-shadow: 0 0 6px var(--color-gray-200), 0 0 10px var(--color-gray-100);
+}
+
 footer {
   background-image: url('./assets/images/bg-img/footerBack1.png');
   background-size: cover;

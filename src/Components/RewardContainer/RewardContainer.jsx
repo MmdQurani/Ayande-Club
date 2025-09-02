@@ -1,37 +1,9 @@
 import React, { useState } from 'react'
-import useIsMobile from '../../Hooks/useIsMobile'
-
-import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
-
-import allIcon_dark from '../../assets/icons/RewardFilterIcon/allIcon_dark.png'
-import allIcon_white from '../../assets/icons/RewardFilterIcon/allIcon_white.png'
-import Charity_dark from '../../assets/icons/RewardFilterIcon/Charity_dark.png'
-import Charity_white from '../../assets/icons/RewardFilterIcon/Charity_white.png'
-import Credit_request_dark from '../../assets/icons/RewardFilterIcon/Credit_request_dark.png'
-import Credit_request_white from '../../assets/icons/RewardFilterIcon/Credit_request_white.png'
-import Discount_dark from '../../assets/icons/RewardFilterIcon/Discount_dark.png'
-import Discount_white from '../../assets/icons/RewardFilterIcon/Discount_white.png'
-import gift_card_white from '../../assets/icons/RewardFilterIcon/gift_card_white.png'
-import git_card_dark from '../../assets/icons/RewardFilterIcon/git_card_dark.png'
-import Lottery_dark from '../../assets/icons/RewardFilterIcon/Lottery_dark.png'
-import Lottery_white from '../../assets/icons/RewardFilterIcon/Lottery_white.png'
 import { useNavigate } from 'react-router-dom'
 
-function RewardContainer({href , title = 'جوایز و هدایا', icon, search = false, filtering = false, style, styleIcon, children }) {
+function RewardContainer({ href, title = 'جوایز و هدایا', icon, search = false, filtering = false, style, styleIcon, children }) {
 
   const navigate = useNavigate();
-
-  const [activeFilter, setActiveFilter] = useState('همه');
-
-  const filters = [
-    { label: 'همه', iconDark: allIcon_dark, iconWhite: allIcon_white },
-    { label: 'امور خیریه', iconDark: Charity_dark, iconWhite: Charity_white },
-    { label: 'مسابقه', iconDark: Lottery_dark, iconWhite: Lottery_white },
-    { label: 'کد تخفیف و پاداش', iconDark: Discount_dark, iconWhite: Discount_white },
-    { label: 'درخواست اعتبار', iconDark: Credit_request_dark, iconWhite: Credit_request_white },
-    { label: 'کارت هدیه', iconDark: git_card_dark, iconWhite: gift_card_white }
-  ];
-
 
   return (
     <div className={`rewardContainer w-full h-max min-h-[290px] flex flex-col ${style ? style : 'bg-white'} rounded-2xl p-4`}>
@@ -51,43 +23,13 @@ function RewardContainer({href , title = 'جوایز و هدایا', icon, searc
         </div>
 
         {/* مشاهده همه */}
-        {!search ?
-          <button onClick={() => navigate(href)} className='btn_reward flex flex-row items-center bg-secondary-6 px-2 py-1 sm:px-4 sm:py-2.5 cursor-pointer rounded-md sm:rounded-lg space-x-2 text-secondary-3 stroke-secondary-3'>
-            <span className='text-[16px]'>مشاهده همه</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-              <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </button>
-          :
-          <div className='w-full md:w-[400px] h-[42px] border-1 space-x-2.5 flex flex-row justify-between items-center border-neutral-200 rounded-md py-1 px-4'>
-            <input className='text-sm flex-1 h-full placeholder:text-gray-400 focus:outline-none' type="text" name="search" placeholder="جستجوی نام جوایز" />
-            <button className='text-sm px-6 rounded-sm cursor-pointer h-full bg-secondary-11 text-secondary-9'>جستجو</button>
-          </div>
-        }
+        <button onClick={() => navigate(href)} className='btn_reward flex flex-row items-center bg-secondary-6 px-2 py-1 sm:px-4 sm:py-2.5 cursor-pointer rounded-md sm:rounded-lg space-x-2 text-secondary-3 stroke-secondary-3'>
+          <span className='text-[16px]'>مشاهده همه</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+            <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
       </div>
-
-      {filtering && (
-        <div className='w-full h-max flex flex-row items-center space-x-2 mb-6 py-8 overflow-x-auto scrollbar-hide'>
-          {filters.map((filter) => (
-            <button
-              key={filter.label}
-              onClick={() => setActiveFilter(filter.label)}
-              className={`cursor-pointer flex flex-row items-center min-w-max space-x-2 px-4 py-1.5 rounded-md border transition-all duration-200 text-sm whitespace-nowrap ${activeFilter === filter.label
-                  ? 'bg-secondary-3 text-white border-secondary-3 font-semibold'
-                  : 'bg-white text-gray-500 border-gray-300 hover:bg-gray-100'
-                }`}
-            >
-              <img
-                src={activeFilter === filter.label ? filter.iconWhite : filter.iconDark}
-                alt=""
-                className="w-4 h-4"
-              />
-              <span>{filter.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
-
 
       {/* کارت‌ها */}
       <div className='content_reward max-w-full flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-4 md:overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-custom py-8 px-4'>

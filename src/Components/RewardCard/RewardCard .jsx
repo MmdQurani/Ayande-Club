@@ -5,7 +5,7 @@ const RewardCard = ({ item, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2 cursor-default'
+      className='card_reward Quantum_Card min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2 cursor-default'
     >
       <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
         <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />

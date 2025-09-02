@@ -4,7 +4,6 @@ import Snapp_logo from '../../assets/images/reward/Snapp_logo.png'
 function Reward_Item_Data({ selectedReward , closeModal }) {
   return (
     <div className="reward_item_data w-full h-full flex flex-col justify-start items-center space-y-8 mt-2">
-      {console.log(selectedReward)}
 
       <div className='reward_item_data_header w-full md:h-[64px] h-max flex flex-col md:flex-row space-y-4 md:space-y-0'>
         <div className='reward_item_data_header_title flex-1 min-w-0 flex flex-row md:justify-start justify-between items-center space-x-4 px-2'>

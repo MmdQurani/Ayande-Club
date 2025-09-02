@@ -1,91 +1,204 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useIsMobile from '../../Hooks/useIsMobile';
 
 import Manage_Points from '../../Components/Manage_Points/Manage_Points';
 import RewardContainer from '../../Components/RewardContainer/RewardContainer';
 
-import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 import gift_01 from '../../assets/icons/gift-01.png'
 import monitor_03 from '../../assets/icons/monitor-03.png'
 import Rectangle1 from '../../assets/icons/Rectangle1.png'
 import rocket_02 from '../../assets/icons/rocket-02.png'
-import notFound_credit from '../../assets/icons/notFound_credit.png'
-import Insufficient_Credit from '../../assets/icons/Insufficient_Credit.png'
 
 import PrimaryModal from '../../Components/Modals/PrimaryModal';
 import usePrimaryModal from '../../Hooks/usePrimaryModal';
 import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data';
-import Credit_Modal from '../../Components/Modals/Credit_Modal/Credit_Modal';
-import Success_Credit_Modal from '../../Components/Modals/Success_Credit_Modal/Success_Credit_Modal';
 import RewardCard from '../../Components/RewardCard/RewardCard ';
 import CardLottery from '../../Components/CardLottery/CardLottery';
 import CreditCard from '../../Components/CreditCard/CreditCard';
 import CoursesCard from '../../Components/CoursesCard/CoursesCard';
+import { getAllCategoriesWithProducts } from '../../APIs/categoryApi';
+
+
+// import useIsMobile from '../../Hooks/useIsMobile'
+
+// import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
+
+import allIcon_dark from '../../assets/icons/RewardFilterIcon/allIcon_dark.png'
+import allIcon_white from '../../assets/icons/RewardFilterIcon/allIcon_white.png'
+import Lottery_dark from '../../assets/icons/RewardFilterIcon/Lottery_dark.png'
+import Lottery_white from '../../assets/icons/RewardFilterIcon/Lottery_white.png'
+
 
 function Rewards() {
 
   const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePrimaryModal();
   const isIPad = useIsMobile(767)
 
-  const [showAllSections, setShowAllSections] = useState(false);
+  const [categoriesWithProducts, setCategoriesWithProducts] = useState([]);
+  const [activeFilter, setActiveFilter] = useState('همه');
+
+
+  const getApiAllCategoriesWithProducts = async () => {
+    const response = getAllCategoriesWithProducts();
+    return (await response).data
+  }
+
+  useEffect(() => {
+    getApiAllCategoriesWithProducts().then(res => {
+      if (res && res.data && res.data.items) {
+        setCategoriesWithProducts(res.data.items);
+      }
+      console.log(res)
+    });
+  }, []);
+
+  const sortedCategories = [...categoriesWithProducts].sort((a, b) => {
+    if (a.category.title === "محصول") return -1;
+    if (b.category.title === "محصول") return 1;
+    return 0;
+  });
+
+  const filters = [
+    { label: "همه", iconDark: allIcon_dark, iconWhite: allIcon_white },
+    ...categoriesWithProducts.map((catObj) => {
+      const title = catObj.category.title;
+      let icons = { iconDark: "", iconWhite: "" };
+
+      switch (title) {
+        case "محصول":
+          icons = { iconDark: gift_01, iconWhite: gift_01 };
+          break;
+        case "قرعه کشی":
+          icons = { iconDark: Lottery_dark, iconWhite: Lottery_white };
+          break;
+        case "آموزش":
+          icons = { iconDark: monitor_03, iconWhite: monitor_03 };
+          break;
+        case "واحد صندوق":
+        case "اعتبار":
+          icons = { iconDark: rocket_02, iconWhite: rocket_02 };
+          break;
+        default:
+          icons = { iconDark: allIcon_dark, iconWhite: allIcon_white };
+      }
+
+      return {
+        label: title,
+        ...icons,
+      };
+    }),
+  ];
+
+  const filteredCategories =
+    activeFilter === "همه"
+      ? sortedCategories
+      : sortedCategories.filter(
+        (catObj) => catObj.category.title === activeFilter
+      );
+
+
 
   return (
     <div className="rewards w-full h-full flex flex-col py-4 space-y-4 px-2" dir='rtl'>
+
       {!isIPad ?
         <Manage_Points />
         : null}
 
-      <RewardContainer title='جوایز و هدایا' search={true} filtering={true} styleIcon={'bg-transparent'} icon={gift_01}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-          <RewardCard
-            key={index}
-            item={{ title: 'هندزفری بیسیم تورو', subtitle: 'مدل T20 App Edition', points: '7000' }}
-            onClick={() => openModal('rewards', item)} />
-        ))}
-      </RewardContainer>
-
-      {isIPad ?
-        <button onClick={() => setShowAllSections(true)} className={`w-full h-[48px] cursor-pointer border-2 border-secondary-5 text-secondary-5 stroke-secondary-5 ${showAllSections ? 'hidden' : 'flex'} flex-row justify-center items-center space-x-4 rounded-lg`}>
-          <span>مشاهده همه</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18L9 12L15 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-        : null}
-
-      {(!isIPad || showAllSections) && (
-        <>
-          {/* قرعه کشی */}
-          <RewardContainer title='قرعه‌کشی‌ها' style={'bg-gradient-to-b from-white via-white/80 to-transparent'} styleIcon={'bg-transparent'} icon={Rectangle1}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <CardLottery
-                key={index}
-                item={{ title: 'هندزفری بیسیم تورو', subtitle: 'مدل T20 App Edition', points: '7000' }}
-                onClick={() => openModal('lottery', item)} />
+      <div className='rewardContainer w-full h-auto p-6 flex flex-col bg-white'>
+        {
+          <div className='w-full md:w-[400px] h-[42px] border-1 space-x-2.5 flex flex-row justify-between items-center border-neutral-200 rounded-md py-1 px-4'>
+            <input className='text-sm flex-1 h-full placeholder:text-gray-400 focus:outline-none' type="text" name="search" placeholder="جستجوی نام جوایز" />
+            <button className='text-sm px-6 rounded-sm cursor-pointer h-full bg-secondary-11 text-secondary-9'>جستجو</button>
+          </div>
+        }
+        {(
+          <div className='w-full h-max flex flex-row items-center space-x-2 py-8 overflow-x-auto scrollbar-hide'>
+            {filters.map((filter) => (
+              <button
+                key={filter.label}
+                onClick={() => setActiveFilter(filter.label)}
+                className={`cursor-pointer flex flex-row items-center min-w-max space-x-2 px-4 py-1.5 rounded-md border transition-all duration-200 text-sm whitespace-nowrap ${activeFilter === filter.label
+                  ? "bg-secondary-3 text-white border-secondary-3 font-semibold"
+                  : "bg-white text-gray-500 border-gray-300 hover:bg-gray-100"
+                  }`}
+              >
+                <img
+                  src={activeFilter === filter.label ? filter.iconWhite : filter.iconDark}
+                  alt=""
+                  className="w-4 h-4"
+                />
+                <span>{filter.label}</span>
+              </button>
             ))}
-          </RewardContainer>
+          </div>
+        )}
+      </div>
 
-          {/* اعتبار */}
-          <RewardContainer title='اعتبار' style={'bg-gradient-to-b from-white via-white/80 to-transparent'} styleIcon={'bg-transparent'} icon={rocket_02}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <CreditCard
-                key={index}
-                item={{ title: 'هندزفری بیسیم تورو', subtitle: 'مدل T20 App Edition', points: '7000' }}
-                onClick={() => openModal('credit', item)} />
-            ))}
-          </RewardContainer>
+      {filteredCategories.map((catObj, index) => {
+        const { category, products } = catObj;
 
-          {/* دوره های آموزشی */}
-          <RewardContainer title='دوره‌های آموزشی' style={'bg-gradient-to-b from-white via-white/80 to-transparent'} styleIcon={'bg-transparent'} icon={monitor_03}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <CoursesCard
-                key={index}
-                item={{ title: 'هندزفری بیسیم تورو', subtitle: 'مدل T20 App Edition', points: '7000' }}
-                onClick={() => openModal('courses', item)} />
-            ))}
-          </RewardContainer>
-        </>
-      )}
+        // if (!products || products.length === 0) return null;
+
+        switch (category.title) {
+          case "محصول":
+            return (
+              <RewardContainer key={index} title={category.title} icon={gift_01} search filtering>
+                {products.map((product, i) => (
+                  <RewardCard
+                    key={i}
+                    item={product}
+                    onClick={() => openModal("rewards", product)}
+                  />
+                ))}
+              </RewardContainer>
+            );
+
+          case "قرعه کشی":
+            return (
+              <RewardContainer key={index} title={category.title} icon={Rectangle1}>
+                {products.map((product, i) => (
+                  <CardLottery
+                    key={i}
+                    item={product}
+                    onClick={() => openModal("lottery", product)}
+                  />
+                ))}
+              </RewardContainer>
+            );
+
+          case "آموزش":
+            return (
+              <RewardContainer key={index} title={category.title} icon={monitor_03}>
+                {products.map((product, i) => (
+                  <CoursesCard
+                    key={i}
+                    item={product}
+                    onClick={() => openModal("courses", product)}
+                  />
+                ))}
+              </RewardContainer>
+            );
+
+          case "واحد صندوق":
+          case "اعتبار":
+            return (
+              <RewardContainer key={index} title={category.title} icon={rocket_02}>
+                {products.map((product, i) => (
+                  <CreditCard
+                    key={i}
+                    item={product}
+                    onClick={() => openModal("credit", product)}
+                  />
+                ))}
+              </RewardContainer>
+            );
+
+          default:
+            return null;
+        }
+      })}
+
 
       {/* مودال جوایز و هدایا */}
       <PrimaryModal
@@ -94,7 +207,7 @@ function Rewards() {
         style={'w-[755px] h-[745px] max-h-[90%]'}
         mobileStyle={'h-[945px]'}
       >
-        {selectedReward && <Reward_Item_Data />}
+        {selectedReward && <Reward_Item_Data closeModal={closeModal} selectedReward={selectedReward} />}
       </PrimaryModal>
 
       {/* مودال قرعه‌کشی */}
@@ -104,11 +217,11 @@ function Rewards() {
         style={'w-[755px] h-[745px] max-h-[90%]'}
         mobileStyle={'h-[945px]'}
       >
-        {selectedReward && <Reward_Item_Data />}
+        {selectedReward && <Reward_Item_Data closeModal={closeModal} selectedReward={selectedReward} />}
       </PrimaryModal>
 
       {/* مودال کمبود امتیاز */}
-      <PrimaryModal
+      {/* <PrimaryModal
         isOpen={isModalOpen && modalType === 'Insufficient_Credit'}
         onClose={closeModal}
         style={'w-[500px] h-[325px] max-h-[70%]'}
@@ -122,10 +235,10 @@ function Rewards() {
             <button onClick={() => openModal('notFound_credit', selectedReward)} className='w-[250px] text-[16px] h-[42px] btn_gradient rounded-md text-white cursor-pointer'>نحوه کسب سیاره</button>
           </div>
         }
-      </PrimaryModal>
+      </PrimaryModal> */}
 
       {/* مودال اعتبار */}
-      <PrimaryModal
+      {/* <PrimaryModal
         isOpen={isModalOpen && modalType === 'credit'}
         onClose={closeModal}
         style={'w-[755px] h-[480px] max-h-[70%]'}
@@ -139,10 +252,10 @@ function Rewards() {
             </div>
           </Credit_Modal>
         }
-      </PrimaryModal>
+      </PrimaryModal> */}
 
       {/* مودال ثبت موفق  */}
-      <PrimaryModal
+      {/* <PrimaryModal
         isOpen={isModalOpen && modalType === 'success_credit'}
         onClose={closeModal}
         style={'w-[755px] h-[685px] max-h-[85%]'}
@@ -151,10 +264,10 @@ function Rewards() {
         {selectedReward &&
           <Success_Credit_Modal />
         }
-      </PrimaryModal>
+      </PrimaryModal> */}
 
       {/* مودال مورد نظر در سیستم ثبت نشده */}
-      <PrimaryModal
+      {/* <PrimaryModal
         isOpen={isModalOpen && modalType === 'notFound_credit'}
         onClose={closeModal}
         style={'w-[500px] h-[325px] max-h-[85%]'}
@@ -167,17 +280,17 @@ function Rewards() {
             <button onClick={() => openModal('notFound_credit', selectedReward)} className='w-[250px] text-[16px] h-[42px] btn_gradient rounded-md text-white cursor-pointer'>نحوه کسب سیاره</button>
           </div>
         }
-      </PrimaryModal>
+      </PrimaryModal> */}
 
       {/* مودال دوره‌های آموزشی */}
-      <PrimaryModal
+      {/* <PrimaryModal
         isOpen={isModalOpen && modalType === 'courses'}
         onClose={closeModal}
         style={'w-[755px] h-[745px] max-h-[90%]'}
         mobileStyle={'h-[945px]'}
       >
         {selectedReward && <Reward_Item_Data />}
-      </PrimaryModal>
+      </PrimaryModal> */}
 
 
     </div>

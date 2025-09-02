@@ -3,30 +3,29 @@ import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 
 function CardLottery({ item, onClick }) {
   return (
-    <div className='w-full h-full cursor-default'>
+    <div className='w-full h-full cursor-default shadow_custom rounded-xl'>
+      {console.log(item)}
       <div
         onClick={onClick}
-        className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'
+        className=' min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 p-4 flex flex-col items-center justify-center space-y-2'
       >
         <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
           <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
           <div className='flex-1 min-w-0 flex flex-col items-start space-y-2'>
-            <span className='text-sm text-secondary-2'>قرعه کشی</span>
-            <span className='text-sm text-neutral-800'>۲۰۰ واحد صندوق</span>
-            <span className='text-sm text-neutral-400'>گنجیه فردای ایرانیان</span>
+            <span className='text-sm text-neutral-800'>{item.title}</span>
           </div>
         </div>
         <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-between w-full'>
           <span>5 شانس قرعه‌کشی</span>
           <button className='stroke-neutral-800 text-neutral-800 cursor-pointer flex flex-row items-center space-x-2'>
-            <span><p className='inline p-0 m-0 text-secondary-2'>{item.points}</p> امتیاز</span>
+            <span><p className='inline p-0 m-0 text-secondary-2'>{item.pointCost}</p> امتیاز</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
               <path d="M15 6L9 12L15 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
             </svg>
           </button>
         </div>
       </div>
-      <div className='w-full h-[45px] bg-white rounded-lg border-t-1 border-dashed border-neutral-300 flex flex-row justify-between items-center px-4'>
+      <div className='w-full h-[45px] bg-white rounded-lg border-t-2 border-dashed border-neutral-200 flex flex-row justify-between items-center px-4'>
         <span className='text-xs text-neutral-400'>زمان باقی‌مانده تا قرعه‌کشی</span>
         <div className='flex flex-row items-center space-x-4'>
           <span className='text-xs text-neutral-700'>12ساعت</span>
