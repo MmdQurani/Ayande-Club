@@ -7,6 +7,7 @@ import Faq from "../Pages/Help_Center/Faq";
 import Videos from "../Pages/Help_Center/Videos";
 import LandingPage from "../Pages/LandingPage/LandingPage";
 import NewTicket from "../Pages/NewTicket/NewTicket";
+import NotFound from "../Pages/NotFound/NotFound";
 import Points from "../Pages/Points/Points";
 import Change_Password from "../Pages/Profile/Change_Password";
 import Info from "../Pages/Profile/Info";
@@ -51,6 +52,8 @@ const Routes = [
   { path: "/profile/change-password", element: <Change_Password /> },
 
   { path: "/services" , element: <Services /> },
+
+  { path: "*", element: <NotFound /> },
 ];
 
 export default Routes;
