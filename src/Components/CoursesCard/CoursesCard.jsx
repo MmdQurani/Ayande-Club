@@ -3,6 +3,7 @@ import AwardImage from '../AwardImage/AwardImage'
 // import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 
 function CoursesCard({ item, onClick }) {
+  console.log(item)
   return (
     <div className='w-full h-full cursor-default'>
       <div
@@ -13,8 +14,7 @@ function CoursesCard({ item, onClick }) {
           <AwardImage imagePath={item.imagePath} />
           <div className='flex-1 min-w-0 flex flex-col items-start space-y-2'>
             <span className='text-sm text-secondary-2'>دوره آنلاین تخصصی</span>
-            <span className='text-sm text-neutral-800'>تکنیک‌های معاملاتی با اندیکاتور ایچیموکو</span>
-            <span className='text-sm text-neutral-400'>مدرس : حسین طباطبایی</span>
+            <span className='text-sm text-neutral-800'>{item.title}</span>
           </div>
         </div>
         <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-end w-full'>

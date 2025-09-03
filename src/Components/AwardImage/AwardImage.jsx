@@ -3,7 +3,6 @@ import apiClient from "../../APIs/api";
 
 function AwardImage({ imagePath, alt = '' }) {
   const [src, setSrc] = useState(null);
-  console.log(imagePath)
 
   useEffect(() => {
     if (!imagePath) return;
