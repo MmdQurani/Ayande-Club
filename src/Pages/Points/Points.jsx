@@ -192,7 +192,7 @@ function Points() {
                   <td className="h-[80px] py-3 px-4">{row.type ? getTransactionType(row.type) : '-'}</td>
                   <td className="h-[80px] py-3 px-4">{row.reason ? getTransactionReason(row.reason) : '-'}</td>
                   <td className="h-[80px] py-3 px-4 font-semibold">{row.score ? row.score : '-'}</td>
-                  <td className="h-[80px] py-3 px-4" > {row.createDate ? useFormatDate(row.createDate) : '-'} ساعت</td>
+                  <td className="h-[80px] py-3 px-4" > {row.createDate ? useFormatDate(row.createDate) : '-'}</td>
                   <td className="h-[80px] py-3 px-4">{row.code ? row.code : '-'}</td>
                   <td className="h-[80px] py-3 px-4">
                     <span

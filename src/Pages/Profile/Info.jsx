@@ -1,21 +1,41 @@
-import React from 'react'
+import React, { use, useEffect, useState } from 'react'
 import InfoCard from '../../Components/InfoCard/InfoCard'
+import { useUser } from '../../Contexts/UserContext';
+import useFormatDate from '../../Hooks/useFormatDate';
 
 function Info() {
-  return (
-    <div className='w-full flex flex-col sm:flex-row items-start gap-4'>
 
+  const { user, isInBrokerage, loading } = useUser();
+  const [user_info, setUser_info] = useState(null);
+
+  useEffect(() => {
+    if (user && isInBrokerage) {
+      setUser_info(user.data);
+    } else if (user && !isInBrokerage) {
+      setUser_info(user.data);
+    } else {
+      setUser_info(null);
+    }
+  }, [user, isInBrokerage]);
+
+
+  if (loading) return <div className="text-center py-10">در حال بارگذاری...</div>;
+  if (!user_info) return <div className="text-center py-10">اطلاعاتی برای نمایش وجود ندارد</div>;
+
+  return (
+    <div className='w-full flex flex-col sm:flex-row items-start gap-4'>\
+    {console.log(user_info)}
       <div className='right_items_info w-full sm:w-1/2 h-full flex flex-col gap-4'>
         <InfoCard
           title="اطلاعات هویتی"
           data={[
-            { label: "نام", value: "محمد حسین" },
-            { label: "نام خانوادگی", value: "میرابوالقاسمی" },
-            { label: "کد ملی", value: "۰۰۶۴۳۲۴۲۸" },
-            { label: "نام پدر", value: "میلاد" },
-            { label: "شماره شناسنامه", value: "۰۰۲۵۶۷۲۸" },
-            { label: "تاریخ تولد", value: "1373/11/28" },
-            { label: "کد بورسی", value: "۲۵۴۱ م ج" },
+            { label: "نام", value: user_info?.firstName },
+            { label: "نام خانوادگی", value: user_info?.lastName },
+            { label: "کد ملی", value: user_info?.nationalCode },
+            { label: "نام پدر", value: user_info?.fatherName },
+            { label: "شماره شناسنامه", value: user_info?.nationalCode },
+            { label: "تاریخ تولد", value: useFormatDate(user_info?.birthDate) },
+            { label: "کد بورسی", value: user_info?.tradingCode },
           ]}
           style={'h-[385px]'}
         />
@@ -23,10 +43,10 @@ function Info() {
         <InfoCard
           title="اطلاعات تکمیلی"
           data={[
-            { label: "وضعیت تاهل", value: "." },
-            { label: "تاریخ تولد همسر", value: "." },
-            { label: "تعداد فرزند", value: "." },
-            { label: "تاریخ تولد فرزند", value: "." },
+            { label: "وضعیت تاهل", value: "-" },
+            { label: "تاریخ تولد همسر", value: "-" },
+            { label: "تعداد فرزند", value: "-" },
+            { label: "تاریخ تولد فرزند", value: "-" },
           ]}
           style={'h-[370px]'}
         >
@@ -38,10 +58,10 @@ function Info() {
         <InfoCard
           title="اطلاعات تماس"
           data={[
-            { label: "موبایل", value: "۰۹۱۲۳۴۵۶۷۸۹" },
-            { label: "تلفن ثابت", value: "۰۲۱۷۷۹۸۵۴۴۴" },
-            { label: "کد پستی", value: "۱۱۲۴۵۶۷۸۹۹۰" },
-            { label: "آدرس", value: "تهران- منطقه ۱۲- خیابان بهارستان- کوچه..." },
+            { label: "موبایل", value: user_info?.phoneNumber },
+            { label: "تلفن ثابت", value: '-' },
+            { label: "کد پستی", value: user_info?.address?.postalCode },
+            { label: "آدرس", value: user_info?.address?.cityTitle + '- ' + user_info?.address?.alley + ' - ' + user_info?.address?.remnantAddress },
           ]}
           style={'h-[255px]'}
         />
@@ -49,10 +69,10 @@ function Info() {
         <InfoCard
           title="اطلاعات بانکی"
           data={[
-            { label: "نام بانک", value: "بانک سپه" },
-            { label: "کد شعبه", value: "۱۸۱۰۲۵۶۳۲۴۱" },
-            { label: "شماره حساب", value: "۲۱۵۳۶۲۵۱۴۷۸" },
-            { label: "نام شبا", value: "IR-۳۲۶۵۵۸۵۰۰۰۰۰۰۰۳۲۳۲۴۵" },
+            { label: "نام بانک", value: user_info?.bankAccounts[0]?.bankName },
+            { label: "کد شعبه", value: user_info?.bankAccounts[0]?.branchCode },
+            { label: "شماره حساب", value: user_info?.bankAccounts[0]?.accountNumber },
+            { label: "نام شبا", value: user_info?.bankAccounts[0]?.sheba },
           ]}
           style={'h-[500px]'}
         >
@@ -61,7 +81,7 @@ function Info() {
             <span>ویرایش اطلاعات تنها از طریق سایت سجام امکان پذیر است</span>
             <p className='leading-5'>لذا تنها درصورتـــی که اطلاعات خود را در سایت سجــام تغییر داده‌اید فرآیند بروزرسانی را انجام دهید. در غیر این صورت نیازی به بروزرسانی نیست.
             </p>
-            
+
             <button className='btn_gradient text-sm w-[195px] h-[36px] mx-auto cursor-pointer text-white rounded-lg flex flex-row justify-center items-center gap-x-2'>
 
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

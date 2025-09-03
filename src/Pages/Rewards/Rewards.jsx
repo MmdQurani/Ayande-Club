@@ -18,11 +18,6 @@ import CreditCard from '../../Components/CreditCard/CreditCard';
 import CoursesCard from '../../Components/CoursesCard/CoursesCard';
 import { getAllCategoriesWithProducts } from '../../APIs/categoryApi';
 
-
-// import useIsMobile from '../../Hooks/useIsMobile'
-
-// import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
-
 import allIcon_dark from '../../assets/icons/RewardFilterIcon/allIcon_dark.png'
 import allIcon_white from '../../assets/icons/RewardFilterIcon/allIcon_white.png'
 import Lottery_dark from '../../assets/icons/RewardFilterIcon/Lottery_dark.png'
@@ -39,15 +34,14 @@ function Rewards() {
 
 
   const getApiAllCategoriesWithProducts = async () => {
-    const response = getAllCategoriesWithProducts();
-    return (await response).data
+    const response = await getAllCategoriesWithProducts();
+    console.log(response.data.data.items);
+    return response.data.data.items;
   }
 
   useEffect(() => {
     getApiAllCategoriesWithProducts().then(res => {
-      if (res && res.data && res.data.items) {
-        setCategoriesWithProducts(res.data.items);
-      }
+      setCategoriesWithProducts(res);
     });
   }, []);
 
@@ -95,6 +89,25 @@ function Rewards() {
         (catObj) => catObj.category.title === activeFilter
       );
 
+  const componentMap = { // یک map از کامپوننت‌ها برای دسته‌ها
+    "محصول": RewardCard,
+    "کارت هدیه": RewardCard,
+    "خیریه": RewardCard,
+    "قرعه کشی": CardLottery,
+    "آموزش": CoursesCard,
+    "اعتبار": CreditCard,
+  };
+
+  const iconMap = { // یک map از آیکون‌ها برای دسته‌ها
+    "محصول": gift_01,
+    "کارت هدیه": gift_01,
+    "خیریه": gift_01,
+    "قرعه کشی": Rectangle1,
+    "آموزش": monitor_03,
+    "اعتبار": rocket_02,
+  };
+
+
   return (
     <div className="rewards w-full h-full flex flex-col py-4 space-y-4 px-2" dir='rtl'>
 
@@ -134,67 +147,24 @@ function Rewards() {
 
       {filteredCategories.map((catObj, index) => {
         const { category, products } = catObj;
+        const Component = componentMap[category.title] || RewardCard; // کارکتری که برای این دسته از محصولات استفاده می‌شود
+        const icon = iconMap[category.title] || gift_01;
 
-        // if (!products || products.length === 0) return null;
+        if (!products || products.length === 0) return null;
 
-        switch (category.title) {
-          case "محصول":
-            return (
-              <RewardContainer key={index} title={category.title} icon={gift_01} search filtering>
-                {products.map((product, i) => (
-                  <RewardCard
-                    key={i}
-                    item={product}
-                    onClick={() => openModal("rewards", product)}
-                  />
-                ))}
-              </RewardContainer>
-            );
-
-          case "قرعه کشی":
-            return (
-              <RewardContainer key={index} title={category.title} icon={Rectangle1}>
-                {products.map((product, i) => (
-                  <CardLottery
-                    key={i}
-                    item={product}
-                    onClick={() => openModal("lottery", product)}
-                  />
-                ))}
-              </RewardContainer>
-            );
-
-          case "آموزش":
-            return (
-              <RewardContainer key={index} title={category.title} icon={monitor_03}>
-                {products.map((product, i) => (
-                  <CoursesCard
-                    key={i}
-                    item={product}
-                    onClick={() => openModal("courses", product)}
-                  />
-                ))}
-              </RewardContainer>
-            );
-
-          case "واحد صندوق":
-          case "اعتبار":
-            return (
-              <RewardContainer key={index} title={category.title} icon={rocket_02}>
-                {products.map((product, i) => (
-                  <CreditCard
-                    key={i}
-                    item={product}
-                    onClick={() => openModal("credit", product)}
-                  />
-                ))}
-              </RewardContainer>
-            );
-
-          default:
-            return null;
-        }
+        return (
+          <RewardContainer key={index} title={category.title} icon={icon}>
+            {products.map((product, i) => (
+              <Component
+                key={i}
+                item={product}
+                onClick={() => openModal('rewards', product)}
+              />
+            ))}
+          </RewardContainer>
+        );
       })}
+
 
 
       {/* مودال جوایز و هدایا */}
@@ -208,14 +178,24 @@ function Rewards() {
       </PrimaryModal>
 
       {/* مودال قرعه‌کشی */}
-      <PrimaryModal
+      {/* <PrimaryModal
         isOpen={isModalOpen && modalType === 'lottery'}
         onClose={closeModal}
         style={'w-[755px] h-[745px] max-h-[90%]'}
         mobileStyle={'h-[945px]'}
       >
         {selectedReward && <Reward_Item_Data closeModal={closeModal} selectedReward={selectedReward} />}
-      </PrimaryModal>
+      </PrimaryModal> */}
+
+      {/* مودال دوره‌های آموزشی */}
+      {/* <PrimaryModal
+        isOpen={isModalOpen && modalType === 'courses'}
+        onClose={closeModal}
+        style={'w-[755px] h-[745px] max-h-[90%]'}
+        mobileStyle={'h-[945px]'}
+      >
+        {selectedReward && <Reward_Item_Data closeModal={closeModal} selectedReward={selectedReward} />}
+      </PrimaryModal> */}
 
       {/* مودال کمبود امتیاز */}
       {/* <PrimaryModal
@@ -278,17 +258,6 @@ function Rewards() {
           </div>
         }
       </PrimaryModal> */}
-
-      {/* مودال دوره‌های آموزشی */}
-      {/* <PrimaryModal
-        isOpen={isModalOpen && modalType === 'courses'}
-        onClose={closeModal}
-        style={'w-[755px] h-[745px] max-h-[90%]'}
-        mobileStyle={'h-[945px]'}
-      >
-        {selectedReward && <Reward_Item_Data />}
-      </PrimaryModal> */}
-
 
     </div>
   );

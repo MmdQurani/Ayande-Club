@@ -13,7 +13,7 @@ function InfoCard({ title, data , style , children }) {
         {data.map((item, index) => (
           <div key={index} className="w-full flex flex-row items-center justify-between gap-x-6">
             <span>{item.label}</span>
-            <span className='text-end'>{item.value}</span>
+            <span className='text-end'>{item.value ? item.value : '-'}</span>
           </div>
         ))}
         {children}
