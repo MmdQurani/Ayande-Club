@@ -22,6 +22,7 @@ import allIcon_dark from '../../assets/icons/RewardFilterIcon/allIcon_dark.png'
 import allIcon_white from '../../assets/icons/RewardFilterIcon/allIcon_white.png'
 import Lottery_dark from '../../assets/icons/RewardFilterIcon/Lottery_dark.png'
 import Lottery_white from '../../assets/icons/RewardFilterIcon/Lottery_white.png'
+import Loading from '../../Components/Loading/Loading';
 
 
 function Rewards() {
@@ -31,12 +32,17 @@ function Rewards() {
 
   const [categoriesWithProducts, setCategoriesWithProducts] = useState([]);
   const [activeFilter, setActiveFilter] = useState('همه');
+  const [loading, setLoading] = useState(true);
 
 
   const getApiAllCategoriesWithProducts = async () => {
-    const response = await getAllCategoriesWithProducts();
-    console.log(response.data.data.items);
-    return response.data.data.items;
+    try {
+      setLoading(true);
+      const response = await getAllCategoriesWithProducts();
+      return response.data.data.items;
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -107,6 +113,7 @@ function Rewards() {
     "اعتبار": rocket_02,
   };
 
+  if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>
 
   return (
     <div className="rewards w-full h-full flex flex-col py-4 space-y-4 px-2" dir='rtl'>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AccordionItem } from '../../Components/FAQ_Quantum_Landing/FAQ_Quantum_Landing'
 import { getAllActive } from '../../APIs/apiServices';
+import Loading from '../../Components/Loading/Loading';
 
 function Faq() {
 
@@ -18,6 +19,8 @@ function Faq() {
       .finally(() => setLoading(false));
 
   }, []);
+
+  if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>
 
   return (
     <div className='faq w-full h-full bg-white rounded-lg p-8'>
