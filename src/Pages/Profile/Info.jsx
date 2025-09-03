@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react'
 import InfoCard from '../../Components/InfoCard/InfoCard'
 import { useUser } from '../../Contexts/UserContext';
 import useFormatDate from '../../Hooks/useFormatDate';
+import Loading from '../../Components/Loading/Loading';
 
 function Info() {
 
@@ -19,7 +20,7 @@ function Info() {
   }, [user, isInBrokerage]);
 
 
-  if (loading) return <div className="text-center py-10">در حال بارگذاری...</div>;
+  if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>
   if (!user_info) return <div className="text-center py-10">اطلاعاتی برای نمایش وجود ندارد</div>;
 
   return (

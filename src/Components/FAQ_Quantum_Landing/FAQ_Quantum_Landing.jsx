@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { getAllActive } from '../../APIs/apiServices';
+import Loading from '../Loading/Loading';
 
 function FAQ_Quantum_Landing() {
 
@@ -18,9 +19,8 @@ function FAQ_Quantum_Landing() {
       .finally(() => setLoading(false));
 
   }, []);
-  if (loading) return <div className='w-full container mx-auto flex justify-center mt-26'>
-    <span className='text-neutral-400 hover:text-neutral-700 cursor-pointer'>در حال بارگذاری...</span>
-  </div>;
+  
+  if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>;
 
 
   return (

@@ -4,6 +4,7 @@ import useIsMobile from '../../Hooks/useIsMobile';
 import not_record from '../../assets/images/not_record.png';
 import { getOrderTransactions } from '../../APIs/orderApi';
 import useFormatDate from '../../Hooks/useFormatDate';
+import Loading from '../../Components/Loading/Loading';
 
 function Points() {
   const isMobile = useIsMobile(767);
@@ -102,7 +103,7 @@ function Points() {
     callOrderMethod();
   }, []);
 
-  if (loading) return <div className="text-center py-10">در حال بارگذاری...</div>;
+  if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>
   if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
 
 

@@ -11,6 +11,7 @@ import PrimaryModal from '../../Components/Modals/PrimaryModal'
 import { usePopularAwards } from '../../Contexts/AwardsContext'
 import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data'
 import { useUser } from '../../Contexts/UserContext'
+import Loading from '../../Components/Loading/Loading'
 
 function Dashboard() {
 
@@ -24,7 +25,7 @@ function Dashboard() {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    { awardsLoading ? setAwardsList([]) : setAwardsList(awards.data.items); }
+    { awardsLoading ? setAwardsList([]) : setAwardsList(awards.data.items) }
   }, [awards])
 
   useEffect(() => {
@@ -32,6 +33,8 @@ function Dashboard() {
       setUserInfo(user.data);
     }
   }, [user]);
+
+  if (awardsLoading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>
 
   return (
     <div className='dashboard w-full h-full flex flex-col py-4 space-y-4' dir='rtl'>
