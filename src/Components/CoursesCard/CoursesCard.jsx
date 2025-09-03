@@ -1,5 +1,6 @@
 import React from 'react'
-import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
+import AwardImage from '../AwardImage/AwardImage'
+// import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 
 function CoursesCard({ item, onClick }) {
   return (
@@ -9,7 +10,7 @@ function CoursesCard({ item, onClick }) {
         className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'
       >
         <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
-          <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' />
+          <AwardImage imagePath={item.imagePath} />
           <div className='flex-1 min-w-0 flex flex-col items-start space-y-2'>
             <span className='text-sm text-secondary-2'>دوره آنلاین تخصصی</span>
             <span className='text-sm text-neutral-800'>تکنیک‌های معاملاتی با اندیکاتور ایچیموکو</span>

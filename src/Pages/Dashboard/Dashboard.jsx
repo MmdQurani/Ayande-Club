@@ -12,6 +12,7 @@ import { usePopularAwards } from '../../Contexts/AwardsContext'
 import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data'
 import { useUser } from '../../Contexts/UserContext'
 import Loading from '../../Components/Loading/Loading'
+import AwardImage from '../../Components/AwardImage/AwardImage'
 
 function Dashboard() {
 
@@ -236,7 +237,9 @@ function Dashboard() {
           {awardsList.map((item) => (
             <div key={item.id} onClick={() => openModal('rewards', item)} className='card_reward Quantum_Card min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'>
               <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
-                <img src={item.imageUrl} alt="product" className='w-24 h-24 object-contain mb-4' />
+                {/* <img src={item.imagePath} alt="product" className='w-24 h-24 object-contain mb-4' /> */}
+                {/* {console.log(item.imagePath )} */}
+                <AwardImage imagePath={item.imagePath} />
                 <div className='flex-1 min-w-0 max-w-4/7 flex flex-col items-start space-y-4'>
                   <span className='text-[16px] md:text-lg text-neutral-800'>{item.title}</span>
                 </div>
