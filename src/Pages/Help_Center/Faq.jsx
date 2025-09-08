@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { AccordionItem } from '../../Components/FAQ_Quantum_Landing/FAQ_Quantum_Landing'
 import { getAllActive } from '../../APIs/apiServices';
 import Loading from '../../Components/Loading/Loading';
@@ -8,7 +8,13 @@ function Faq() {
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const mounted = useRef(false);
+
+
   useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+
     setLoading(true);
 
     getAllActive()
@@ -17,7 +23,6 @@ function Faq() {
       })
       .catch(err => setError(err))
       .finally(() => setLoading(false));
-
   }, []);
 
   if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>

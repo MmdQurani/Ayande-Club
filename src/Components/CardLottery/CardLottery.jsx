@@ -4,10 +4,10 @@ import AwardImage from '../AwardImage/AwardImage'
 
 function CardLottery({ item, onClick }) {
   return (
-    <div className='w-full h-full cursor-default shadow_custom rounded-xl'>
+    <div className='min-w-0 md:min-w-[395px] md:max-w-[395px] cursor-default shadow_custom rounded-xl'>
       <div
         onClick={onClick}
-        className=' min-w-0 md:min-w-[395px] md:max-w-[395px] h-[175px] flex-shrink-0 p-4 flex flex-col items-center justify-center space-y-2'
+        className=' w-full h-[175px] flex-shrink-0 p-4 flex flex-col items-center justify-center space-y-2'
       >
         <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
           {/* <img src={dashboard_header_img} alt="product" className='w-24 h-24 object-contain mb-4' /> */}

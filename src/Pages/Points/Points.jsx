@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useIsMobile from '../../Hooks/useIsMobile';
 
 import not_record from '../../assets/images/not_record.png';
@@ -16,6 +16,8 @@ function Points() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const mounted = useRef(false);
 
 
   const tabs = ["همه", "امتیازات دریافتی", "امتیازات خرج شده"];

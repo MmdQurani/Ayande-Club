@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import apiClient from "../../APIs/api";
 
 function AwardImage({ imagePath, alt = '' }) {
   const [src, setSrc] = useState(null);
 
+  const mounted = useRef(false);
+
   useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+
     if (!imagePath) return;
 
     const fetchImage = async () => {
@@ -20,11 +25,11 @@ function AwardImage({ imagePath, alt = '' }) {
     };
 
     fetchImage();
-  }, [imagePath]);
+  }, []);
 
   if (!src) return <div className="w-24 h-24 bg-gray-100 rounded-lg" />;
 
-  return <img src={src} alt={alt} className="w-24 object-contain" />
+  return <img src={src} alt={alt} className="w-18 object-contain" />
 }
 
 export default AwardImage;

@@ -8,18 +8,20 @@ function FAQ_Quantum_Landing() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setLoading(true);
+  const mounted = useRef(false);
 
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+
+    setLoading(true);
     getAllActive()
-      .then(res => {
-        setFaqs(res.data.items);
-      })
+      .then(res => setFaqs(res.data.items))
       .catch(err => setError(err))
       .finally(() => setLoading(false));
-
   }, []);
-  
+
+
   if (loading) return <div className='w-full h-full flex justify-center items-center'><Loading /></div>;
 
 

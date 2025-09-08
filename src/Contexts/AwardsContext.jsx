@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { GetAllPopularAwards } from "../APIs/popularawards";
 
 const PopularAwardsContext = createContext();
@@ -6,7 +6,9 @@ export const usePopularAwards = () => useContext(PopularAwardsContext);
 
 export const PopularAwardsProvider = ({ children }) => {
   const [awards, setAwards] = useState([]);
-  const [awardsLoading , setAwardsLoading] = useState(true);
+  const [awardsLoading, setAwardsLoading] = useState(true);
+
+  const mounted = useRef(false);
 
   const fetchAwards = async () => {
 
@@ -30,6 +32,9 @@ export const PopularAwardsProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+
     fetchAwards();
   }, []);
 

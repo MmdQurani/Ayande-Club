@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useIsMobile from '../../Hooks/useIsMobile';
 
 import Manage_Points from '../../Components/Manage_Points/Manage_Points';
@@ -34,6 +34,8 @@ function Rewards() {
   const [activeFilter, setActiveFilter] = useState('همه');
   const [loading, setLoading] = useState(true);
 
+  const mounted = useRef(false);
+
 
   const getApiAllCategoriesWithProducts = async () => {
     try {
@@ -46,6 +48,9 @@ function Rewards() {
   }
 
   useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+
     getApiAllCategoriesWithProducts().then(res => {
       setCategoriesWithProducts(res);
     });

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { GetCurrentUserInfo, CheckUserInBrokerage } from "../APIs/user";
 
 const UserContext = createContext();
@@ -9,6 +9,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isInBrokerage, setIsInBrokerage] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const mounted = useRef(false);
 
   const fetchUser = async () => {
     const token = localStorage.getItem("token");
@@ -36,6 +38,9 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+
     fetchUser();
   }, []);
 
