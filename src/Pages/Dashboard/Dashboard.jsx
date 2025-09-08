@@ -13,8 +13,11 @@ import Reward_Item_Data from '../../Components/Reward_Item_Data/Reward_Item_Data
 import { useUser } from '../../Contexts/UserContext'
 import Loading from '../../Components/Loading/Loading'
 import AwardImage from '../../Components/AwardImage/AwardImage'
+import { useNavigate } from 'react-router-dom'
 
 function Dashboard() {
+
+  const navigate = useNavigate();
 
   const isIPad = useIsMobile(767)
   const { isModalOpen, selectedReward, modalType, openModal, closeModal } = usePrimaryModal();
@@ -99,7 +102,7 @@ function Dashboard() {
                       <span className='text-[16px] text-neutral-500'>سطح کاربری من</span>
                       <span className='text-2xl text-neutral-900'>{userInfo?.userLevel} <p className='text-[16px] inline'>از 6</p></span>
                     </div>
-                    <button className='bg-secondary-6 w-full py-2.5 rounded-lg text-secondary-3 stroke-secondary-3 cursor-pointer flex flex-row justify-between px-2.5'>
+                    <button onClick={() => navigate('/growth/points-guide')} className='bg-secondary-6 w-full py-2.5 rounded-lg text-secondary-3 stroke-secondary-3 cursor-pointer flex flex-row justify-between px-2.5'>
                       <span>نحوه‌ی کسب سیاره</span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                         <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -118,8 +121,8 @@ function Dashboard() {
                       <span className='text-[16px] text-neutral-500'>امتیازات خرج شده</span>
                       <span className='text-2xl text-neutral-900'>0</span>
                     </div>
-                    <button className='bg-secondary-6 w-full py-2.5 rounded-lg text-secondary-3 stroke-secondary-3 cursor-pointer flex flex-row justify-between px-2.5'>
-                      <span>نحوه‌ی کسب سیاره</span>
+                    <button onClick={() => navigate('/points')} className='bg-secondary-6 w-full py-2.5 rounded-lg text-secondary-3 stroke-secondary-3 cursor-pointer flex flex-row justify-between px-2.5'>
+                      <span>تاریخچه‌ی تراکنش ها</span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                         <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>

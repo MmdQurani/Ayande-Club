@@ -33,13 +33,13 @@ function Sidebar({ isOpen, onClose }) {
         </ul>
 
         <div className="sidebar_footer">
-          <div className="mobile_contact0 py-6 border-t border-neutral-200 flex justify-between text-xs">
+          <a href='tel:021362125543' className="mobile_contact0 py-6 border-t border-neutral-200 flex justify-between text-xs">
             <div className="flex items-center space-x-1.5">
               <img className="size-5 object-contain" src={callCalling} alt="تماس" />
               <span>تماس با ما</span>
             </div>
             <span>۰۲۱-۳۶۲۱۲۵۵۴۳</span>
-          </div>
+          </a>
 
           <div className="media_contact py-6 border-t border-neutral-200 flex justify-between text-xs">
             {media.map(link => (

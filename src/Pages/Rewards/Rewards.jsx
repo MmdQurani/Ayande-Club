@@ -159,7 +159,7 @@ function Rewards() {
 
       {filteredCategories.map((catObj, index) => {
         const { category, products } = catObj;
-        const Component = componentMap[category.title] || RewardCard; // کارکتری که برای این دسته از محصولات استفاده می‌شود
+        const Component = componentMap[category.title] || RewardCard;
         const icon = iconMap[category.title] || gift_01;
 
         if (!products || products.length === 0) return null;
@@ -266,7 +266,7 @@ function Rewards() {
           <div className='notFound_credit w-full h-full flex flex-col justify-around items-center'>
             <img className='w-[130px] object-contain' src={notFound_credit} alt="" />
             <span>این مورد در سیستم ثبت نشده است.</span>
-            <button onClick={() => openModal('notFound_credit', selectedReward)} className='w-[250px] text-[16px] h-[42px] btn_gradient rounded-md text-white cursor-pointer'>نحوه کسب سیاره</button>
+            <button onClick={() => openModal('notFound_credit', selectedReward)} className='w-[250px] text-[16px] h-[42px] btn_gradient rounded-md text-white cursor-pointer'> سیاره</button>
           </div>
         }
       </PrimaryModal> */}
