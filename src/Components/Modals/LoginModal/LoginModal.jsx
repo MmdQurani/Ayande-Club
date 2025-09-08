@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import refresh from "../../../assets/icons/refresh-2.png";
@@ -23,12 +23,22 @@ export default function LoginModal() {
 
   const [loading, setLoading] = useState(false)
 
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    if (!mounted.current) {
+      getCaptchaApi();
+      mounted.current = true;
+    }
+  }, []);
+
   const getCaptchaApi = async () => {
     setLoading(true)
-    await getCaptcha().then(item => {
-      setCaptchaSrc(item.src)
-      setCaptchaId(item.id)
-    });
+    
+    const resCaptcha = await getCaptcha();
+    setCaptchaSrc(resCaptcha.src)
+    setCaptchaId(resCaptcha.id)
+
     setLoading(false)
   }
 
@@ -41,21 +51,17 @@ export default function LoginModal() {
 
     if (res.isSuccess && res.data.accessToken) {
       localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem('expiration', res.data.expiration);
     }
 
     return res;
   };
-
 
   useEffect(() => {
     if (isSuccess === true) {
       navigate("/dashboard");
     }
   }, [isSuccess, navigate]);
-
-  useEffect(() => {
-    getCaptchaApi()
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

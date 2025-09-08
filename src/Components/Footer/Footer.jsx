@@ -73,7 +73,7 @@ function Footer() {
             </div>
             <div className='flex flex-row-reverse gap-x-2'>
               <img className='size-6 object-contain' src={call_calling} alt="call_calling" />
-              <span className='text-[16px]'>شماره تماس : 3652149-021</span>
+              <a href='tel:0213652149' className='text-[16px]'>شماره تماس : 3652149-021</a>
             </div>
           </div>
         </div>

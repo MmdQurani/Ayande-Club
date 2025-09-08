@@ -11,13 +11,19 @@ import { useNavigate } from 'react-router-dom';
 function LandingPage() {
 
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+
 
   useEffect(() => {
-    if (token) {
+    const token = localStorage.getItem('token');
+    const expiration = localStorage.getItem('expiration');
+
+    if (token && expiration && Date.now() < Number(expiration)) {
       navigate('/dashboard');
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('expiration');
     }
-  } , []);
+  }, [navigate]);
 
   return (
     <div className='LandingPage flex flex-col justify-start items-center' dir='rtl'>
@@ -29,7 +35,6 @@ function LandingPage() {
         <Quantum_Levels />
         <FAQ_Quantum_Landing />
 
-        {/* اینجا مودال */}
         <MainModal />
       </div>
     </div>

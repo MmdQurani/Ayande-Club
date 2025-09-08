@@ -38,7 +38,7 @@ function MainHeader() {
               <path d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
 
-            {loading ? <span>در حال بارگذاری...</span> : <span>{user.data.firstName} {user.data.lastName}</span>}
+            {loading ? <span>در حال بارگذاری...</span> : <span>{user?.data?.firstName} {user?.data?.lastName}</span>}
           </div>
         </div>
 
