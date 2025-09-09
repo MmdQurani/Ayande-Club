@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import manage_points_title from '../../assets/images/manage-points-title.png'
+import { useUser } from '../../Contexts/UserContext';
 
 function Manage_Points() {
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  const { user, isInBrokerage, lodading } = useUser();
+  console.log(user, isInBrokerage, lodading)
+
+  useEffect(() => {
+    setUserInfo(user.data);
+  }, [user])
+
   return (
     <div className="manage-points w-full h-[110px] flex flex-row justify-between items-center bg-white Quantum_Card p-4 px-6">
       <div className='manage-points-title space-y-2 flex flex-col'>
@@ -15,7 +26,7 @@ function Manage_Points() {
       </div>
 
       <div className='manage-point bg-secondary-10 px-6 py-3 rounded-lg text-secondary-3'>
-        ۱.۰۰۰.۰۰۰.۰۰۰ امتیاز
+        امتیاز {userInfo?.score ? Number(userInfo.score).toLocaleString()  : 0}
       </div>
     </div>
   )

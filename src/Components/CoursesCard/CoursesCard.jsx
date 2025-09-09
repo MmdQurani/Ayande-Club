@@ -3,12 +3,12 @@ import AwardImage from '../AwardImage/AwardImage'
 // import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
 
 function CoursesCard({ item, onClick }) {
-  console.log(item)
+
   return (
-    <div className='w-full h-full cursor-default'>
+    <div className='min-w-0 md:min-w-[395px] md:max-w-[395px] cursor-default shadow_custom rounded-xl'>
       <div
         onClick={onClick}
-        className='card_reward Quantum_Card min-w-0 md:min-w-[395px] h-[175px] flex-shrink-0 rounded-xl shadow p-4 flex flex-col items-center justify-center space-y-2'
+        className='card_reward w-full h-[175px] flex-shrink-0 rounded-xl p-4 flex flex-col items-center justify-center space-y-2'
       >
         <div className='card_reward_top w-full flex flex-row items-center space-x-4'>
           <AwardImage imagePath={item.imagePath} />
@@ -27,7 +27,7 @@ function CoursesCard({ item, onClick }) {
         </div>
       </div>
 
-      <div className='w-full h-[45px] bg-white rounded-lg border-t-1 border-dashed border-neutral-300 flex flex-row justify-between items-center px-4'>
+      <div className='w-full h-[45px] bg-white rounded-lg border-t-2 border-dashed border-neutral-200 flex flex-row justify-between items-center px-4'>
         <span className='text-xs text-neutral-400'>زمان شروع دوره</span>
         <div className='w-max px-4 py-2 text-xs text-secondary-3 bg-neutral-100/80 rounded-lg'>
           <span>23</span>

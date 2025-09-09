@@ -19,7 +19,7 @@ const RewardCard = ({ item, onClick }) => {
       <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-between w-full'>
         <span>مدت اعتبار :</span>
         <button className='stroke-neutral-800 text-neutral-800 cursor-pointer flex flex-row items-center space-x-2'>
-          <span><p className='inline p-0 m-0 text-secondary-2'>{Number(item?.points).toLocaleString()|| ""}</p> امتیاز</span>
+          <span><p className='inline p-0 m-0 text-secondary-2'>{item.points ? Number(item?.points).toLocaleString() : 0}</p> امتیاز</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
             <path d="M15 6L9 12L15 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
           </svg>

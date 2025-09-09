@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import User_Account_Info_Card from '../../Components/User_Account_Info_Card/User_Account_Info_Card'
 import useIsMobile from '../../Hooks/useIsMobile'
 
 import dashboard_header_img from '../../assets/images/img-banner-dashboard.png'
