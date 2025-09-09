@@ -14,6 +14,8 @@ import { useUser } from '../../Contexts/UserContext'
 import Loading from '../../Components/Loading/Loading'
 import AwardImage from '../../Components/AwardImage/AwardImage'
 import { useNavigate } from 'react-router-dom'
+import { getCaptcha } from '../../APIs/apiServices'
+import { postInviteFriend } from '../../APIs/InviteFirend'
 
 function Dashboard() {
 
@@ -27,6 +29,70 @@ function Dashboard() {
 
   const [awardsList, setAwardsList] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [captchaValue, setCaptchaValue] = useState("");
+  const [captchaId, setCaptchaId] = useState(null);
+  const [captchaImage, setCaptchaImage] = useState(null);
+  const [callCaptcha, setCallCaptcha] = useState(false);
+
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const fetchCaptcha = async () => {
+    try {
+      const res = await getCaptcha();
+      setCaptchaId(res.id);
+      setCaptchaImage(res.src);
+      setCallCaptcha(true);
+    } catch (err) {
+      console.error("Error fetching captcha:", err);
+    }
+  };
+
+  const handleInvite = async () => {
+    try {
+      const payload = { phoneNumber, captchaId, captchaValue };
+      const res = await postInviteFriend(payload);
+
+      if (res?.isSuccess) {
+        setMessage(res?.message || "دعوت با موفقیت انجام شد");
+        setError(null);
+      } else {
+        setError(res?.message || "عملیات ناموفق بود");
+        setMessage(null);
+        setPhoneNumber("");
+        setCaptchaValue("");
+        setCallCaptcha(false);
+      }
+
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+        setMessage(null);
+        setError(null);
+      }, 3000);
+
+      if (res?.isSuccess) {
+        setPhoneNumber("");
+        setCaptchaValue("");
+        setCallCaptcha(false);
+      }
+
+    } catch (err) {
+      setError("خطای شبکه، دوباره تلاش کنید");
+      setMessage(null);
+      setShowMessage(true);
+
+      setTimeout(() => {
+        setShowMessage(false);
+        setError(null);
+      }, 3000);
+
+      setCallCaptcha(false);
+    }
+  };
 
   useEffect(() => {
     { awardsLoading ? setAwardsList([]) : setAwardsList(awards.data.items) }
@@ -166,25 +232,51 @@ function Dashboard() {
           </div>
 
           <div className='inviteContainer_btn w-full md:flex-1 h-full flex flex-row items-center justify-end px-4'>
-            <div className='h-[48px] w-full flex flex-row justify-end space-x-2'>
-              <div className='input_inviteContainer h-full md:max-w-[370px] w-full flex flex-row px-2 py-2 rounded-md space-x-2 bg-gray-100'>
-                <input className='placeholder:text-xs w-full outline-0 placeholder:text-neutral-400 px-1 h-full' type="text" name="invite" placeholder='شماره تماس دوستان را وارد کنید' />
-                <button className='bg-secondary-2 cursor-pointer text-white h-full px-4 rounded-md'>ارسال</button>
+
+            {showMessage ? (
+              <div className="w-full text-center py-3">
+                {message && <p className="text-green-600 font-medium">{message}</p>}
+                {error && <p className="text-red-600 font-medium">{error}</p>}
               </div>
+            ) : (!callCaptcha ?
+              <div className='h-[48px] w-full flex flex-row justify-end space-x-2'>
+                <div className='input_inviteContainer h-full md:max-w-[370px] w-full flex flex-row px-2 py-2 rounded-md space-x-2 bg-gray-100'>
+                  <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className='placeholder:text-xs w-full outline-0 placeholder:text-neutral-400 px-1 h-full' type="text" placeholder='شماره تماس دوستان را وارد کنید' />
+                  <button onClick={fetchCaptcha} className='bg-secondary-2 cursor-pointer text-white h-full px-4 rounded-md'>ارسال</button>
+                </div>
 
-              <div className='h-full flex flex-row space-x-2'>
+                <div className='h-full flex flex-row space-x-2'>
 
-                <button className='h-full w-12 rounded-md bg-gray-100 p-2 stroke-secondary-2 cursor-pointer'>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none"><path d="M10 8V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5H17C17.9428 5 18.4142 5 18.7071 5.29289C19 5.58579 19 6.05719 19 7V12C19 12.9428 19 13.4142 18.7071 13.7071C18.4142 14 17.9428 14 17 14H16M7 19H12C12.9428 19 13.4142 19 13.7071 18.7071C14 18.4142 14 17.9428 14 17V12C14 11.0572 14 10.5858 13.7071 10.2929C13.4142 10 12.9428 10 12 10H7C6.05719 10 5.58579 10 5.29289 10.2929C5 10.5858 5 11.0572 5 12V17C5 17.9428 5 18.4142 5.29289 18.7071C5.58579 19 6.05719 19 7 19Z" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                </button>
+                  <button className='h-full w-12 rounded-md bg-gray-100 p-2 stroke-secondary-2 cursor-pointer'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none"><path d="M10 8V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5H17C17.9428 5 18.4142 5 18.7071 5.29289C19 5.58579 19 6.05719 19 7V12C19 12.9428 19 13.4142 18.7071 13.7071C18.4142 14 17.9428 14 17 14H16M7 19H12C12.9428 19 13.4142 19 13.7071 18.7071C14 18.4142 14 17.9428 14 17V12C14 11.0572 14 10.5858 13.7071 10.2929C13.4142 10 12.9428 10 12 10H7C6.05719 10 5.58579 10 5.29289 10.2929C5 10.5858 5 11.0572 5 12V17C5 17.9428 5 18.4142 5.29289 18.7071C5.58579 19 6.05719 19 7 19Z" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </button>
 
-                <button className='h-full w-12 rounded-md bg-gray-100 p-2 fill-secondary-2 cursor-pointer'>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 2.25C14.7051 2.25 13.25 3.70507 13.25 5.5C13.25 5.69591 13.2673 5.88776 13.3006 6.07412L8.56991 9.38558C8.54587 9.4024 8.52312 9.42038 8.50168 9.43939C7.94993 9.00747 7.25503 8.75 6.5 8.75C4.70507 8.75 3.25 10.2051 3.25 12C3.25 13.7949 4.70507 15.25 6.5 15.25C7.25503 15.25 7.94993 14.9925 8.50168 14.5606C8.52312 14.5796 8.54587 14.5976 8.56991 14.6144L13.3006 17.9259C13.2673 18.1122 13.25 18.3041 13.25 18.5C13.25 20.2949 14.7051 21.75 16.5 21.75C18.2949 21.75 19.75 20.2949 19.75 18.5C19.75 16.7051 18.2949 15.25 16.5 15.25C15.4472 15.25 14.5113 15.7506 13.9174 16.5267L9.43806 13.3911C9.63809 12.9694 9.75 12.4978 9.75 12C9.75 11.5022 9.63809 11.0306 9.43806 10.6089L13.9174 7.4733C14.5113 8.24942 15.4472 8.75 16.5 8.75C18.2949 8.75 19.75 7.29493 19.75 5.5C19.75 3.70507 18.2949 2.25 16.5 2.25ZM14.75 5.5C14.75 4.5335 15.5335 3.75 16.5 3.75C17.4665 3.75 18.25 4.5335 18.25 5.5C18.25 6.4665 17.4665 7.25 16.5 7.25C15.5335 7.25 14.75 6.4665 14.75 5.5ZM6.5 10.25C5.5335 10.25 4.75 11.0335 4.75 12C4.75 12.9665 5.5335 13.75 6.5 13.75C7.4665 13.75 8.25 12.9665 8.25 12C8.25 11.0335 7.4665 10.25 6.5 10.25ZM16.5 16.75C15.5335 16.75 14.75 17.5335 14.75 18.5C14.75 19.4665 15.5335 20.25 16.5 20.25C17.4665 20.25 18.25 19.4665 18.25 18.5C18.25 17.5335 17.4665 16.75 16.5 16.75Z" />
-                  </svg>
-                </button>
+                  <button className='h-full w-12 rounded-md bg-gray-100 p-2 fill-secondary-2 cursor-pointer'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 2.25C14.7051 2.25 13.25 3.70507 13.25 5.5C13.25 5.69591 13.2673 5.88776 13.3006 6.07412L8.56991 9.38558C8.54587 9.4024 8.52312 9.42038 8.50168 9.43939C7.94993 9.00747 7.25503 8.75 6.5 8.75C4.70507 8.75 3.25 10.2051 3.25 12C3.25 13.7949 4.70507 15.25 6.5 15.25C7.25503 15.25 7.94993 14.9925 8.50168 14.5606C8.52312 14.5796 8.54587 14.5976 8.56991 14.6144L13.3006 17.9259C13.2673 18.1122 13.25 18.3041 13.25 18.5C13.25 20.2949 14.7051 21.75 16.5 21.75C18.2949 21.75 19.75 20.2949 19.75 18.5C19.75 16.7051 18.2949 15.25 16.5 15.25C15.4472 15.25 14.5113 15.7506 13.9174 16.5267L9.43806 13.3911C9.63809 12.9694 9.75 12.4978 9.75 12C9.75 11.5022 9.63809 11.0306 9.43806 10.6089L13.9174 7.4733C14.5113 8.24942 15.4472 8.75 16.5 8.75C18.2949 8.75 19.75 7.29493 19.75 5.5C19.75 3.70507 18.2949 2.25 16.5 2.25ZM14.75 5.5C14.75 4.5335 15.5335 3.75 16.5 3.75C17.4665 3.75 18.25 4.5335 18.25 5.5C18.25 6.4665 17.4665 7.25 16.5 7.25C15.5335 7.25 14.75 6.4665 14.75 5.5ZM6.5 10.25C5.5335 10.25 4.75 11.0335 4.75 12C4.75 12.9665 5.5335 13.75 6.5 13.75C7.4665 13.75 8.25 12.9665 8.25 12C8.25 11.0335 7.4665 10.25 6.5 10.25ZM16.5 16.75C15.5335 16.75 14.75 17.5335 14.75 18.5C14.75 19.4665 15.5335 20.25 16.5 20.25C17.4665 20.25 18.25 19.4665 18.25 18.5C18.25 17.5335 17.4665 16.75 16.5 16.75Z" />
+                    </svg>
+                  </button>
+                </div>
               </div>
-            </div>
+              :
+              <div className='h-[48px] w-full flex flex-row justify-end space-x-2'>
+                <div className='input_inviteContainer h-full md:max-w-[370px] w-full flex flex-row px-2 py-2 rounded-md space-x-2 bg-gray-100'>
+                  <input value={captchaValue} onChange={(e) => setCaptchaValue(e.target.value)} className='placeholder:text-xs w-full outline-0 placeholder:text-neutral-400 px-1 h-full' type="text" placeholder='کد امنیتی را وارد کنید' />
+                  {captchaImage && (
+                    <img src={captchaImage} alt="captcha" className='h-full w-[100px] object-contain' />
+                  )}
+                  <button onClick={() => { handleInvite() }} className='bg-secondary-2 cursor-pointer text-white h-full px-4 rounded-md'>ثبت</button>
+                </div>
+
+                <div className='h-full flex flex-row space-x-2'>
+
+                  <button className='h-full w-12 rounded-md bg-gray-100 p-2 stroke-secondary-2 cursor-pointer'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none"><path d="M10 8V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5H17C17.9428 5 18.4142 5 18.7071 5.29289C19 5.58579 19 6.05719 19 7V12C19 12.9428 19 13.4142 18.7071 13.7071C18.4142 14 17.9428 14 17 14H16M7 19H12C12.9428 19 13.4142 19 13.7071 18.7071C14 18.4142 14 17.9428 14 17V12C14 11.0572 14 10.5858 13.7071 10.2929C13.4142 10 12.9428 10 12 10H7C6.05719 10 5.58579 10 5.29289 10.2929C5 10.5858 5 11.0572 5 12V17C5 17.9428 5 18.4142 5.29289 18.7071C5.58579 19 6.05719 19 7 19Z" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </button>
+
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -250,7 +342,7 @@ function Dashboard() {
               <div className='card_reward_bottom flex-shrink-0 flex flex-row justify-between w-full'>
                 <span>مدت اعتبار :</span>
                 <button className='stroke-neutral-800 text-neutral-800 cursor-pointer flex flex-row items-center space-x-2'>
-                  <span><p className='inline p-0 m-0 text-secondary-2'>{Number(item?.pointCost).toLocaleString()||""}</p> امتیاز</span>
+                  <span><p className='inline p-0 m-0 text-secondary-2'>{Number(item?.pointCost).toLocaleString() || ""}</p> امتیاز</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                     <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
