@@ -1,7 +1,22 @@
 import React from 'react'
 import Planet from '../../assets/images/Planet/Landing_Planet.png'
+import { useNavigate } from 'react-router-dom'
 
 function Landing_title() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
+    }
+    
+  }
+
   return (
     <div className='Landing_title flex justify-center'>
       <div className='container flex flex-row mr-8 xl:px-40'>
@@ -14,7 +29,7 @@ function Landing_title() {
 
             <p className='p-0 m-0 lg:text-lg text-md leading-7 text-gray-600'>معــامله کنید، امتیــاز کسب کنید و از جوایز نقدی و غیرنقدی منحصر به فرد بهره‌مند شوید.</p>
 
-            <button className='bg-secondary-3 text-white lg:px-6 px-4 lg:py-3 py-2 rounded-lg cursor-pointer'>ورود به دنیای کوانتوم</button>
+            <button onClick={handleClick} className='bg-secondary-3 text-white lg:px-6 px-4 lg:py-3 py-2 rounded-lg cursor-pointer'>ورود به دنیای کوانتوم</button>
           </div>
         </div>
 

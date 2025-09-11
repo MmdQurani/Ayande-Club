@@ -1,8 +1,23 @@
 import React from 'react'
 import Route_Guide_Quantum_Img from '../../assets/images/Quantum/quantomSteps-CnOKrCz-.svg'
 import Route_Guide_Quantum_Img_sm from '../../assets/images/Quantum/quantumLanding-C4p4afdw.svg'
+import { useNavigate } from 'react-router-dom';
 
 function Route_Guide_Quantum() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
+    }
+
+  }
+
   return (
     <>
       <div className='Route_Guide_Quantum container 2xl:w-2/3 max-w-[90%] mx-auto h-auto  mt-16'>
@@ -15,7 +30,7 @@ function Route_Guide_Quantum() {
           </div>
 
           <div className='Route_Guide_Quantum_Btn'>
-            <button className='bg-gradient-to-r md:text-xl text-[16px] cursor-pointer from-secondary-1/60 to-secondary-1 text-gray-800 py-2.5 px-6 rounded-lg'>ورود به دنیای کوانتوم</button>
+            <button onClick={handleClick} className='bg-gradient-to-r md:text-xl text-[16px] cursor-pointer from-secondary-1/60 to-secondary-1 text-gray-800 py-2.5 px-6 rounded-lg'>ورود به دنیای کوانتوم</button>
           </div>
 
         </div>

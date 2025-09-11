@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import footer_logo from '../../assets/images/logo/footer_logo.png'
 
@@ -15,11 +15,25 @@ import instagram from '../../assets/icons/media/instagram.png'
 import aparat from '../../assets/icons/media/aparat.png'
 
 function Footer() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
+    }
+
+  }
+
   return (
     <footer className='w-full h-auto mt-26 text-center px-1.5'>
       <div className='container mx-auto min-h-[789px] flex flex-col items-center justify-center gap-y-8 pt-22 pb-6'>
         <span className='md:text-4xl text-lg text-secondary-3 md:leading-14 leading-8' dir='rtl'>به دنیای کوآنتوم قدم بگذارید و آغازگر سفر پاداش‌های منحصر به فرد خود باشید !</span>
-        <button className='bg-white px-8 py-3 cursor-pointer md:text-xl text-sm rounded-lg shadow-lg mb-6'>ورود به دنیای کوانتوم</button>
+        <button onClick={handleClick} className='bg-white px-8 py-3 cursor-pointer md:text-xl text-sm rounded-lg shadow-lg mb-6'>ورود به دنیای کوانتوم</button>
 
         <div className='footer_content backdrop-blur-md bg-neutral-900/15 hidden md:flex flex-row justify-between gap-x-6 w-full min-h-[230px] text-white px-12 py-6 rounded-xl'>
           <div className='left_box_footer lg:w-[20%] md:w-[35%] flex flex-col items-start'>
